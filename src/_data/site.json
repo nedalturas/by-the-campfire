@@ -1,0 +1,11 @@
+{
+  "name": "By the Campfire",
+  "shortName": "Campfire",
+  "description": "A multi-authored collection of random literature, stories, and musings.",
+  "url": "https://by-the-campfire.netlify.app",
+  "author": {
+    "name": "Ned",
+    "email": "nedalturas527@gmail.com"
+  },
+  "metaImage": "/images/default-meta-image.jpg"
+}

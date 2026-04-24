@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - By the Campfire</title>
-    <meta name="description" content="A multi-authored blog for random literature">
+    <title>{% if title %}{{ title }} - {% endif %}{{ site.name }}</title>
+    <meta name="description" content="{{ description | default(site.description) }}">
+    <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}">
+    <meta property="og:description" content="{{ description | default(site.description) }}">
+    <meta property="og:image" content="{{ site.url }}{{ site.metaImage }}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
@@ -14,14 +19,11 @@
 <body>
     <div class="fire-particles" aria-hidden="true"></div>
     <header class="site-header">
-        <div class="container">
-            <a href="/" class="logo">
-                <span class="logo-icon">🔥</span>
-                By the Campfire
-            </a>
+        <div class="container header-container">
+            <a href="/" class="logo">{{ site.name }}</a>
             <nav class="site-nav">
-                <a href="/">Home</a>
-                <a href="/tags/">Tags</a>
+                <a href="/archive/">ARCHIVE</a>
+                <a href="/about/">ABOUT ME</a>
             </nav>
         </div>
     </header>
@@ -32,7 +34,7 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; {% if page.date %}{{ page.date | postDate | truncate(4, true, "") }}{% else %}2026{% endif %} By the Campfire. Gather 'round.</p>
+            <p>&copy; {% if page.date %}{{ page.date | postDate | truncate(4, true, "") }}{% else %}2026{% endif %} {{ site.name }}. Gather 'round.</p>
         </div>
     </footer>
 

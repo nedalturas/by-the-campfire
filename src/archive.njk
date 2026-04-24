@@ -1,0 +1,48 @@
+---
+layout: base.njk
+title: Archive
+---
+
+<div class="hero hero-center" style="margin-bottom: 2rem;">
+    <h1 class="hero-title-main">The Archive</h1>
+    <div class="hero-quote-wrapper">
+        <p class="hero-quote">"All the stories we have told around the fire."</p>
+    </div>
+</div>
+
+<div class="recent-posts-container">
+    <div class="post-list-custom">
+        {% set postslist = collections.posts %}
+        {% for post in postslist | reverse %}
+            <article class="post-row">
+                <div class="post-row-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </div>
+                <div class="post-row-content">
+                    <div class="post-row-date">{{ post.date | postDate }}</div>
+                    <a href="{{ post.url }}" class="post-row-title">{{ post.data.title }}</a>
+
+                    {% if post.data.tags %}
+                        <div class="post-row-tags">
+                            {% for tag in post.data.tags %}
+                                {% if tag != "post" and tag != "posts" %}
+                                    <span class="post-tag-pill">{{ tag }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="post-row-excerpt">
+                        Author is {{ post.data.author | lower }}
+                    </div>
+                    <div class="post-row-byline">
+                        <em>By {{ post.data.author }}</em>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</div>
