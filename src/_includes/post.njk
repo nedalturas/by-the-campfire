@@ -1,0 +1,29 @@
+---
+layout: base.njk
+---
+<article class="post">
+    <header class="post-header">
+        <h1 class="post-title">{{ title }}</h1>
+        <div class="post-meta">
+            <span class="post-author">By <span class="author-name">{{ author }}</span></span>
+            <span class="post-date">{{ date | postDate }}</span>
+        </div>
+        {% if tags %}
+        <ul class="post-tags">
+            {% for tag in tags %}
+              {% if tag != "post" and tag != "posts" %}
+                <li><a href="/tags/{{ tag | slugify }}/" class="tag">{{ tag }}</a></li>
+              {% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </header>
+
+    <div class="post-content">
+        {{ content | safe }}
+    </div>
+    
+    <div class="post-footer">
+        <a href="/" class="back-link">← Back to the fire</a>
+    </div>
+</article>

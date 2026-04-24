@@ -1,0 +1,13 @@
+---
+layout: base.njk
+title: All Tags
+---
+
+<div class="tags-page">
+    <h1 class="page-title">Explore by Tag</h1>
+    <div class="tags-cloud">
+        {% for tag in collections.tagList %}
+            <a href="/tags/{{ tag | slugify }}/" class="tag tag-large">{{ tag }}</a>
+        {% endfor %}
+    </div>
+</div>

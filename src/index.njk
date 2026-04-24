@@ -1,0 +1,39 @@
+---
+layout: base.njk
+title: Welcome to the Campfire
+---
+
+<div class="hero">
+    <h1 class="hero-title">Gather 'round...</h1>
+    <p class="hero-subtitle">A multi-authored collection of random literature, stories, and musings.</p>
+</div>
+
+<div class="homepage-tags">
+    <h3 class="filter-title">Filter by the flames:</h3>
+    <div class="tags-cloud">
+        {% for tag in collections.tagList %}
+            <a href="/tags/{{ tag | slugify }}/" class="tag">{{ tag }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="recent-posts">
+    <h2 class="section-title">Latest Tales</h2>
+    <div class="post-list">
+        {% set postslist = collections.posts %}
+        {% for post in postslist | reverse %}
+            <article class="post-card">
+                <a href="{{ post.url }}" class="post-card-link">
+                    <h2 class="post-card-title">{{ post.data.title }}</h2>
+                    <div class="post-card-meta">
+                        <span class="post-card-author">{{ post.data.author }}</span>
+                        <span class="post-card-date">{{ post.date | postDate }}</span>
+                    </div>
+                    {% if post.data.description %}
+                        <p class="post-card-desc">{{ post.data.description }}</p>
+                    {% endif %}
+                </a>
+            </article>
+        {% endfor %}
+    </div>
+</div>

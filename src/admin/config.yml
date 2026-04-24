@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+# This enables local testing with `npx decap-server`
+local_backend: true
+
+media_folder: "src/images"
+public_folder: "/images"
+
+collections:
+  - name: "posts"
+    label: "Literature"
+    folder: "src/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Author", name: "author", widget: "string", default: "Anonymous"}
+      - {label: "Description (Short)", name: "description", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", default: ["posts"]}
+      - {label: "Body", name: "body", widget: "markdown"}
