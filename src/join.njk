@@ -4,409 +4,429 @@ title: Join the Campfire
 ---
 
 <style>
-.butler-container {
-    background-color: var(--surface-color);
-    padding: var(--spacing-xl);
-    border-radius: 12px;
-    max-width: 600px;
-    margin: 0 auto;
-    border: 1px solid rgba(230, 92, 0, 0.2);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-
-.butler-container h3 {
-    font-family: var(--font-serif);
-    color: var(--fire-main);
-    font-size: 2rem;
-    margin-bottom: var(--spacing-sm);
-    text-align: center;
-}
-
-.butler-container p {
-    text-align: center;
-    color: var(--text-muted);
-    margin-bottom: var(--spacing-lg);
-    font-style: italic;
-}
-
-.input-group {
-    margin-bottom: var(--spacing-md);
-    display: flex;
-    flex-direction: column;
-}
-
-.input-group label {
-    font-family: var(--font-serif);
-    font-size: 0.9rem;
-    color: var(--text-main);
-    margin-bottom: 0.5rem;
-}
-
-.input-group input,
-.input-group textarea {
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 0.8rem 1rem;
-    color: var(--text-main);
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.input-group input:focus,
-.input-group textarea:focus {
-    outline: none;
-    border-color: var(--fire-main);
-    box-shadow: 0 0 10px rgba(230, 92, 0, 0.2);
-}
-
-.input-group textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.gravatar-preview {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 10px;
-    background: rgba(0,0,0,0.1);
-    border-radius: 8px;
-}
-
-.avatar-img {
-    border-radius: 50%;
-    border: 2px solid var(--fire-main);
-    transition: all 0.3s ease;
-}
-
-.avatar-status {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-family: var(--font-sans);
-}
-
-.fire-button {
-    width: 100%;
-    background: linear-gradient(135deg, var(--fire-main), var(--fire-dark));
-    color: #fff;
-    border: none;
-    padding: 1rem;
-    font-size: 1.1rem;
-    font-family: var(--font-serif);
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: var(--spacing-md);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
-
-.fire-button:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(230, 92, 0, 0.4);
-}
-
-.fire-button:disabled {
-    background: #333;
-    color: #777;
-    border: 1px solid #444;
-    cursor: not-allowed;
-    opacity: 0.6;
-    text-shadow: none;
-    transform: none;
-    box-shadow: none;
-}
-
-/* Stepper Styles */
-.step {
-    display: none;
-    animation: fadeIn 0.5s ease;
-}
-
-.step.active {
-    display: block;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.step-nav {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
-}
-
-.back-button {
-    background: transparent;
-    border: 1px solid var(--text-muted);
-    color: var(--text-main);
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    font-family: var(--font-sans);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.back-button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-}
-
-.next-button {
-    background: linear-gradient(135deg, var(--fire-main), var(--fire-dark));
-    color: #fff;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    font-family: var(--font-serif);
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-    text-align: center;
-}
-
-.next-button:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(230, 92, 0, 0.4);
-}
-
-.instructions {
-    font-size: 0.95rem;
-    color: var(--text-main);
-    margin-bottom: var(--spacing-lg);
-    line-height: 1.6;
-    background: rgba(0,0,0,0.2);
-    padding: 1.2rem;
-    border-radius: 8px;
-    border-left: 3px solid var(--fire-main);
-}
-
-/* Progress Bar */
-.progress-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: var(--spacing-xl);
-    padding: 0 var(--spacing-md);
-}
-
-.progress-step {
-    font-family: var(--font-serif);
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    background: var(--surface-color);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    z-index: 2;
-}
-
-.progress-step.active {
-    color: #fff;
-    border-color: var(--fire-main);
-    box-shadow: 0 0 10px rgba(230, 92, 0, 0.3);
-    background: rgba(230, 92, 0, 0.1);
-}
-
-.progress-line {
-    flex: 1;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.1);
-    margin: 0 10px;
-    z-index: 1;
-    position: relative;
-}
-
-.progress-line::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; height: 100%;
-    width: 0;
-    background: var(--fire-main);
-    transition: width 0.3s ease;
-}
-
-.progress-container.step-2 .progress-line::after {
-    width: 100%;
-}
-
-@media (max-width: 480px) {
-    .step-nav {
-        flex-direction: column;
-        gap: var(--spacing-sm);
+    .butler-container {
+        background-color: var(--surface-color);
+        padding: var(--spacing-xl);
+        border-radius: 12px;
+        max-width: 600px;
+        margin: 0 auto;
+        border: 1px solid rgba(230, 92, 0, 0.2);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
-    
-    .back-button, .next-button, .fire-button {
+
+    .butler-container h3 {
+        font-family: var(--font-serif);
+        color: var(--fire-main);
+        font-size: 2rem;
+        margin-bottom: var(--spacing-sm);
+        text-align: center;
+    }
+
+    .butler-container p {
+        text-align: center;
+        color: var(--text-muted);
+        margin-bottom: var(--spacing-lg);
+        font-style: italic;
+    }
+
+    .input-group {
+        margin-bottom: var(--spacing-md);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-group label {
+        font-family: var(--font-serif);
+        font-size: 0.9rem;
+        color: var(--text-main);
+        margin-bottom: 0.5rem;
+    }
+
+    .input-group input,
+    .input-group textarea {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 0.8rem 1rem;
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus {
+        outline: none;
+        border-color: var(--fire-main);
+        box-shadow: 0 0 10px rgba(230, 92, 0, 0.2);
+    }
+
+    .input-group textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .gravatar-preview {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .avatar-img {
+        border-radius: 50%;
+        border: 2px solid var(--fire-main);
+        transition: all 0.3s ease;
+    }
+
+    .avatar-status {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-family: var(--font-sans);
+    }
+
+    .fire-button {
+        width: 100%;
+        background: linear-gradient(135deg, var(--fire-main), var(--fire-dark));
+        color: #fff;
+        border: none;
+        padding: 1rem;
+        font-size: 1.1rem;
+        font-family: var(--font-serif);
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: var(--spacing-md);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .fire-button:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(230, 92, 0, 0.4);
+    }
+
+    .fire-button:disabled {
+        background: #333;
+        color: #777;
+        border: 1px solid #444;
+        cursor: not-allowed;
+        opacity: 0.6;
+        text-shadow: none;
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* Stepper Styles */
+    .step {
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .step.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .step-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-lg);
+    }
+
+    .back-button {
+        background: transparent;
+        border: 1px solid var(--text-muted);
+        color: var(--text-main);
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        font-family: var(--font-sans);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+
+    .next-button {
+        background: linear-gradient(135deg, var(--fire-main), var(--fire-dark));
+        color: #fff;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        font-family: var(--font-serif);
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        flex: 1;
+        text-align: center;
+    }
+
+    .next-button:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(230, 92, 0, 0.4);
+    }
+
+    .instructions {
+        font-size: 0.95rem;
+        color: var(--text-main);
+        margin-bottom: var(--spacing-lg);
+        line-height: 1.6;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 1.2rem;
+        border-radius: 8px;
+        border-left: 3px solid var(--fire-main);
+    }
+
+    /* Progress Bar */
+    .progress-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--spacing-xl);
+        padding: 0 var(--spacing-md);
+    }
+
+    .progress-step {
+        font-family: var(--font-serif);
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        background: var(--surface-color);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        z-index: 2;
+    }
+
+    .progress-step.active {
+        color: #fff;
+        border-color: var(--fire-main);
+        box-shadow: 0 0 10px rgba(230, 92, 0, 0.3);
+        background: rgba(230, 92, 0, 0.1);
+    }
+
+    .progress-line {
+        flex: 1;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 0 10px;
+        z-index: 1;
+        position: relative;
+    }
+
+    .progress-line::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        background: var(--fire-main);
+        transition: width 0.3s ease;
+    }
+
+    .progress-container.step-2 .progress-line::after {
         width: 100%;
     }
-    
-    .progress-step {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
+
+    @media (max-width: 480px) {
+        .step-nav {
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .back-button,
+        .next-button,
+        .fire-button {
+            width: 100%;
+        }
+
+        .progress-step {
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+        }
+
+        .gravatar-preview {
+            flex-direction: column;
+            align-items: flex-start;
+        }
     }
-    
-    .gravatar-preview {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
 </style>
 
 <div class="butler-container">
-  <h3>Stop right there!</h3>
-  <p>I am the keeper of the fire. Before you join Ned, Miguel, and Dwight, you must pass the test.</p>
+    <h3>Stop right there!</h3>
+    <p>Before you join us pal, we'd like to know you first</p>
 
-  <div class="progress-container" id="progress-container">
-      <div class="progress-step active" id="indicator-1">1. The Persona</div>
-      <div class="progress-line"></div>
-      <div class="progress-step" id="indicator-2">2. The Face</div>
-  </div>
-
-  <form name="butler-onboarding" method="POST" data-netlify="true" netlify action="/success/">
-    
-    <!-- Step 1: The Persona -->
-    <div id="step-1" class="step active">
-        <div class="instructions">
-            <strong style="color: var(--fire-main); font-family: var(--font-serif); font-size: 1.1rem;">Step 1: The Persona</strong><br>
-            We use your <strong>Real Name</strong> to introduce you in the 'About Us' section. However, to preserve the mystery of the campfire and grant you complete freedom in your writing, your posts will be published strictly under your <strong>Pen Name</strong>.
-        </div>
-        
-        <div class="input-group">
-            <label for="real-name">Real Name (For the 'About Us' section)</label>
-            <input type="text" id="real-name" name="real-name" required placeholder="e.g. John Doe">
-        </div>
-
-        <div class="input-group">
-            <label for="pen-name">Pen Name (For your posts)</label>
-            <input type="text" id="pen-name" name="pen-name" required placeholder="e.g. The Midnight Poet">
-        </div>
-
-        <div class="step-nav">
-            <button type="button" class="next-button" id="next-btn-1">Next Step</button>
-        </div>
+    <div class="progress-container" id="progress-container">
+        <div class="progress-step active" id="indicator-1">1. The Persona</div>
+        <div class="progress-line"></div>
+        <div class="progress-step" id="indicator-2">2. The Face</div>
     </div>
 
-    <!-- Step 2: The Face -->
-    <div id="step-2" class="step">
-        <div class="instructions">
-            <strong style="color: var(--fire-main); font-family: var(--font-serif); font-size: 1.1rem;">Step 2: The Face</strong><br>
-            We use <a href="https://gravatar.com" target="_blank" style="color: var(--fire-main)">Gravatar</a> to manage profile pictures. The email you provide below <strong>must</strong> have a Gravatar account with a profile picture. <br><br>
-            <em style="color: var(--text-muted);">Note: This exact email will be used to invite you to the CMS to start writing.</em>
-        </div>
+    <form name="butler-onboarding" method="POST" data-netlify="true" netlify action="/success/">
 
-        <div class="input-group">
-            <label for="email">Your Email (Must match your Gravatar & CMS invite)</label>
-            <input type="email" id="email" name="email" required placeholder="name@example.com">
-            <div id="gravatar-preview" class="gravatar-preview">
-                <img id="avatar-img" src="https://www.gravatar.com/avatar/0000?d=mp" width="50" class="avatar-img">
-                <span id="avatar-status" class="avatar-status">Enter email to verify profile...</span>
+        <!-- Step 1: The Persona -->
+        <div id="step-1" class="step active">
+            <div class="instructions">
+                <strong style="color: var(--fire-main); font-family: var(--font-serif); font-size: 1.1rem;">Step 1: The
+                    Persona</strong><br>
+                We use your <strong>Real Name</strong> to introduce you in the 'About Us' section. However, to preserve
+                the mystery of the campfire and grant you complete freedom in your writing, your posts will be published
+                strictly under your <strong>Pen Name</strong>.
+            </div>
+
+            <div class="input-group">
+                <label for="real-name">Real Name (For the 'About Us' section)</label>
+                <input type="text" id="real-name" name="real-name" required placeholder="e.g. John Doe">
+            </div>
+
+            <div class="input-group">
+                <label for="pen-name">Pen Name (For your posts)</label>
+                <input type="text" id="pen-name" name="pen-name" required placeholder="e.g. The Midnight Poet">
+            </div>
+
+            <div class="step-nav">
+                <button type="button" class="next-button" id="next-btn-1">Next Step</button>
             </div>
         </div>
 
-        <div data-netlify-honeypot="bot-field" style="display:none">
-            <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+        <!-- Step 2: The Face -->
+        <div id="step-2" class="step">
+            <div class="instructions">
+                <strong style="color: var(--fire-main); font-family: var(--font-serif); font-size: 1.1rem;">Step 2: The
+                    Face</strong><br>
+                We use <a href="https://gravatar.com" target="_blank" style="color: var(--fire-main)">Gravatar</a> to
+                manage profile pictures. The email you provide below <strong>must</strong> have a Gravatar account with
+                a profile picture. You also need to use your real name. Also provide your profile photo and a short
+                bio. Create a gravatar profile first so we'd be able to check your profile.<br><br>
+                <em style="color: var(--text-muted);">Note: This exact email will be used to invite you to the CMS to
+                    start writing.</em>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Your Email (Must match your Gravatar & CMS invite)</label>
+                <input type="email" id="email" name="email" required placeholder="name@example.com">
+                <div id="gravatar-preview" class="gravatar-preview">
+                    <img id="avatar-img" src="https://www.gravatar.com/avatar/0000?d=mp" width="50" class="avatar-img">
+                    <span id="avatar-status" class="avatar-status">Enter email to verify profile...</span>
+                </div>
+            </div>
+
+            <div data-netlify-honeypot="bot-field" style="display:none">
+                <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+            </div>
+
+            <div class="step-nav">
+                <button type="button" class="back-button" id="back-btn-2">Back</button>
+                <button type="submit" id="submit-btn" class="fire-button" disabled style="margin-top: 0;">Submit to the
+                    Keeper</button>
+            </div>
         </div>
+    </form>
 
-        <div class="step-nav">
-            <button type="button" class="back-button" id="back-btn-2">Back</button>
-            <button type="submit" id="submit-btn" class="fire-button" disabled style="margin-top: 0;">Submit to the Keeper</button>
-        </div>
-    </div>
-  </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        // Stepper Logic
+        const step1 = document.getElementById('step-1');
+        const step2 = document.getElementById('step-2');
+        const nextBtn1 = document.getElementById('next-btn-1');
+        const backBtn2 = document.getElementById('back-btn-2');
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-  <script>
-    // Stepper Logic
-    const step1 = document.getElementById('step-1');
-    const step2 = document.getElementById('step-2');
-    const nextBtn1 = document.getElementById('next-btn-1');
-    const backBtn2 = document.getElementById('back-btn-2');
-    
-    const progressContainer = document.getElementById('progress-container');
-    const indicator2 = document.getElementById('indicator-2');
-    
-    const realNameInput = document.getElementById('real-name');
-    const penNameInput = document.getElementById('pen-name');
+        const progressContainer = document.getElementById('progress-container');
+        const indicator2 = document.getElementById('indicator-2');
 
-    nextBtn1.addEventListener('click', () => {
-        if (realNameInput.value.trim() && penNameInput.value.trim()) {
-            step1.classList.remove('active');
-            step2.classList.add('active');
-            progressContainer.classList.add('step-2');
-            indicator2.classList.add('active');
-        } else {
-            // Trigger browser's native HTML5 validation UI if possible, else just alert
-            if (realNameInput.reportValidity) {
-                realNameInput.reportValidity();
+        const realNameInput = document.getElementById('real-name');
+        const penNameInput = document.getElementById('pen-name');
+
+        nextBtn1.addEventListener('click', () => {
+            if (realNameInput.value.trim() && penNameInput.value.trim()) {
+                step1.classList.remove('active');
+                step2.classList.add('active');
+                progressContainer.classList.add('step-2');
+                indicator2.classList.add('active');
+            } else {
+                // Trigger browser's native HTML5 validation UI if possible, else just alert
+                if (realNameInput.reportValidity) {
+                    realNameInput.reportValidity();
+                }
+                if (realNameInput.value.trim() && penNameInput.reportValidity) {
+                    penNameInput.reportValidity();
+                }
             }
-            if (realNameInput.value.trim() && penNameInput.reportValidity) {
-                penNameInput.reportValidity();
+        });
+
+        backBtn2.addEventListener('click', () => {
+            step2.classList.remove('active');
+            step1.classList.add('active');
+            progressContainer.classList.remove('step-2');
+            indicator2.classList.remove('active');
+        });
+
+        // Gravatar Logic
+        const emailInput = document.getElementById('email');
+        const avatarImg = document.getElementById('avatar-img');
+        const statusText = document.getElementById('avatar-status');
+        const submitBtn = document.getElementById('submit-btn');
+
+        emailInput.addEventListener('blur', function () {
+            const email = this.value.trim().toLowerCase();
+
+            if (email) {
+                statusText.innerText = "Searching the woods...";
+                statusText.style.color = "var(--text-muted)";
+                const hash = CryptoJS.MD5(email).toString();
+                const testUrl = `https://www.gravatar.com/avatar/${hash}?d=404`;
+
+                // Use an Image object to avoid CORS issues with fetch
+                const img = new Image();
+                img.onload = function () {
+                    // WE FOUND THEM
+                    avatarImg.src = `https://www.gravatar.com/avatar/${hash}?s=100&d=mp`;
+                    statusText.innerText = "We found you! Profile verified.";
+                    statusText.style.color = "#4CAF50";
+
+                    submitBtn.disabled = false; // UNLOCK
+                    submitBtn.innerText = "Submit to the Keeper";
+                };
+                img.onerror = function () {
+                    // NO GRAVATAR
+                    avatarImg.src = "https://www.gravatar.com/avatar/0000?d=mp";
+                    statusText.innerText = "No Gravatar found. Please create one first!";
+                    statusText.style.color = "#ff6b6b";
+
+                    submitBtn.disabled = true; // LOCK
+                    submitBtn.innerText = "Fix Gravatar to Continue";
+                };
+
+                // Trigger the request
+                img.src = testUrl;
+
+            } else {
+                avatarImg.src = "https://www.gravatar.com/avatar/0000?d=mp";
+                statusText.innerText = "Enter email to verify profile...";
+                statusText.style.color = "var(--text-muted)";
+                submitBtn.disabled = true;
+                submitBtn.innerText = "Submit to the Keeper";
             }
-        }
-    });
-
-    backBtn2.addEventListener('click', () => {
-        step2.classList.remove('active');
-        step1.classList.add('active');
-        progressContainer.classList.remove('step-2');
-        indicator2.classList.remove('active');
-    });
-
-    // Gravatar Logic
-    const emailInput = document.getElementById('email');
-    const avatarImg = document.getElementById('avatar-img');
-    const statusText = document.getElementById('avatar-status');
-    const submitBtn = document.getElementById('submit-btn');
-
-    emailInput.addEventListener('blur', function() {
-      const email = this.value.trim().toLowerCase();
-      
-      if (email) {
-        statusText.innerText = "Searching the woods...";
-        statusText.style.color = "var(--text-muted)";
-        const hash = CryptoJS.MD5(email).toString();
-        const testUrl = `https://www.gravatar.com/avatar/${hash}?d=404`;
-
-        // Use an Image object to avoid CORS issues with fetch
-        const img = new Image();
-        img.onload = function() {
-          // WE FOUND THEM
-          avatarImg.src = `https://www.gravatar.com/avatar/${hash}?s=100&d=mp`;
-          statusText.innerText = "We found you! Profile verified.";
-          statusText.style.color = "#4CAF50"; 
-          
-          submitBtn.disabled = false; // UNLOCK
-          submitBtn.innerText = "Submit to the Keeper";
-        };
-        img.onerror = function() {
-          // NO GRAVATAR
-          avatarImg.src = "https://www.gravatar.com/avatar/0000?d=mp";
-          statusText.innerText = "No Gravatar found. Please create one first!";
-          statusText.style.color = "#ff6b6b"; 
-          
-          submitBtn.disabled = true; // LOCK
-          submitBtn.innerText = "Fix Gravatar to Continue";
-        };
-        
-        // Trigger the request
-        img.src = testUrl;
-
-      } else {
-        avatarImg.src = "https://www.gravatar.com/avatar/0000?d=mp";
-        statusText.innerText = "Enter email to verify profile...";
-        statusText.style.color = "var(--text-muted)";
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Submit to the Keeper";
-      }
-    });
-  </script>
+        });
+    </script>
 </div>
