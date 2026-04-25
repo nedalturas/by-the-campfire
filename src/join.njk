@@ -1,0 +1,33 @@
+---
+layout: base.njk
+title: Join the Campfire
+---
+
+<div class="butler-container">
+  <h3>Stop right there!</h3>
+  <p>I am the keeper of the fire. Before you join Ned, Miguel, and Dwight, you must pass the test.</p>
+
+  <form name="butler-onboarding" method="POST" data-netlify="true" netlify action="/success">
+    
+    <div class="input-group">
+      <label for="pen-name">What shall we call you? (Pen Name)</label>
+      <input type="text" id="pen-name" name="pen-name" required placeholder="e.g. The Midnight Poet">
+    </div>
+
+    <div class="input-group">
+      <label for="email">Your Email (To receive your invite)</label>
+      <input type="email" id="email" name="email" required placeholder="name@example.com">
+    </div>
+
+    <div class="input-group">
+      <label for="sample">The Lit Test: Share a short musing or story</label>
+      <textarea id="sample" name="sample" required placeholder="Write something that burns bright..."></textarea>
+    </div>
+
+    <div data-netlify-honeypot="bot-field" style="display:none">
+      <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+    </div>
+
+    <button type="submit" class="fire-button">Submit to the Keeper</button>
+  </form>
+</div>
