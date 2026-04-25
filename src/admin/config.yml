@@ -23,7 +23,6 @@ collections:
       - label: "Author"
         name: "author"
         widget: "hidden"
-        default: "{{user.name}}"
 
       - {label: "Description (Short)", name: "description", widget: "string", required: false}
       - {label: "Tags", name: "tags", widget: "list", default: ["posts"]}
