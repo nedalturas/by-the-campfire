@@ -383,3 +383,66 @@ main {
   }
   .sk-avatar { width: 90px; height: 90px; }
   .sk-name { width: 120px; height: 14px; border-radius: 4px; }
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    :root {
+        /* Reduce large spacings on mobile to maximize screen real estate */
+        --spacing-lg: 1.5rem;
+        --spacing-xl: 2rem;
+    }
+
+    .hero-title-main, 
+    .post-title {
+        font-size: 2rem;
+    }
+
+    .post {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .site-nav {
+        gap: var(--spacing-md);
+        justify-content: center;
+    }
+
+    .post-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .auth-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.5em 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title-main {
+        font-size: 1.75rem;
+    }
+    
+    .post-title {
+        font-size: 1.5rem;
+    }
+    
+    .hero-quote {
+        font-size: 0.85rem;
+    }
+    
+    .post-row {
+        gap: var(--spacing-md);
+    }
+    
+    .post-row-icon {
+        display: none; /* Hide icon on very small screens to give text more space */
+    }
+}

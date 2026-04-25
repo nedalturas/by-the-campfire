@@ -13,7 +13,9 @@ title: About Us
     required to put a web page together (coding).
     Here, you will read posts from the three of us (or more, if anyone wants to join!). We have all agreed to use our
     pen names rather than our real identities.
-    If you'd like to join us around the bonfire, kindly disturb @ned and send him a message by clicking this link.
+    If you'd like to join us around the bonfire, kindly disturb @ned and send him a message<a href="/join"
+        style="color: var(--fire-main);"> by clicking
+        this link.</a>
 </p>
 
 <h3 class="post-row-title" style="margin-bottom: 1em;">The Authors</h3>
@@ -24,34 +26,34 @@ title: About Us
 <div id="author-list">Loading...
     {# <img src="${a.avatar}" alt="${a.name}" /> #}
     {# <div class="auth-box">
-        <img src=""  /> 
+        <img src="" />
         <div>
             <span>${a.name}</span>
             <p>
                 eraserasdfasdfasd
             </p>
         </div>
-      
+
     </div>
     <div class="auth-box">
-        <img src=""  /> 
+        <img src="" />
         <div>
             <span>${a.name}</span>
             <p>
                 eraserasdfasdfasd
             </p>
         </div>
-      
+
     </div> #}
 
     <div class="auth-box">
         <div class="skeleton sk-avatar"></div>
         <div class="skeleton sk-name"></div>
-      </div>
-      <div class="auth-box" style="margin-top: 1rem;">
+    </div>
+    <div class="auth-box" style="margin-top: 1rem;">
         <div class="skeleton sk-avatar" style="animation-delay: 0.15s"></div>
         <div class="skeleton sk-name" style="animation-delay: 0.15s"></div>
-      </div>
+    </div>
 </div>
 
 <script>
@@ -62,12 +64,12 @@ title: About Us
             authors.map(a =>
                 `
                 <div class="auth-box">
-                    <img src="${a.avatar}" alt="${a.name}" /> 
+                    <img src="${a.avatar}" alt="${a.name}" />
                     <span>${a.name}</span>
                 </div>
                 `
             ).join('');
-            
+
     }
     loadAuthors();
 </script>

@@ -238,6 +238,27 @@ title: Join the Campfire
 .progress-container.step-2 .progress-line::after {
     width: 100%;
 }
+
+@media (max-width: 480px) {
+    .step-nav {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .back-button, .next-button, .fire-button {
+        width: 100%;
+    }
+    
+    .progress-step {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .gravatar-preview {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
 </style>
 
 <div class="butler-container">
