@@ -2,6 +2,8 @@ backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
 
+publish_mode: editorial_workflow
+
 # This enables local testing with `npx decap-server`
 local_backend: true
 
@@ -22,7 +24,7 @@ collections:
         name: "author"
         widget: "hidden"
         default: "{{author}}"
-        
+
       - {label: "Description (Short)", name: "description", widget: "string", required: false}
       - {label: "Tags", name: "tags", widget: "list", default: ["posts"]}
       - {label: "Body", name: "body", widget: "markdown"}
