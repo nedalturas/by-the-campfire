@@ -24,6 +24,54 @@ title: Join the Campfire
       <textarea id="sample" name="sample" required placeholder="Write something that burns bright..."></textarea>
     </div>
 
+    <div class="input-group">
+        <label for="email">Your Gravatar Email</label>
+        <input type="email" id="email" name="email" required placeholder="name@example.com">
+        <div id="gravatar-preview" style="margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+          <img id="avatar-img" src="https://www.gravatar.com/avatar/0000?d=mp" width="50" style="border-radius: 50%;">
+          <span id="avatar-status" style="font-size: 0.8rem; color: #888;">Enter email to verify profile...</span>
+        </div>
+      </div>
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+      <script>
+        const emailInput = document.getElementById('email');
+        const avatarImg = document.getElementById('avatar-img');
+        const statusText = document.getElementById('avatar-status');
+      
+        emailInput.addEventListener('blur', function() {
+          const email = this.value.trim().toLowerCase();
+          if (email) {
+            // Create MD5 hash for Gravatar
+            const hash = CryptoJS.MD5(email).toString();
+            
+            // We use d=404 so we can detect if the user actually exists
+            const testUrl = `https://www.gravatar.com/avatar/${hash}?d=404`;
+      
+            fetch(testUrl)
+              .then(response => {
+                
+                if (response.ok) {
+                  avatarImg.src = `https://www.gravatar.com/avatar/${hash}?s=100&d=mp`;
+                  statusText.innerText = "We found you! Profile verified.";
+                  statusText.style.color = "#4CAF50"; // Green
+                  submitBtn.disabled = false;
+    submitBtn.innerText = "Submit to the Keeper";
+                } else {
+                  avatarImg.src = "https://www.gravatar.com/avatar/0000?d=mp";
+                  statusText.innerText = "No Gravatar found. Please create one first!";
+                  statusText.style.color = "#ff6b6b"; // Red
+                  submitBtn.disabled = true;
+    submitBtn.innerText = "Fix Gravatar to Continue";
+                }
+              })
+              .catch(() => {
+                statusText.innerText = "Connection error. Just double check your Gravatar!";
+              });
+          }
+        });
+      </script>
+
     <div data-netlify-honeypot="bot-field" style="display:none">
       <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
     </div>
