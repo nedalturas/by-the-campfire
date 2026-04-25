@@ -2,3 +2,4 @@ node_modules/
 _site/
 .env
 .DS_Store
+notes.md
