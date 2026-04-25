@@ -5,7 +5,7 @@ backend:
 publish_mode: editorial_workflow
 
 # This enables local testing with `npx decap-server`
-local_backend: true
+# local_backend: true
 
 media_folder: "src/images"
 public_folder: "/images"
