@@ -23,7 +23,7 @@ title: About Us
 
 <div id="author-list">Loading...
     {# <img src="${a.avatar}" alt="${a.name}" /> #}
-    <div class="auth-box">
+    {# <div class="auth-box">
         <img src=""  /> 
         <div>
             <span>${a.name}</span>
@@ -42,7 +42,16 @@ title: About Us
             </p>
         </div>
       
-    </div>
+    </div> #}
+
+    <div class="auth-box">
+        <div class="skeleton sk-avatar"></div>
+        <div class="skeleton sk-name"></div>
+      </div>
+      <div class="auth-box" style="margin-top: 1rem;">
+        <div class="skeleton sk-avatar" style="animation-delay: 0.15s"></div>
+        <div class="skeleton sk-name" style="animation-delay: 0.15s"></div>
+      </div>
 </div>
 
 <script>
