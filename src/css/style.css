@@ -108,7 +108,11 @@ main {
 
 .campfire-svg {
     display: inline-block;
-    filter: drop-shadow(0 0 15px rgba(230, 92, 0, 0.2));
+    /* filter: drop-shadow(0 0 15px rgba(230, 92, 0, 0.2)); */
+    /* border: 3px solid pink; */
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+
 }
 
 .animated-flame {
