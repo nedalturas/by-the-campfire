@@ -6,5 +6,7 @@ description: Is it working tho?
 tags:
   - posts
   - philosopho
+  - non-sense
+  - sensible
 ---
 We will find out shortly
