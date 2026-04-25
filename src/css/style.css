@@ -76,7 +76,6 @@ body {
 .site-nav a {
     font-family: var(--font-serif);
     font-size: 0.8rem;
-    text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--text-muted);
     text-decoration: none;

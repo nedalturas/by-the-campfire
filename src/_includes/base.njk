@@ -22,8 +22,8 @@
         <div class="container header-container">
             <a href="/" class="logo">{{ site.name }}</a>
             <nav class="site-nav">
-                <a href="/archive/">ARCHIVE</a>
-                <a href="/about/">ABOUT ME</a>
+                <a href="/archive/">Archive</a>
+                <a href="/about/">About Us</a>
             </nav>
         </div>
     </header>
@@ -34,7 +34,9 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; {% if page.date %}{{ page.date | postDate | truncate(4, true, "") }}{% else %}2026{% endif %} {{ site.name }}. Gather 'round.</p>
+          <p>&copy; {% year %} By the Campfire, Gather 'round</p>
+
+            {# <p>&copy; {% if page.date %}{{ page.date | postDate | truncate(4, true, "") }}{% else %}2026{% endif %} {{ site.name }}. Gather 'round.</p> #}
         </div>
     </footer>
 

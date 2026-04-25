@@ -11,6 +11,9 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
   });
 
+  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
+
+
   // Get all unique tags
   eleventyConfig.addCollection("tagList", function(collectionApi) {
     let tagSet = new Set();
