@@ -12,3 +12,15 @@ title: About Us
     Here, you will read posts from the three of us (or more, if anyone wants to join!). We have all agreed to use our pen names rather than our real identities.
     If you'd like to join us around the bonfire, kindly disturb @ned and send him a message by clicking this link.
 </p>
+
+<div id="author-list">Loading...</div>
+
+<script>
+  async function loadAuthors() {
+    const res = await fetch('/.netlify/functions/get-authors');
+    const authors = await res.json();
+    document.getElementById('author-list').innerHTML =
+      authors.map(a => `<span>${a.name}</span>`).join(', ');
+  }
+  loadAuthors();
+</script>
