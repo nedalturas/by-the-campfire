@@ -22,7 +22,10 @@ title: About Us
     const res = await fetch('/.netlify/functions/get-authors');
     const authors = await res.json();
     document.getElementById('author-list').innerHTML =
-      authors.map(a => `<span>${a.name}</span>`).join(', ');
+      authors.map(a => `<span>${a.name}
+    <img src="${a.avatar}" alt="${a.name}" />
+        
+        </span>`).join(', ');
   }
   loadAuthors();
 </script>
