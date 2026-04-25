@@ -1,6 +1,6 @@
 const { DateTime } = require("luxon");
 
-module.exports = function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
   // Pass through files
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/admin");
@@ -15,13 +15,13 @@ module.exports = function(eleventyConfig) {
 
 
   // Get all unique tags
-  eleventyConfig.addCollection("tagList", function(collectionApi) {
+  eleventyConfig.addCollection("tagList", function (collectionApi) {
     let tagSet = new Set();
-    collectionApi.getAll().forEach(function(item) {
+    collectionApi.getAll().forEach(function (item) {
       if ("tags" in item.data) {
         let tags = item.data.tags;
         tags = tags.filter(item => {
-          switch(item) {
+          switch (item) {
             // this list should match the `filter` list in tags.njk
             case "all":
             case "nav":
