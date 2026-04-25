@@ -352,8 +352,22 @@ main {
 }
 
 
-.author-list{
+#author-list{
     display: flex;
     flex-direction: column;
     gap: 2em;
+}
+
+.auth-box{
+    width: 100%;
+    padding: 2em 0 2em 0;
+    /* border: 2px solid pink; */
+    display: flex;
+    gap: 1em;
+
+    img{
+        height: 100px;
+        width: 100px;
+        /* border: 2px solid red; */
+    }
 }
