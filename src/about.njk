@@ -5,27 +5,40 @@ title: About Us
 
 <h1 class="post-title">About Us?</h1>
 
-<h3>Welcome to By the Campfire</h3>
+<h3 class="post-row-title">Welcome to By the Campfire</h3>
 
 <p class="post-content">
-    This is a multi-authored collection of random literature, stories, and musings by a close-knit group of friends, namely: Ned, Miguel, and Dwight. Ned decided to build this site since he knows the specific kind of "literature" required to put a web page together (coding).
-    Here, you will read posts from the three of us (or more, if anyone wants to join!). We have all agreed to use our pen names rather than our real identities.
+    This is a multi-authored collection of random literature, stories, and musings by a close-knit group of friends,
+    namely: Ned, Miguel, and Dwight. Ned decided to build this site since he knows the specific kind of "literature"
+    required to put a web page together (coding).
+    Here, you will read posts from the three of us (or more, if anyone wants to join!). We have all agreed to use our
+    pen names rather than our real identities.
     If you'd like to join us around the bonfire, kindly disturb @ned and send him a message by clicking this link.
 </p>
 
+<h3 class="post-row-title">The Authors</h3>
+<p>
+    We'd love to read yours, join us now!.
+</p>
+
 <div id="author-list">Loading...
-    <img src="${a.avatar}" alt="${a.name}" />
+    {# <img src="${a.avatar}" alt="${a.name}" /> #}
 </div>
 
 <script>
-  async function loadAuthors() {
-    const res = await fetch('/.netlify/functions/get-authors');
-    const authors = await res.json();
-    document.getElementById('author-list').innerHTML =
-      authors.map(a => `<span>${a.name}
-    <img src="${a.avatar}" alt="${a.name}" />
-        
-        </span>`).join(', ');
-  }
-  loadAuthors();
+    async function loadAuthors() {
+        const res = await fetch('/.netlify/functions/get-authors');
+        const authors = await res.json();
+        document.getElementById('author-list').innerHTML =
+            authors.map(a =>
+                `
+                <div class="auth-box">
+                    <img src="${a.avatar}" alt="${a.name}" /> 
+                    <span>${a.name}</span>
+                </div>
+                `
+            )
+            // .join(', ');
+    }
+    loadAuthors();
 </script>
