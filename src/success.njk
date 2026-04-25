@@ -1,0 +1,55 @@
+---
+layout: base.njk
+title: Request Received
+---
+
+<style>
+    .success-container {
+        background-color: var(--surface-color);
+        padding: var(--spacing-xl);
+        border-radius: 12px;
+        max-width: 600px;
+        margin: var(--spacing-xl) auto;
+        border: 1px solid rgba(230, 92, 0, 0.2);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+
+    .success-container h2 {
+        font-family: var(--font-serif);
+        color: #4CAF50;
+        font-size: 2.5rem;
+        margin-bottom: var(--spacing-md);
+    }
+
+    .success-container p {
+        color: var(--text-main);
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .success-container .home-link {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--fire-main), var(--fire-dark));
+        color: #fff;
+        text-decoration: none;
+        padding: 0.8rem 1.5rem;
+        font-family: var(--font-serif);
+        font-weight: bold;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .success-container .home-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(230, 92, 0, 0.4);
+    }
+</style>
+
+<div class="success-container">
+    <h2>Request Sent to the Keeper</h2>
+    <p>The fire has carried your message. You will be notified via email when your membership request is approved and
+        your CMS invitation is ready.</p>
+    <a href="/" class="home-link">Return to the Campfire</a>
+</div>
