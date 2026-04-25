@@ -3,6 +3,16 @@ layout: base.njk
 title: Join the Campfire
 ---
 
+<style>
+    .fire-button:disabled {
+  background: #333; /* Darker, greyed out color */
+  color: #777;
+  border: 1px solid #444;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+</style>
+
 <div class="butler-container">
   <h3>Stop right there!</h3>
   <p>I am the keeper of the fire. Before you join Ned, Miguel, and Dwight, you must pass the test.</p>
@@ -36,46 +46,54 @@ title: Join the Campfire
       <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
       <script>
         const emailInput = document.getElementById('email');
-        const avatarImg = document.getElementById('avatar-img');
-        const statusText = document.getElementById('avatar-status');
-      
-        emailInput.addEventListener('blur', function() {
-          const email = this.value.trim().toLowerCase();
-          if (email) {
-            // Create MD5 hash for Gravatar
-            const hash = CryptoJS.MD5(email).toString();
-            
-            // We use d=404 so we can detect if the user actually exists
-            const testUrl = `https://www.gravatar.com/avatar/${hash}?d=404`;
-      
-            fetch(testUrl)
-              .then(response => {
-                
-                if (response.ok) {
-                  avatarImg.src = `https://www.gravatar.com/avatar/${hash}?s=100&d=mp`;
-                  statusText.innerText = "We found you! Profile verified.";
-                  statusText.style.color = "#4CAF50"; // Green
-                  submitBtn.disabled = false;
-    submitBtn.innerText = "Submit to the Keeper";
-                } else {
-                  avatarImg.src = "https://www.gravatar.com/avatar/0000?d=mp";
-                  statusText.innerText = "No Gravatar found. Please create one first!";
-                  statusText.style.color = "#ff6b6b"; // Red
-                  submitBtn.disabled = true;
-    submitBtn.innerText = "Fix Gravatar to Continue";
-                }
-              })
-              .catch(() => {
-                statusText.innerText = "Connection error. Just double check your Gravatar!";
-              });
-          }
-        });
+const avatarImg = document.getElementById('avatar-img');
+const statusText = document.getElementById('avatar-status');
+const submitBtn = document.getElementById('submit-btn'); // Make sure the ID matches
+
+emailInput.addEventListener('blur', function() {
+  const email = this.value.trim().toLowerCase();
+  
+  if (email) {
+    statusText.innerText = "Searching the woods...";
+    const hash = CryptoJS.MD5(email).toString();
+    const testUrl = `https://www.gravatar.com/avatar/${hash}?d=404`;
+
+    fetch(testUrl)
+      .then(response => {
+        if (response.ok) {
+          // WE FOUND THEM
+          avatarImg.src = `https://www.gravatar.com/avatar/${hash}?s=100&d=mp`;
+          statusText.innerText = "We found you! Profile verified.";
+          statusText.style.color = "#4CAF50"; 
+          
+          submitBtn.disabled = false; // UNLOCK
+          submitBtn.innerText = "Submit to the Keeper";
+          submitBtn.style.opacity = "1";
+          submitBtn.style.cursor = "pointer";
+        } else {
+          // NO GRAVATAR
+          avatarImg.src = "https://www.gravatar.com/avatar/0000?d=mp";
+          statusText.innerText = "No Gravatar found. Please create one first!";
+          statusText.style.color = "#ff6b6b"; 
+          
+          submitBtn.disabled = true; // LOCK
+          submitBtn.innerText = "Fix Gravatar to Continue";
+          submitBtn.style.opacity = "0.5";
+          submitBtn.style.cursor = "not-allowed";
+        }
+      })
+      .catch(() => {
+        statusText.innerText = "Connection error. Try again.";
+        submitBtn.disabled = true;
+      });
+  }
+});
       </script>
 
     <div data-netlify-honeypot="bot-field" style="display:none">
       <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
     </div>
 
-    <button type="submit" class="fire-button">Submit to the Keeper</button>
+    <button type="submit" id="submit-btn" class="fire-button" disabled>Submit to the Keeper</button>
   </form>
 </div>
