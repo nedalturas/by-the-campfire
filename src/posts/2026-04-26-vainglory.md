@@ -16,7 +16,7 @@ Ants crawl under Napalm skies for illusory honor,
 
 as the free bird chants the buried from distant hills.
 
-
+/
 
 Desperate pleas drowned in the fiery lead,
 
