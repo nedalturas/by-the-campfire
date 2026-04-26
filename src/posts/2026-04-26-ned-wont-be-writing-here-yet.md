@@ -6,14 +6,13 @@ description: He's busy with a different kind of "literature"
 tags:
   - posts
 ---
-Ironic right? I know what you're thinking. You came here for brain-stirring prose or a new angle of answering a question of why we exist and our purpose, but \*\*NO\*\*. He won't be writing anything here yet.
+Ironic right? I know what you're thinking. You came here for brain-stirring prose or a new angle of answering a question of why we exist and our purpose, but **NO**. He won't be writing anything here yet.
 
 Why? 
 
-Is he still sitting on the porch with a coffee cup on his hand, pondering about the arguments he'd be writing here? No.\
+Is he still sitting on the porch with a coffee cup on his hand, pondering about the arguments he'd be writing here? No.
 
 Maybe he's stuck trying to prove his point about \*Jean-Paul Sartre\* against his cat? 🐱 Close, but not really.
-
 
 The truth is much more pathetic. He has not written anything yet because I he had just spend the last seventy-two hours trying to center a `<div>`. 
 
