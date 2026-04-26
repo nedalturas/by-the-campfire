@@ -1,7 +1,7 @@
 ---
 title: Ned won't be writing here yet.
 date: 2026-04-26T11:42:00.000+04:00
-author: The Librarian
+author: Syntax
 description: He's busy with a different kind of "literature"
 tags:
   - posts
@@ -34,4 +34,6 @@ Current Status:
 * **Words written: 0**
 * **Bugs Squashed: 15 ish**
 * **Coffee Consumed: idek** 
-* **Sanity: `404 Not Found`**
+* **Sanity: `404 Not Found`**\
+  <br>\
+  check it out soon
