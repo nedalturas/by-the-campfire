@@ -7,6 +7,7 @@ tags:
   - Depressing
   - Tragic
 ---
+<br>\
 "You made a mistake, but that is simply what happens when you are brave enough to make a decision."\
 <br>\
 Only those who walk through the flames of hardships can cast light upon their shadows. It is a brave thing, to be wrong—to choose the risk of an error over the certainty of doing nothing at all. \
