@@ -9,8 +9,6 @@ tags:
   - UnspokenWords
   - Kinship
 ---
-
-
 I will not begin with once upon a time. That phrase belongs to stories, and I am not telling a story. What I am writing is only a reflection, and reflections rarely care about beginnings. 
 
 People love being appreciated. Some even feel wounded when it is absent. As for me, I have come to think appreciation is a lie. Do not be surprised — I tend to think most things are. People come and go, and that is ordinary. But coming back is different. A return is rarely innocent. Either fortune brings someone back, or necessity does. 
@@ -33,7 +31,7 @@ This may be a goodbye in advance. Or, perhaps, it is merely a greeting addressed
 
 Yes, this is a reflection—because I saw myself in you, honest to a fault, yet capable of subtle lies, prone to complaint, yet never giving up on the future. You carry responsibilities that few even know, burdens that do not shape your face but shape your resolve. I saw in you the tension between doubt and determination, the quiet struggle to persist when the world might prefer you to surrender. In that, I recognized myself, as if looking into a mirror that both comforts and unsettles.
 
- I hope that it succeeds. Truly. If the future behaves the way it sometimes does, in that strange and unpredictable way, perhaps what I hope for will become something difficult to explain — something difficult to explain, that may involve you and me in ways neither of us expects. 
+ I hope that it succeeds. Truly. If the future behaves the way it sometimes does, in that strange and unpredictable way, perhaps what I hope for will become something difficult to explain — that may involve you and me in ways neither of us expects. 
 
 Until then— 
 
