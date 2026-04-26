@@ -6,7 +6,6 @@ description: Through trials of flames, embers of hope reside.
 tags:
   - Depressing
   - Tragic
-  - ""
 ---
 "You made a mistake, but that is simply what happens when you are brave enough to make a decision."\
 <br>\
