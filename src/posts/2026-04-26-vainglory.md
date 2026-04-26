@@ -18,6 +18,8 @@ as the free bird chants the buried from distant hills.
 
 Desperate pleas drowned in the fiery lead,
 
+\-
+
 while rusting iron gears slowly grind away hope.
 
 Dreams rot inside blood-soaked trenches,
