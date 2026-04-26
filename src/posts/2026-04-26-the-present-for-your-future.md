@@ -1,5 +1,5 @@
 ---
-title: The present for your future
+title: The Present For Your Future
 date: 2026-04-26T14:22:00.000+04:00
 author: The Unsent Letter
 description: We are lonely by nature, yet it is in another's struggle that we
