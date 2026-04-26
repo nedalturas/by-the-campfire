@@ -208,9 +208,6 @@ main {
     font-weight: 700;
 
     /* Fire Gradient */
-    background: linear-gradient(135deg, #ffb703, var(--fire-main));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
     color: var(--fire-main);
     /* Fallback for browsers that don't support background-clip */
@@ -236,7 +233,7 @@ main {
     display: inline-block;
     font-family: var(--font-sans);
     font-size: 0.65rem;
-    color: var(--fire-main);
+    color: var(--fire-dark);
     border: 1px solid rgba(230, 92, 0, 0.4);
     border-radius: 12px;
     padding: 0.1rem 0.5rem;
