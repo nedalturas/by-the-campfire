@@ -5,5 +5,6 @@ author: The Librarian
 description: dasd
 tags:
   - posts
+  - exit
 ---
 should display the post tag, right?
