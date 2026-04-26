@@ -2,6 +2,8 @@
 title: Doubt or Fear
 date: 2026-04-26T14:10:00.000+04:00
 author: The Unsent Letter
+description: An introspective and melancholic piece of philosophical prose that
+  explores the thin line between ambition and delusion.
 tags:
   - SelfDoubt
   - Ambition
