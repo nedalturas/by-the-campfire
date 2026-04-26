@@ -9,7 +9,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/robots.txt");
-  eleventyConfig.addPassthroughCopy("src/robots.txt");
 
   // Convert Markdown stored in front matter to HTML
   eleventyConfig.addFilter("markdownify", (content = "") => {
