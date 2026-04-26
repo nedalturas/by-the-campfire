@@ -1,59 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if title %}{{ title }} - {% endif %}{{ site.name }}</title>
-    <meta name="description" content="{{ description | default(site.description) }}">
-    <link rel="icon" type="image/png" href="{{ site.favicon }}">
-    <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="{{ description | default(site.description) }}">
-    <meta property="og:image" content="{{ site.url }}{{ site.metaImage }}">
-    <meta property="og:image:alt" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %} image">
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="{{ site.url }}{{ site.metaImage }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if title %}{{ title }} - {% endif %}{{ site.name }}</title>
+  <meta name="description" content="{{ description | default(site.description) }}">
+  <link rel="icon" type="image/png" href="{{ site.favicon }}">
+  <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="{{ description | default(site.description) }}">
+  <meta property="og:image" content="{{ site.url }}{{ site.metaImage }}">
+  <meta property="og:image:alt" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %} image">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ site.url }}{{ site.metaImage }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Outfit:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
+
 <body>
-    <div class="fire-particles" aria-hidden="true"></div>
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="/" class="logo">{{ site.name }}</a>
-            <nav class="site-nav">
-                <a href="/archive/">Archive</a>
-                <a href="/about/">About Us</a>
-            </nav>
-        </div>
-    </header>
+  <div class="fire-particles" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="/" class="logo">{{ site.name }}</a>
+      <nav class="site-nav">
+        <a href="/archive/">Archive</a>
+        <a href="/about/">About Us</a>
+      </nav>
+    </div>
+  </header>
 
-    <main class="container">
-        {{ content | safe }}
-    </main>
+  <main class="container">
+    {{ content | safe }}
+  </main>
 
-    <footer class="site-footer">
-        <div class="container">
-          <p>&copy; {% year %} By the Campfire, Gather 'round</p>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {% year %} By the Campfire, Gather 'round</p>
 
-            {# <p>&copy; {% if page.date %}{{ page.date | postDate | truncate(4, true, "") }}{% else %}2026{% endif %} {{ site.name }}. Gather 'round.</p> #}
-        </div>
-    </footer>
+      {# <p>&copy; {% if page.date %}{{ page.date | postDate | truncate(4, true, "") }}{% else %}2026{% endif %} {{
+        site.name }}. Gather 'round.</p> #}
+    </div>
+  </footer>
 
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    </script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
+
 </html>
