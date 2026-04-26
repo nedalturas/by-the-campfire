@@ -282,7 +282,8 @@ title: Join the Campfire
         <div class="progress-step" id="indicator-2">2. The Face</div>
     </div>
 
-    <form name="butler-onboarding" method="POST" data-netlify="true" netlify action="/success/">
+    <form name="butler-onboarding" method="POST" data-netlify="true" action="/success/">
+        <input type="hidden" name="form-name" value="butler-onboarding">
 
         <!-- Step 1: The Persona -->
         <div id="step-1" class="step active">
