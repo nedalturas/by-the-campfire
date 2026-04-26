@@ -65,8 +65,10 @@ title: About Us
                 `
                 <div class="auth-box">
                     <img src="${a.avatar}" alt="${a.name}" />
-                    <span>${a.gravatarName}</span>
-                    <span>${a.bio}</span>
+                    <div class="auth-info">
+                        <span>${a.gravatarName}</span>
+                        <span>${a.bio}Some text here</span>
+                    </div>
                 </div>
                 `
             ).join('');

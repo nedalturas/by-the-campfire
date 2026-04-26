@@ -424,6 +424,11 @@ main {
         width: 100px;
         /* border: 2px solid red; */
     }
+
+    .auth-info{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 
