@@ -309,7 +309,7 @@ main {
 
 .post-header {
     text-align: center;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-sm);
 }
 
 .post-title {
@@ -359,10 +359,11 @@ main {
 
 .post-content {
     font-family: var(--font-serif);
-    font-size: 1.15rem;
-    line-height: 1.8;
+    /* font-size: 1.15rem; */
+    /* line-height: 1.8; */
     color: var(--text-main);
 }
+
 
 .post-content p {
     margin-bottom: var(--spacing-md);
@@ -374,6 +375,11 @@ main {
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-sm);
     font-family: var(--font-serif);
+}
+
+.post-content li {
+    list-style: disc;
+    margin-left: 1.5em;
 }
 
 .post-footer {
@@ -472,6 +478,14 @@ main {
 
     .post {
         padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .post-title{
+        font-size: 2rem;
+    }
+
+    .post-content p{
+        font-size: medium;
     }
 
     .header-container {
