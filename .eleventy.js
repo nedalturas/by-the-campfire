@@ -1,10 +1,18 @@
 const { DateTime } = require("luxon");
+const markdownIt = require("markdown-it");
 
 module.exports = function (eleventyConfig) {
+  const md = new markdownIt({ html: true });
+
   // Pass through files
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/images");
+
+  // Convert Markdown stored in front matter to HTML
+  eleventyConfig.addFilter("markdownify", (content = "") => {
+    return md.render(content);
+  });
 
   // Format dates
   eleventyConfig.addFilter("postDate", (dateObj) => {

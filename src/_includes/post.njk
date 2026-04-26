@@ -20,7 +20,11 @@ layout: base.njk
     </header>
 
     <div class="post-content">
-        {{ content | safe }}
+        {% if body %}
+            {{ body | markdownify | safe }}
+        {% else %}
+            {{ content | safe }}
+        {% endif %}
     </div>
     
     <div class="post-footer">
