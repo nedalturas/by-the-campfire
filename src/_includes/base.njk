@@ -7,10 +7,13 @@
     <meta name="description" content="{{ description | default(site.description) }}">
     <link rel="icon" type="image/png" href="{{ site.favicon }}">
     <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}">
+    <meta property="og:type" content="website">
     <meta property="og:description" content="{{ description | default(site.description) }}">
     <meta property="og:image" content="{{ site.url }}{{ site.metaImage }}">
+    <meta property="og:image:alt" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %} image">
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{{ site.url }}{{ site.metaImage }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
