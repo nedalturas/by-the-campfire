@@ -4,7 +4,7 @@ date: 2026-04-29T20:12:00.000+04:00
 author: The Unsent Letter
 description: For years I believed my intelligence placed me above others. I
   examined people the way a clerk examines files. Now the office inside my mind
-  is empty, and the only document left bears my name under the word failure.
+  is empty, and the only document left bears my name under the word "Failure".
 tags:
   - TheHumanCondition
   - Metacognition
