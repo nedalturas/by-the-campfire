@@ -11,7 +11,7 @@ I am in a moment, a specific point in time\
 I am where I must be, I am the one I was meant to become.\
 I am as I am 
 
-I remember the hour of heavy weight - the horse that peeled my back and revealed the very bones of my character!\
+I remember the hour of heavy weight - the hours that peeled my back and revealed the very bones of my character!\
 I stood at the crossroads where doubt felt like the only truth, and certainty was a hard-won choice. \
 I once asked the stars of my size in this gargantuan world - Am I too small? \
 I felt the cold needle of nihilism in my veins and believed in nothing, not even myself.
