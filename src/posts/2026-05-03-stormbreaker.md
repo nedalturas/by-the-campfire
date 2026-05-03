@@ -26,7 +26,7 @@ Through it all, I remained faithful.\
 Against the gale, I stood like a mountain\
 (A mountain, so enormous it breaks the wind)\
 Where I saw rainbow after the rain, \
-Such as a mosaic, fractured, yet beautiful.\
+Lika a mosaic, fractured, yet beautiful.\
 In this universe where fate holds the reins\
-Even the lost find their way home\
+Even the uncharted reach a shore\
 In this world, I am as I should be.
