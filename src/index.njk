@@ -20,9 +20,11 @@ title: Welcome to the Campfire
     </div>
     <h1 class="hero-title-main">Gather 'round</h1>
     <div class="hero-quote-wrapper">
-        <p class="hero-quote">"Only in their dreams can men be truly free. 'Twas always thus, and always thus will be."
+        <!--<p class="hero-quote">"Only in their dreams can men be truly free. 'Twas always thus, and always thus will be."
         </p>
-        <p class="hero-quote-author">Tom Schulman, <em>Dead Poets Society</em></p>
+        <p class="hero-quote-author">Tom Schulman, <em>Dead Poets Society</em></p>-->
+        <div id="quote"></div>
+        <div id="author"></div>
     </div>
 </div>
 
@@ -70,3 +72,33 @@ title: Welcome to the Campfire
         <a class="read-more-link" href="/archive">Read More in the Archives</a>
     </div>
 </div>
+<script type="text/javascript">
+async function loadQuote() {
+  const endpoints = [
+    "https://corsproxy.io/?https://zenquotes.io/api/today",
+    "https://thingproxy.freeboard.io/fetch/https://zenquotes.io/api/today"
+  ];
+
+  for (const url of endpoints) {
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      render(data);
+      return;
+    } catch (err) {
+      console.warn("Proxy failed:", url);
+    }
+  }
+
+  document.getElementById("quote").textContent =
+    "Unable to load quote.";
+}
+
+function render(data) {
+  document.getElementById("quote").textContent = `"${data[0].q}"`;
+  document.getElementById("author").textContent = `— ${data[0].a}`;
+}
+
+loadQuote();
+</script>
