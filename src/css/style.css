@@ -463,6 +463,24 @@ main {
     border-radius: 4px;
 }
 
+#select_author_dropdown{
+    border-radius: 12px;
+    padding: .5em;
+    margin-top: .5em;
+    background-color: transparent;
+    color: var(--fire-main);
+}
+
+#select_author_dropdown option{
+    background-color: var(--bg-color);
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+#select_author_dropdown option::selection{
+    background-color: white;
+}
+
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
     :root {
