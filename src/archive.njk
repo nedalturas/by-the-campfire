@@ -3,19 +3,47 @@ layout: base.njk
 title: Archive
 ---
 
+<script >
+    document.addEventListener('DOMContentLoaded', () =>{
+    
+        // Filter by Author logic
+        const select = document.querySelector('select[name="author"]');
+        const posts = document.querySelectorAll('.post-row');
+
+        select.addEventListener('change', ()=> {
+            const selected = select.value;
+            posts.forEach(post => {
+                const matched = !selected  || post.dataset.author === selected;
+                post.style.display = matched ? '' : 'none';
+            })
+        })
+    })
+</script>
+
 <div class="hero hero-center" style="margin-bottom: 2rem;">
     <h1 class="hero-title-main">The Archive</h1>
-    <h3>FIlter By Author</h3>
     <div class="hero-quote-wrapper">
         <p class="hero-quote">"All the stories we have told around the fire."</p>
     </div>
+    <h3>FIlter By Author</h3>
+
+    <select name="author" id="select_author_dropdown">
+        <option value="">All Authors</option>
+        {% set seen = [] %}
+        {% for post in collections.posts %}
+          {% if post.data.author and post.data.author not in seen %}
+            {% set seen = seen.concat([post.data.author]) %}
+            <option value="{{ post.data.author }}">{{ post.data.author }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
 </div>
 
 <div class="recent-posts-container">
     <div class="post-list-custom">
         {% set postslist = collections.posts %}
         {% for post in postslist | reverse %}
-            <article class="post-row">
+            <article class="post-row" data-author="{{ post.data.author }}">
                 <div class="post-row-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
