@@ -11,8 +11,8 @@
     /* Orange */
     --fire-dark: #b34700;
 
-    --font-serif: 'Merriweather', serif;
-    --font-sans: 'Outfit', sans-serif;
+    --font-serif: "Merriweather", serif;
+    --font-sans: "Outfit", sans-serif;
 
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
@@ -113,7 +113,6 @@ main {
     /* border: 3px solid pink; */
     border-top-right-radius: 50px;
     border-top-left-radius: 50px;
-
 }
 
 .animated-flame {
@@ -364,7 +363,6 @@ main {
     color: var(--text-main);
 }
 
-
 .post-content p {
     margin-bottom: var(--spacing-md);
 }
@@ -408,7 +406,6 @@ main {
     font-size: 0.8rem;
 }
 
-
 #author-list {
     display: flex;
     flex-direction: column;
@@ -434,14 +431,12 @@ main {
     }
 }
 
-
 .skeleton {
     background: var(--color-background-secondary, #2a2a2a);
     animation: pulse 1.4s ease-in-out infinite;
 }
 
 @keyframes pulse {
-
     0%,
     100% {
         opacity: 1;
@@ -465,8 +460,8 @@ main {
 
 #select_author_dropdown {
     border-radius: 12px;
-    padding: .5em;
-    margin-top: .5em;
+    padding: 0.5em;
+    margin-top: 0.5em;
     background-color: transparent;
     color: var(--fire-main);
 }
@@ -479,4 +474,37 @@ main {
 
 #select_author_dropdown option::selection {
     background-color: white;
+}
+
+.post-card-link {
+    text-decoration: none;
+}
+
+.post-card-title {
+    color: var(--text-main);
+}
+
+.post-card-meta {
+    color: var(--text-muted);
+}
+
+.post-card-desc {
+    color: var(--text-muted);
+    margin-bottom: 1em;
+}
+
+/*tags page*/
+
+.tag {
+    display: inline-block;
+    color: var(--fire-main);
+    border: 1px solid var(--fire-main);
+    padding: 0.5em;
+    margin-top: 0.5em;
+    border-radius: 12px;
+}
+
+.tag:hover {
+    background-color: var(--fire-dark);
+    color: var(--text-main);
 }

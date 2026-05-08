@@ -1,39 +1,39 @@
 ---
 pagination:
-  data: collections
-  size: 1
-  alias: tag
-  filter:
+    data: collections
+    size: 1
+    alias: tag
+    filter:
     - all
     - nav
     - post
     - posts
     - tagList
-  addAllPagesToCollections: true
+addAllPagesToCollections: true
 layout: base.njk
 eleventyComputed:
-  title: "Literature tagged '{{ tag }}'"
+title: "Literature tagged '{{ tag }}'"
 permalink: /tags/{{ tag | slugify }}/
 ---
 
 <div class="tag-archive">
-    <h1 class="page-title">Stories lit by the "{{ tag }}" fire</h1>
-    
+    <!--<h1 class="page-title">Stories lit by the "{{ tag }}" fire</h1>-->
+
     <div class="post-list">
         {% set postslist = collections[ tag ] %}
         {% for post in postslist | reverse %}
-            <article class="post-card">
-                <a href="{{ post.url }}" class="post-card-link">
-                    <h2 class="post-card-title">{{ post.data.title }}</h2>
-                    <div class="post-card-meta">
-                        <span class="post-card-author">{{ post.data.author }}</span>
-                        <span class="post-card-date">{{ post.date | postDate }}</span>
-                    </div>
-                    {% if post.data.description %}
-                        <p class="post-card-desc">{{ post.data.description }}</p>
-                    {% endif %}
-                </a>
-            </article>
+        <article class="post-card">
+            <a href="{{ post.url }}" class="post-card-link">
+                <h2 class="post-card-title">{{ post.data.title }}</h2>
+                <div class="post-card-meta">
+                    <span class="post-card-author">{{ post.data.author }}</span>
+                    <span class="post-card-date">{{ post.date | postDate }}</span>
+                </div>
+                {% if post.data.description %}
+                <p class="post-card-desc">{{ post.data.description }}</p>
+                {% endif %}
+            </a>
+        </article>
         {% endfor %}
     </div>
 
