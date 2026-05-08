@@ -1,12 +1,12 @@
 module.exports = async () => {
-    try{
-        const res = await fetch("https://zenquotes.io/api/random");
+    try {
+        const res = await fetch("https://zenquotes.io/api/today");
         const [quote] = await res.json();
         console.log(quote);
         return quote;
-    } catch (err){
+    } catch (err) {
         console.error("Quote fetch failed: ", err.cause);
-        return {q: "Quote unavailable", a: ""}
+        return { q: "Only in their dreams can men be truly free. `Twas always thus, and always thus wil be.", a: "Tom Schulman" };
     }
 }
 
