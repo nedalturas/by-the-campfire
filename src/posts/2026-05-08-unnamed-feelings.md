@@ -2,8 +2,11 @@
 title: Unnamed Feelings
 date: 2026-05-08T22:35:00.000+04:00
 author: The Unsent Letter
-description: "A heart behaved like an office after hours: lamps dim, desks
-  empty, every petition for feeling returned unsigned."
+description: Before the case, there was the man. Before the man, there was the
+  wound. This is the part that happened first, the slow erosion of feeling, the
+  bureaucracy of a heart that stopped processing petitions. Read this one before
+  you read the other. Or after. Either way, you'll understand something
+  different.
 tags:
   - Confused
   - Unnamed
