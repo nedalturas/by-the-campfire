@@ -2,8 +2,9 @@
 title: The Cold Case of Us
 date: 2026-05-08T22:36:00.000+04:00
 author: The Unsent Letter
-description: I don't break my promises. They are the only things in my life that
-  aren't variables.
+description: The conclusion came before the confession. The evidence was filed.
+  The verdict was written. But some cases stay cold, not because the truth was
+  never found, but because finding it changed nothing.
 tags:
   - Romance
   - Case
