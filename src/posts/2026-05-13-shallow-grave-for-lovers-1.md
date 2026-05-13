@@ -1,11 +1,10 @@
 ---
 title: Shallow Grave for Lovers
-date: 2026-05-13T14:17:00.000+08:00
+date: 2026-05-13T19:17:00.000+08:00
 author: Void Scribbler
 description: For romance that only comes alive when it is breaking. As the only
   thing sweeter than the rose is the wound.
 tags:
-  - Poetry
   - Love
   - Romance
 ---
