@@ -1,6 +1,6 @@
 ---
 title: Shallow Grave for Lovers
-date: 2026-05-13T13:19:00.000+08:00
+date: 2026-05-13T13:58:00.000+08:00
 author: Void Scribbler
 description: For romance that only comes alive when it is breaking. As the only
   thing sweeter than the rose is the wound.
@@ -15,8 +15,9 @@ as the feasting vultures rest on my fraying bones.
 
 We're buried underneath the withering Earth,
 
-while we hang to thorny crimson-stemmed roses.\
-<br>
+while we hang to thorny crimson-stemmed roses.
+
+
 
 For these rusting chains' rattles hold more clamor,
 
