@@ -15,9 +15,8 @@ as the feasting vultures rest on my fraying bones.
 
 We're buried underneath the withering Earth,
 
-while we hang to thorny crimson-stemmed roses.
-
-
+while we hang to thorny crimson-stemmed roses.\
+<br>
 
 For these rusting chains' rattles hold more clamor,
 
