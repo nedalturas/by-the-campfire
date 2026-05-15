@@ -31,6 +31,9 @@ module.exports = function (eleventyConfig) {
       if ("tags" in item.data) {
         let tags = item.data.tags;
         tags = tags.filter(item => {
+          if (!item || item.toString().trim() === "") {
+            return false;
+          }
           switch (item) {
             // this list should match the `filter` list in tags.njk
             case "all":
