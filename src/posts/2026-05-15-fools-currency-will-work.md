@@ -1,5 +1,5 @@
 ---
-title: Fool's Currency will work?
+title: Fool's Currency
 date: 2026-05-15T22:01:00.000+04:00
 author: The Unsent Letter
 description: A brief clinical look at the social theater we perform every day
