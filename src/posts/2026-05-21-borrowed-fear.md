@@ -17,7 +17,7 @@ I was there once, or perhaps, if I am to be utterly honest with my own misery, I
 
 It is not merely a place of darkness; it is a void. A vacuum where sound dies, where scent does not exist, where the senses themselves wither away into nothingness. You become entirely displaced from your own being. And in that terrifying isolation, a singular, agonizing obsession takes root: the desperate hunger for Truth.
 
-In that abyss, I envisioned him. A man existing a millennia ago, living what can only be described as a perfect life.
+In that abyss, where I was entirely on my own and too weak to save myself, I envisioned Him.. A man existing a millennia ago, living what can only be described as a perfect life.
 
 He had compiled a testament, a book of fundamental instructions on how to endure existence and how to gracefully depart from it. He did not merely write it; he forged it by consistently choosing the narrowest, most agonizing paths available to a human soul, yet he perfected them all. Above all, he perfected his relationship with the Truth. He mastered the fragile, trembling nature of our existence.
 
