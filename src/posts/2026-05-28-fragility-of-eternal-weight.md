@@ -12,7 +12,7 @@ tags:
 ---
 Many are afraid to love, or even of love. The fear of being exposed, vulnerable to the highest degree. The act of jumping head first into the unknown. To encounter new people, places, and even events you never thought could take place. Afraid of the ever changing world, and the ever obscure intentions of people.
 
-So we only watch from afar, the mountain peak of affection we know we could never reach. Wondering if it was ever worth the grueling climb. But it makes sense about how they are wary of it. To basically hand over a map of yourself. With your hidden bruises embedded on the map, shining like treasures to be exploited. Yet praying against all odds they won't. 
+So we only watch from afar, the mountain peak of affection we know we could never reach. Wondering if it was ever worth the grueling climb. But it makes sense about how they are wary of it. To basically hand over a map of yourself, with your hidden bruises embedded on the map, shining like treasures to be exploited. Yet praying against all odds they won't. 
 
 The anxiety in depending on a person who is not yourself. To build a home around them, only to find you were just a temporary stop. Then you find it suffocating to climb forward, as their blanket of comfort now shrouds your path. The pillar that supports you emotionally collapses. You sit in the rubble and debris, suffocated not by dust, but by your heart caving in.
 
