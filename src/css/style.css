@@ -508,3 +508,70 @@ main {
     background-color: var(--fire-dark);
     color: var(--text-main);
 }
+
+/* Comment Box */
+
+#HCB_comment_box {
+    border-top: 2px dashed var(--fire-dark);
+    margin-top: 1.5em;
+}
+
+#HCB_comment_box h3 {
+    content: "Share your thoughts";
+    color: var(--text-muted);
+}
+
+#HCB_comment_box .submit {
+    background: none; /* Clear twitter bootstrap style. */
+    background-color: var(--fire-main) !important;
+    color: white;
+}
+
+#HCB_comment_box .text-blur {
+    color: red !important;
+}
+
+#HCB_comment_box .text-focus {
+    color: darkred !important;
+}
+
+#HCB_comment_box textarea {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#HCB_comment_box input {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#HCB_comment_box textarea:focus {
+    background-color: var(--surface-color) !important;
+    outline: 2px solid var(--fire-main) !important;
+    color: var(--text-main) !important;
+}
+
+#HCB_comment_box input:focus {
+    background-color: var(--surface-color) !important;
+    outline: 2px solid var(--fire-main) !important;
+    color: var(--text-main) !important;
+}
+
+#HCB_comment_box input.span {
+    background-color: var(--text-main) !important;
+    color: var(--text-main) !important;
+}
+
+div #hcb_subscribe {
+    color: var(--text-main) !important;
+}
+
+div #hcb_settings {
+    display: none !important;
+}
+
+div.home-desc {
+    display: none !important;
+}
