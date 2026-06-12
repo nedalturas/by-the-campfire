@@ -4,7 +4,7 @@ date: 2026-05-28T17:04:00.000+08:00
 author: Void Scribbler
 description: " There is a particular kind of fear that only arrives at the
   summit — not of the climb, not of the fall, but of finally understanding why
-  you were always so afraid to begin"
+  you were always so afraid to begin the climb."
 tags:
   - Prose-Poetry
   - Apathy
