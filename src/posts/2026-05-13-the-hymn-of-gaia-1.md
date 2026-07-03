@@ -8,9 +8,9 @@ tags:
   - Seasons
   - poetry
 ---
-I have always loved you the way the breeze brushes past autumn leaves,
+I have always loved you the way the breeze brushes past autumn leaves,\
 how the rays shine among the bare sepia branches, gleaming amber.\
-And as they sway so gently falling down, ready to kiss the ground below,
+And as they sway so gently falling down, ready to kiss the ground below,\
 as though every piece of me long to embrace your reflection of yellow.
 
 Meeting you was odd, to say the least—the impression of a glacial silhouette,\
