@@ -8,8 +8,6 @@ tags:
   - Seasons
   - poetry
 ---
-
-
 I have always loved you the way the breeze brushes past autumn leaves,
 how the rays shine among the bare sepia branches, gleaming amber.\
 And as they sway so gently falling down, ready to kiss the ground below,
@@ -26,6 +24,6 @@ As spring returns, the grateful earth breathes again gilded and unhurried,\
 So let your roots unearth me, cradle what this soul buried underneath.
 
 You hold me with a fiery passion like summer warmth, incandescent, \
-like a consuming fire that burns through marrows of doubt and fear.
+like a consuming fire that burns through marrows of doubt and fear.\
 Setting ablaze the quiet shadows I once thought of home,\
 so radiant that even the sun might lose its luster before the fire of our embrace.
