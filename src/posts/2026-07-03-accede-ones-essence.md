@@ -18,19 +18,14 @@ Verily, innumerable souls do traverse the labyrinthine corridors of existence,
 
 In relentless pursuit of the ineffable quintessence which men proclaim to be the essence.
 
-
 Know, then that the mind is no tyrant unless thou yieldest unto its dominion, nor is the psyche thy gaoler unless thou refusest its whispers.
-
 
 Therefore seek not to become another, nor to don the visage of foreign essence, for the Creator hath give us self, for us to exist as our most authentic selves.
 
-
 For through the boundless halls of mind, the soul its truest self doth find,
-
 
 And in that gaze, all chains are riven, Its mortal longing softly given. No more to seek, nor to strive to be.
 
-
 For truth hath dwelt eternally, Since first creation's breath was spun, It was, it is, and shall be one.
 
-\- Fool
+\- Fool (another Author, preferred to be anonymous and accountless)
