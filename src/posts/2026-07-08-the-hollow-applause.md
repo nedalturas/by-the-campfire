@@ -1,0 +1,36 @@
+---
+title: The Hollow Applause
+date: 2026-07-09T01:33:00.000+08:00
+author: Syntax
+description: "When you pretend to be one, you end up being none. "
+tags:
+  - posts
+  - essay
+---
+I woke up at 4:00 AM, immediately took a bath and left the house to go to the park to exercise and jog. It has been 3 weeks straight already since I started doing this. My body has recognized that I need to sweat now otherwise it would take a portion of my money to remind me.I have been so lazy since I started working. Eat, sleep, work repeat, that’s the whole cycle. While I was walking and enjoyed the silence that I never had in my house, a thought popped into my mind. I asked myself: Who am I really doing this for? And am I being genuine? I hadn't fully answered it yet when I arrived at the park.
+
+Thereon, I started my warmup routine, basically just tapping my muscles so that it's time to work. They didn’t like that but they don’t have a choice. After the minor sweat, it is time to do the rounds. I have already completed 2 laps when my ankle started burning, it’s screaming “YOU WOULD TEAR YOUR TENDONS!” Of course, it is exaggerated but at least that’s how I felt. My knees on the other hand are doing well but they are not the knees I’ve known for a decade ago. Then around 6 AM as I was approaching the Park’s entrance I saw a young man around 19 years old. Stepped down from his Dad’s Montero Sport. His stature is just like any other teenager, a bit taller than me and has smooth white skin. I could tell he is from a rich family even if I did not see him coming down from his Dad’s car. Also worth mentioning that he was wearing a full on athletic attire. I am talking about basketball shoes as expensive as a high-end computer, a headband, arm-sleeves and some kinesiology tape wrapped around his back, once I saw that I know he meant business going to this park.The reason I noticed him immediately is that he’s a new face here in this park. For 3 weeks I have been able to recognize the faces who consistently push themselves to the limits. I was able to get one of them to nod at me as if saying “game recognizes game.” So there goes the new face. I am excited for him to try the twisty corners of this park. 
+
+With 3 laps left in my run, I watched him doing some warm ups. I began observing him from afar. I sensed that he is not doing those stretches very well, his posture is incorrect and his muscles and joints are not really that stretched for them to prepare for a run. But I let him be, besides who am I anyway? 
+
+By my final lap now, I remembered I did not see him from his place when I did my second to the last lap, so I assumed that he started his run, so I should be able to catch him soon. 
+
+I’ve already arrived at my starting point and I did not see any hints of him. I walked out to the park exit to buy water, gasping and barely catching my breath like a dog, mouth open and tongue out combined with a dry throat and a face drenched in sweat. I instantly gulped half of the water bottle to quench the thirst. As part of my routine I’d like to go to the bay side and sit there to watch the sunrise. It’s a habit I’ve grown to love as I got older; the morning light is a quiet reminder to keep trying. While I was sitting there enjoying the morning shine. I scanned the long stretch of the seawall where people also sit. I started from the right, where elders already have their morning news digest, some are doing their stretching too, As I slowly gaze my eyes to my left, I saw some group of ladies around their 40s doing mini zumba in front of a phone attached to a stand with a small speaker below it, I figured they might be live streaming it. Then I turned my head hard left. There he was, the kid from the Montero. 
+
+He was sitting, phone out and taking a picture of himself. He is sweating. 
+
+But how? I asked myself. I did not see him running laps, and there’s only one way street for runs. He did not even take at least 10 minutes to finish his warm up. Surely he can’t sweat that hard, I am sure that his sweat is not from the morning humidity because it was a little cold that day coming from the sea breeze. I am on my judging stance but that can’t be. It took me less than 10 seconds to know what’s happening. But I have to confirm that yet. 
+
+It is now 6:30 AM, which is usually when I go home. That also means that this kid stayed seated for around 27 minutes and posed and changed angles like he came from a mile of a run. To confirm my hunch, I need to see him go home too. Speak of the devil, as soon as I stood up, he did too. I have gone in a different direction trying to delay myself because I tend to walk faster than anyone. He took a shortcut and was surprised he’s on the way to the exit, and the Montero car was waiting. 
+
+I laughed to myself after I confirmed my intuition but at the same time, I became frustrated and asked, why would people do this? Why would someone waste their time waking up early, burn a car fuel, wear fancy gears just to post himself online pretending to sweat hard on a pain he did not even take? He is not the only one that I encountered that has the same behavior. I even considered myself to be one but instantly stopped it once I realized I am faking myself. What is it for really? Is it for social validation? The virtual applause that sends a dopamine hit? I cannot see a heavy gain from it. If there is, it would be a sin to yourself, you lied to yourself. This is where pretentious acts and authenticity blurred the lines, so blurry that you can’t even see a middleground. 
+
+I would rather see someone silently struggling himself over a rigorous training to chisel his body. I would rather see someone so busy building his life brick-by-brick that they forget to connect online and I would rather see someone finally find their permanent happiness, because I think performativity is just a euphoria. When you pretend to be one you end up being none. What could you really gain from pretending? Nothing. 
+
+I think this situation fits really well from a passage I read from Fyodor Dostoevsky's book *The Brothers Karamazov*. 
+
+> “ Above all, don't lie to yourself. The man who lies to himself and listens to his own > lie comes to a point that he cannot distinguish the truth within him, or around him, and so > loses all respect for himself and for others. And having no respect he ceases to love." 
+
+Dostoevsky’s words felt like an anchor. They answered the question I had asked myself on the walk over: Am I being genuine? If we are willing to spend so much time and energy projecting an image, why not redirect that effort into actually building the substance? We waste so much time lying to ourselves when we could be using it to be rigorously, critically honest. There is so much left to discover about our own potential, but you can only uncover it if you are operating genuinely. We don't need an audience to validate us. As long as you are true to the work, you cannot go wrong.
+
+Maybe I am guilty of judging someone without knowing their whole story. But I refuse to apologize for the realization it sparked. The performative obsession of our culture is cancer. Fortunately, the treatment is entirely free: Self-honesty.
