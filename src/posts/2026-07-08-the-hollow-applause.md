@@ -29,7 +29,7 @@ I would rather see someone silently struggling himself over a rigorous training 
 
 I think this situation fits really well from a passage I read from Fyodor Dostoevsky's book *The Brothers Karamazov*. 
 
-> “ Above all, don't lie to yourself. The man who lies to himself and listens to his own > lie comes to a point that he cannot distinguish the truth within him, or around him, and so > loses all respect for himself and for others. And having no respect he ceases to love." 
+> “ Above all, don't lie to yourself. The man who lies to himself and listens to his own lie comes to a point that he cannot distinguish the truth within him, or around him, and so loses all respect for himself and for others. And having no respect he ceases to love." 
 
 Dostoevsky’s words felt like an anchor. They answered the question I had asked myself on the walk over: Am I being genuine? If we are willing to spend so much time and energy projecting an image, why not redirect that effort into actually building the substance? We waste so much time lying to ourselves when we could be using it to be rigorously, critically honest. There is so much left to discover about our own potential, but you can only uncover it if you are operating genuinely. We don't need an audience to validate us. As long as you are true to the work, you cannot go wrong.
 
