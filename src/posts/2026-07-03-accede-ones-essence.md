@@ -1,12 +1,12 @@
 ---
 title: Accede One's Essence
 date: 2026-07-03T20:19:00.000+08:00
-author: Void Scribbler
+author: The Fool
 description: Finding the skies in the stars above, for the one self's!
 tags:
   - Understanding
   - Awareness
-  - Introspection
+  - Enlightenment
 ---
 In the skies of many stars, there are those who shines so bright, in hope to find the psyche that will renounce the mind.
 
