@@ -1,7 +1,7 @@
 ---
 title: A Soldier's Vow
 date: 2026-08-14T19:58:00.000+08:00
-author: Void Scribbler
+author: The Fool
 description: Too Good to be True
 tags:
   - Panata
@@ -12,7 +12,7 @@ A STAR AMONG THE CLOUDS,\
 SO BRIGHT AND TRUE,\
 NO LIGHT IN ALL THE SKY COMPARES TO YOU.
 
-kaya't.,,,,
+kaya't.,,,
 
 Huwag kang mabahala sa landas na ating tatahakin,\
 hindi ako hanging daraan at saka rin lilimutin.\
@@ -52,7 +52,7 @@ LIWANAG MO'Y TUNAY, NINGNING AY WAGAS.\
 SA BUONG KALANGITAN, WALANG MAKAHIHIGIT,\
 SAPAGKAT IKAW LAMANG ANG TANGLAW NA MARIKIT.
 
-So.,,,,\
+So.,,,\
 \
 Do not fear the road that lies ahead,\
 for I am not the passing wind\
