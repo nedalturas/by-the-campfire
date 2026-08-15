@@ -20,13 +20,13 @@ As i observe with many people, there decision was always been influence by the f
 
 That's why i decide to myself that i will become the audience to this play of creature called human. Because me myself was also a human that was not understood itself to begin with.
 
-Many people nowadays feel in love!
+Many people nowadays fell in love!
 
 the question was, Is it given or is it taken?
 
 Many people feel in love because someone make them fell, while someone just feel in love by there own choice.
 
-Someone ask me, Did you feel in love with the action or you did feel in love with the feeling? I pause and question back, What's the difference?
+Someone ask me, Did you fell in love with the action or you did fell in love with the feeling? I pause and question back, What's the difference?
 
 She said that, if you love someone by there actions means you love them as they give it to you, while if you love them by the feeling means you love them by your own accord.
 
