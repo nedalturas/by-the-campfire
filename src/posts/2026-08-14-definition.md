@@ -24,7 +24,7 @@ Many people nowadays fell in love!
 
 the question was, Is it given or is it taken?
 
-Many people feel in love because someone make them fell, while someone just feel in love by there own choice.
+Many people fell in love because someone make them fell, while someone just fell in love by there own choice.
 
 Someone ask me, Did you fell in love with the action or you did fell in love with the feeling? I pause and question back, What's the difference?
 
@@ -48,7 +48,7 @@ I never then imagine myself right now to be in love, because even me myself did 
 
 But if i choose, i would choose the love that never been there but felt. Because as i observe, there are many people that tend to pretend, there actions says that there in love but in truth they are not
 
-That's why if I fell, i tend to make it slow and as long as possible, for i was scared of love myself and still searching what would love will be and what would kind of love that i want to be
+That's why if I love, I tend to make it slow and as long as possible, for i was scared of love myself and still searching what would love will be and what would kind of love that i want to be
 
 Then I fell in love.!
 
