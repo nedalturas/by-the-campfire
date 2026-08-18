@@ -71,33 +71,33 @@ NO LIGHT IN ALL THE SKY COMPARES TO YOU.
 
 kaya't.,,,
 
-Huwag kang mabahala sa landas na ating tatahakin,
-hindi ako hanging daraan at saka rin lilimutin.
-Kung ang puso mo'y sa akin kusang mananahan,
+Huwag kang mabahala sa landas na ating tatahakin,\
+hindi ako hanging daraan at saka rin lilimutin.\
+Kung ang puso mo'y sa akin kusang mananahan,\
 ang puso ko nama'y sa iyo rin mamamalagi magpakailanman.
 
-Ayaw ko na sa pag-ibig na hitik sa pag-aalinlangan,
-na ang bawat araw ay puno ng pangangapa at paghihintayan.
-Kung ang puso mo'y sa akin, sabihin mo nang hayagan
+Ayaw ko na sa pag-ibig na hitik sa pag-aalinlangan,\
+na ang bawat araw ay puno ng pangangapa at paghihintayan.\
+Kung ang puso mo'y sa akin, sabihin mo nang hayagan\
 kung hindi, palayain mo ako sa maling inaasahan.
 
-Hindi ako nilikhang umibig sa mga pahiwatig,
-ni mabuhay sa mga salitang may lihim na tinig.
-Ang tunay na damdamin ay hindi marunong magkubli,
+Hindi ako nilikhang umibig sa mga pahiwatig,\
+ni mabuhay sa mga salitang may lihim na tinig.\
+Ang tunay na damdamin ay hindi marunong magkubli,\
 ito'y kusang nahahayag at hindi ikinukubli.
 
-Hindi sugal ang pag-ibig na ang puhunan ay tiwala,
-kung ang kapalit lamang ay pangamba at pagluha.
-Ang wagas na pagsinta'y hindi marunong magkubli kailanman,
+Hindi sugal ang pag-ibig na ang puhunan ay tiwala,\
+kung ang kapalit lamang ay pangamba at pagluha.\
+Ang wagas na pagsinta'y hindi marunong magkubli kailanman,\
 bagkus ay namamayani sa liwanag ng katotohanan.
 
-Hindi kita hinihiling na maging walang kapintasan,
-sapagkat maging ako'y may lamat at pagkukulang.
-Ngunit kung handa kang iwaksi ang mali mong gawi,
+Hindi kita hinihiling na maging walang kapintasan,\
+sapagkat maging ako'y may lamat at pagkukulang.\
+Ngunit kung handa kang iwaksi ang mali mong gawi,\
 handa rin akong baguhin ang sa aki'y nararapat iwaksi
 
-Kaya huwag kang mangamba sa aking paninindigan,
-hindi ito magbabago sa anumang dahilan.
-Sa bawat umaga't sa bawat dapithapon,sa bawat pag-inog ng ating panahon,
-iisa lamang ang pasiya ng aking puso't layon
+Kaya huwag kang mangamba sa aking paninindigan,\
+hindi ito magbabago sa anumang dahilan.\
+Sa bawat umaga't sa bawat dapithapon,sa bawat pag-inog ng ating panahon,\
+iisa lamang ang pasiya ng aking puso't layon\
 ikaw pa rin ang pipiliin, ngayon at sa habang panahon.
