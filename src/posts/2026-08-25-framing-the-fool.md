@@ -30,3 +30,5 @@ Matejko’s masterpiece is far more than a portrait of a mournful individual; it
 I was somehow enlightened by my curiosity, and God forbid, I was not killed by it! 
 
 ![Stańczyk ](/images/stanczyk.jpg "Stańczyk during a ball at the court of Queen Bona in the face of the loss of Smolensk")
+
+*Image courtesy: https://commons.wikimedia.org/wiki/File:Jan_Matejko,_Sta%C5%84czyk.jpg*
