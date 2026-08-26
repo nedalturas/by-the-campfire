@@ -1,0 +1,21 @@
+:root {
+  /* Colors */
+  --bg-color: #1b1715;
+  /* Dark brown/charcoal */
+  --surface-color: #231d1a;
+
+  --text-main: #dfd4c6;
+  --text-muted: #9c8e7e;
+
+  --fire-main: #e65c00;
+  /* Orange */
+  --fire-dark: #b34700;
+
+  --font-serif: "Merriweather", serif;
+  --font-sans: "Outfit", sans-serif;
+
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+}

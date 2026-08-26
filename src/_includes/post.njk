@@ -5,15 +5,15 @@ layout: base.njk
     <header class="post-header">
         <h1 class="post-title">{{ title }}</h1>
         <div class="post-meta">
-            <span class="post-author">By <span class="author-name">{{ author }}</span></span>
+            <span class="post-author">By <span class="author-name">{{ author }}</span></span> /
             <span class="post-date">{{ date | postDate }}</span>
         </div>
         {% if tags %}
         <ul class="post-tags">
             {% for tag in tags %}
-              {% if tag != "post" and tag != "posts" %}
-                <li><a href="/tags/{{ tag | slugify }}/" class="tag">{{ tag }}</a></li>
-              {% endif %}
+            {% if tag != "post" and tag != "posts" %}
+            <li><a href="/tags/{{ tag | slugify }}/" class="tag">{{ tag }}</a></li>
+            {% endif %}
             {% endfor %}
         </ul>
         {% endif %}
@@ -21,22 +21,24 @@ layout: base.njk
 
     <div class="post-content">
         {% if body %}
-            {{ body | markdownify | safe }}
+        {{ body | markdownify | safe }}
 
         {% else %}
-            {{ content | safe }}
+        {{ content | safe }}
 
-            <!-- begin wwww.htmlcommentbox.com -->
+        <!-- begin wwww.htmlcommentbox.com -->
         {% endif %}
 
-        <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
-        <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
-        <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="https://www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24H73KCO5k96lUuEJwLIPeV."+"&opts=16798&num=10&ts=1780577409751");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/
-        hcb_user = {
-          comments_header: "Share your thoughts"
-        }
+        <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...
+        </div>
+        <link rel="stylesheet" type="text/css"
+            href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
+        <script type="text/javascript" id="hcb"> /*<!--*/ i f(!window.hcb_user ) {hcb_use r ={} ;} (functio n( ) {var  s =document.createElement("script"),  l =hcb_user.PAGE || (" " +window.location).replace(/'/g ,"%27"),  h ="https://www.htmlcommentbox.com" ;s.setAttribute("type" ,"text/javascript") ;s.setAttribute("src",  h +"/jread?page= " +encodeURIComponent(l).replace("+" ,"%2B" ) +"&mod=%241%24wq1rdBcg%24H73KCO5k96lUuEJwLIPeV. " +"&opts=16798&num=10&ts=1780577409751") ;if (typeof  s! ="undefined") document.getElementsByTagName("head")[0].appendChild(s) ;})(); /*-->*/
+            hcb_user = {
+                comments_header: "Share your thoughts"
+            }
         </script>
-       <!-- end www.htmlcommentbox.com -->
+        <!-- end www.htmlcommentbox.com -->
     </div>
 
     <div class="post-footer">

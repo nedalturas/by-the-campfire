@@ -1,25 +1,3 @@
-:root {
-    /* Colors */
-    --bg-color: #1b1715;
-    /* Dark brown/charcoal */
-    --surface-color: #231d1a;
-
-    --text-main: #dfd4c6;
-    --text-muted: #9c8e7e;
-
-    --fire-main: #e65c00;
-    /* Orange */
-    --fire-dark: #b34700;
-
-    --font-serif: "Merriweather", serif;
-    --font-sans: "Outfit", sans-serif;
-
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 4rem;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -47,6 +25,10 @@ body {
 /* Header & Nav */
 .site-header {
     padding: var(--spacing-lg) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-color);
 }
 
 .header-container {
@@ -57,9 +39,9 @@ body {
 
 .logo {
     font-family: var(--font-serif);
-    font-size: 0.85rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    text-transform: uppercase;
+    font-style: italic;
     letter-spacing: 1px;
     color: var(--text-main);
     text-decoration: none;
@@ -123,7 +105,7 @@ main {
 
 .hero-title-main {
     font-family: var(--font-serif);
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     color: #ffffff;
     margin-bottom: var(--spacing-lg);
@@ -337,6 +319,7 @@ main {
     display: flex;
     justify-content: center;
     gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
 }
 
 .post-tags .tag {
@@ -361,6 +344,15 @@ main {
     /* font-size: 1.15rem; */
     /* line-height: 1.8; */
     color: var(--text-main);
+    overflow-wrap: anywhere;
+}
+
+.post-content img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: var(--spacing-md) 0;
 }
 
 .post-content p {
@@ -437,6 +429,7 @@ main {
 }
 
 @keyframes pulse {
+
     0%,
     100% {
         opacity: 1;
@@ -522,7 +515,8 @@ main {
 }
 
 #HCB_comment_box .submit {
-    background: none; /* Clear twitter bootstrap style. */
+    background: none;
+    /* Clear twitter bootstrap style. */
     background-color: var(--fire-main) !important;
     color: white;
 }
@@ -573,5 +567,9 @@ div #hcb_settings {
 }
 
 div.home-desc {
+    display: none !important;
+}
+
+img.hcb-icon {
     display: none !important;
 }
