@@ -294,7 +294,7 @@ main {
 .post-content {
     font-family: var(--font-serif);
     font-size: 1.15rem;
-    /* line-height: 1.8; */
+    line-height: 1.2;
     color: var(--text-main);
     overflow-wrap: anywhere;
 }
