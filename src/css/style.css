@@ -498,6 +498,10 @@ main {
     color: darkred !important;
 }
 
+#HCB_comment_box h3 {
+    font-family: var(--font-sans);
+}
+
 #HCB_comment_box textarea {
     border: none !important;
     outline: none !important;
