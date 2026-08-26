@@ -20,7 +20,8 @@
   }
 
   .post-content p {
-    font-size: medium;
+    font-size: 1rem;
+    line-height: 1.75;
   }
 
   .header-container {

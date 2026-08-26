@@ -22,56 +22,6 @@ body {
     padding: 0 var(--spacing-md);
 }
 
-/* Header & Nav */
-.site-header {
-    padding: var(--spacing-lg) 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    position: sticky;
-    top: 0;
-    background-color: var(--bg-color);
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-family: var(--font-serif);
-    font-size: 1.2rem;
-    font-weight: 700;
-    font-style: italic;
-    letter-spacing: 1px;
-    color: var(--text-main);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.logo:hover {
-    color: var(--fire-main);
-}
-
-.site-nav {
-    display: flex;
-    gap: var(--spacing-lg);
-}
-
-.site-nav a {
-    font-family: var(--font-serif);
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.3s ease;
-    border-bottom: 1px solid transparent;
-}
-
-.site-nav a:hover {
-    color: var(--text-main);
-    border-bottom-color: var(--text-main);
-}
-
 /* Main Content Area */
 main {
     flex: 1;
@@ -122,9 +72,15 @@ main {
     font-family: var(--font-serif);
     font-style: italic;
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 1.25rem;
     text-align: center;
     margin-bottom: var(--spacing-sm);
+}
+
+.hero-quote-author::before {
+    content: "- ";
+    font-size: 2rem;
+    color: var(--fire-main);
 }
 
 .hero-quote-author {
@@ -193,16 +149,16 @@ main {
     color: var(--fire-main);
     /* Fallback for browsers that don't support background-clip */
 
-    text-decoration: underline;
+    text-decoration: underline dotted;
     text-decoration-color: var(--fire-dark);
-    text-underline-offset: 4px;
+    text-underline-offset: 6px;
     text-decoration-thickness: 1px;
     margin-bottom: 0.2rem;
     transition: opacity 0.3s ease;
 }
 
 .post-row-title:hover {
-    opacity: 0.8;
+    /* opacity: 0.8; */
     text-decoration-color: var(--fire-main);
 }
 
@@ -215,15 +171,14 @@ main {
     font-family: var(--font-sans);
     font-size: 0.65rem;
     color: var(--fire-dark);
-    border: 1px solid rgba(230, 92, 0, 0.4);
-    border-radius: 12px;
+    border: 1px inset rgba(230, 92, 0, 0.4);
     padding: 0.1rem 0.5rem;
     text-transform: capitalize;
 }
 
 .post-row-excerpt {
     font-family: var(--font-serif);
-    font-size: 0.85rem;
+    font-size: 1.15rem;
     color: var(--text-main);
 }
 
@@ -285,7 +240,6 @@ main {
 .post {
     background-color: var(--surface-color);
     padding: var(--spacing-xl);
-    border-radius: 12px;
 }
 
 .post-header {
@@ -324,14 +278,12 @@ main {
 
 .post-tags .tag {
     display: inline-block;
-    padding: 0.3rem 0.8rem;
-    background-color: transparent;
-    border: 1px solid rgba(230, 92, 0, 0.3);
-    color: var(--fire-main);
-    text-decoration: none;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    transition: all 0.3s ease;
+    font-family: var(--font-sans);
+    font-size: .95rem;
+    color: var(--fire-dark);
+    border: 1px inset rgba(230, 92, 0, 0.4);
+    padding: 0.1rem 0.5rem;
+    text-transform: capitalize;
 }
 
 .post-tags .tag:hover {
@@ -341,7 +293,7 @@ main {
 
 .post-content {
     font-family: var(--font-serif);
-    /* font-size: 1.15rem; */
+    font-size: 1.15rem;
     /* line-height: 1.8; */
     color: var(--text-main);
     overflow-wrap: anywhere;
@@ -357,6 +309,22 @@ main {
 
 .post-content p {
     margin-bottom: var(--spacing-md);
+}
+
+
+.post-content blockquote {
+    margin: var(--spacing-lg) 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid var(--fire-main);
+    background: rgba(230, 92, 0, 0.08);
+    color: #f0dfca;
+    font-size: 1.2em;
+    font-style: italic;
+    line-height: 1.65;
+}
+
+.post-content blockquote p {
+    margin-bottom: 0;
 }
 
 .post-content h2,
@@ -490,11 +458,12 @@ main {
 
 .tag {
     display: inline-block;
-    color: var(--fire-main);
-    border: 1px solid var(--fire-main);
-    padding: 0.5em;
-    margin-top: 0.5em;
-    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    color: var(--fire-dark);
+    border: 1px inset rgba(230, 92, 0, 0.4);
+    padding: 0.1rem 0.5rem;
+    text-transform: capitalize;
 }
 
 .tag:hover {
