@@ -5,5 +5,6 @@ author: Syntax
 description: It must be done
 tags:
   - posts
+editor_notes: too short, make it longer
 ---
 To ensure the quality of our posts
