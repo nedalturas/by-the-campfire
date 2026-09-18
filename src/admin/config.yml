@@ -25,3 +25,4 @@ collections:
       - {label: "Description (Short)", name: "description", widget: "string", required: false}
       - {label: "Tags", name: "tags", widget: "list", default: ["posts"]}
       - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Editor Notes", name: "editor_notes", widget: "text", required: false}
