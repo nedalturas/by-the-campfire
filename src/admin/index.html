@@ -46,44 +46,49 @@
       });
 
 
-    // Lock editor notes field for non-proofreaders
-function restrictNotesField(user) {
-  if (!user) return;
-  
-  user.jwt(true).then((token) => {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const roles = payload.app_metadata?.roles || [];
-    
-    if (roles.includes('proofreader')) return; 
+    // Lock editor notes field for non-proofreaders.
+    function restrictNotesField(user) {
+      if (!user) return;
 
-    const observer = new MutationObserver(() => {
-      const labels = Array.from(document.querySelectorAll('label'));
-      // Use trim() and startsWith() to catch it even if Decap adds asterisks for required fields
-      const notesLabel = labels.find(el => el.textContent.trim().startsWith('Editor Notes'));
-      
-      if (notesLabel) {
-        // Target the parent container wrapping the label and the input
-        const fieldContainer = notesLabel.parentElement;
-        
-        // Apply CSS lock if not already applied
-        if (fieldContainer && fieldContainer.style.pointerEvents !== 'none') {
-          fieldContainer.style.pointerEvents = 'none';
-          fieldContainer.style.opacity = '0.5';
-          
-          // Also catch tab-navigation by disabling actual inputs inside the container
-          const inputs = fieldContainer.querySelectorAll('input, textarea');
-          inputs.forEach(input => {
-            input.disabled = true;
-          });
+      const roles = user.app_metadata?.roles || [];
+      if (roles.includes('proofreader')) return;
+
+      const isEditorNotesField = (element) => {
+        const field = element.closest('div');
+        return field && /Editor Notes/i.test(field.textContent || '');
+      };
+
+      const lockNotesField = () => {
+        const notesLabel = Array.from(document.querySelectorAll('label'))
+          .find(label => label.textContent.trim().startsWith('Editor Notes'));
+        if (!notesLabel) return;
+
+        let fieldContainer = notesLabel;
+        while (fieldContainer.parentElement && !fieldContainer.querySelector('textarea')) {
+          fieldContainer = fieldContainer.parentElement;
         }
-      }
-    });
-    
-    observer.observe(document.body, { childList: true, subtree: true });
-  });
-}
+
+        fieldContainer.style.opacity = '0.5';
+        fieldContainer.style.pointerEvents = 'none';
+        fieldContainer.querySelectorAll('input, textarea').forEach(input => {
+          input.disabled = true;
+          input.readOnly = true;
+        });
+      };
+
+      const observer = new MutationObserver(lockNotesField);
+      observer.observe(document.body, { childList: true, subtree: true });
+      lockNotesField();
+
+      document.addEventListener('focusin', (event) => {
+        if (isEditorNotesField(event.target)) {
+          event.target.blur();
+        }
+      }, true);
+    }
 
     netlifyIdentity.on('init', restrictNotesField);
+    netlifyIdentity.on('login', restrictNotesField);
 
   </script>
 </body>
