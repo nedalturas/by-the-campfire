@@ -28,10 +28,20 @@
 
           return entry.get('data').set('author', name);
         }
-
         return entry;
       }
     });
+    CMS.registerEventListener({
+        name: 'prePublish',
+        handler: () =>{
+          const user = netlifyIdentity.currentUser();
+          const roles = user?.app_metadata?.roles || [];
+          if (!roles.includes('writer')){
+            alert("Only proofreaders can publish - move it to review instead.");
+            throw new Error('blocked: not a publisher');
+          }
+        },
+      });
   </script>
 </body>
 
