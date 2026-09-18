@@ -83,6 +83,8 @@ function restrictNotesField(user) {
   });
 }
 
+    netlifyIdentity.on('init', restrictNotesField);
+
   </script>
 </body>
 
