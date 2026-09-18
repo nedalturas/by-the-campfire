@@ -1,6 +1,4 @@
 publish_mode: editorial_workflow
-editor:
-  notes: true
 
 backend:
   name: git-gateway
