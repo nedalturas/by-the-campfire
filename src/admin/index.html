@@ -45,39 +45,44 @@
         },
       });
 
+
     // Lock editor notes field for non-proofreaders
-    function restrictNodesField(user){
-      if(!user) return;
+function restrictNotesField(user) {
+  if (!user) return;
+  
+  user.jwt(true).then((token) => {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const roles = payload.app_metadata?.roles || [];
+    
+    if (roles.includes('proofreader')) return; 
 
-      user.jwt(true).then((token) =>{
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        const roles = payload.app_metadata.roles || [];
+    const observer = new MutationObserver(() => {
+      const labels = Array.from(document.querySelectorAll('label'));
+      // Use trim() and startsWith() to catch it even if Decap adds asterisks for required fields
+      const notesLabel = labels.find(el => el.textContent.trim().startsWith('Editor Notes'));
+      
+      if (notesLabel) {
+        // Target the parent container wrapping the label and the input
+        const fieldContainer = notesLabel.parentElement;
+        
+        // Apply CSS lock if not already applied
+        if (fieldContainer && fieldContainer.style.pointerEvents !== 'none') {
+          fieldContainer.style.pointerEvents = 'none';
+          fieldContainer.style.opacity = '0.5';
+          
+          // Also catch tab-navigation by disabling actual inputs inside the container
+          const inputs = fieldContainer.querySelectorAll('input, textarea');
+          inputs.forEach(input => {
+            input.disabled = true;
+          });
+        }
+      }
+    });
+    
+    observer.observe(document.body, { childList: true, subtree: true });
+  });
+}
 
-        if(roles.includes('proofreader')) return;
-
-        const observer = new MutationObserver(() => {
-          const labels = Array.from(document.querySelectorAll('label'));
-
-          const notesLabel = labels.find(el => el.textContent.includes('Editor Notes'));
-
-          if(notesLabel){
-            const inputId = notesLabel.getAttribute('for');
-            const inputField = document.getElementById(inputId);
-
-            if(inputField && !inputField.disabled){
-              inputField.disabled = true;
-              inputField.placeholder = "Editor Notes (locked for non-proofreaders)";
-              inputField.style.opacity = 0.5;
-              inputField.style.cursor = 'not-allowed';
-            }
-          }
-        })
-        observer.observe(document.body, { childList: true, subtree: true });
-      })
-    }
-
-    window.netlify.on('init', restrictNodesField);
-    window.netlify.on('login', restrictNodesField);
   </script>
 </body>
 
