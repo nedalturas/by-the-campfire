@@ -18,12 +18,16 @@
     CMS.registerEventListener({
       name: 'preSave',
       handler: ({ entry }) => {
+        const data = entry.get('data');
+        if(data.get('author')) return data;
+
         const user = window.netlifyIdentity && window.netlifyIdentity.currentUser();
-        if (!user) return entry.get('data');
+        if (!user) return data;
 
         const meta = user.user_metadata || {};
         const name = meta.full_name || meta.name || user.email;
-        return entry.get('data').set('author', name);
+        // return entry.get('data').set('author', name);
+        return data.set('author', name);
       }
     });
 
