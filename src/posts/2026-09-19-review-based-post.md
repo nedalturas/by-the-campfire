@@ -14,4 +14,4 @@ To ensure quality post, we must enable a review based posting.\
 \
 This is a proposal to ensure that quality post is encourage by having the writers to peer-review their work before posting. Please let me know.
 
-Whic revision please?
+Which revision please?
