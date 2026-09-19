@@ -7,6 +7,8 @@ tags:
 editor_notes: |-
   ---
   Elaborate please?
+
+  Agreed. This is good to go.
 ---
 This is a test for review based publishing
 
