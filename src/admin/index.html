@@ -70,10 +70,14 @@
 
         fieldContainer.style.opacity = '0.5';
         fieldContainer.style.pointerEvents = 'none';
-        fieldContainer.querySelectorAll('input, textarea').forEach(input => {
+        fieldContainer.querySelectorAll('input, textarea, [contenteditable]').forEach(input => {
           input.disabled = true;
           input.readOnly = true;
+          if(input.hasAttribute('contenteditable')){
+            input.setAttribute('contene', 'false');
+          }
         });
+
       };
 
       const observer = new MutationObserver(lockNotesField);
