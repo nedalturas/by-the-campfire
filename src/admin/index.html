@@ -2,95 +2,94 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager Status - By the Campfire</title>
-  <!-- Include the script that enables Netlify Identity on this page. -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager - By the Campfire</title>
+  <!-- Include the script that enables Netlify Identity on this page. -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 
 <body>
-  <!-- Include the script that builds the page and powers Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js"></script>
+  <!-- Include the script that builds the page and powers Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js"></script>
 
-  <script>
-    CMS.registerEventListener({
-      name: 'preSave',
-      handler: ({ entry }) => {
-        console.log("preSave triggered");
+  <script>
+    CMS.registerEventListener({
+      name: 'preSave',
+      handler: ({ entry }) => {
+        console.log("preSave triggered");
 
-        const user = window.netlifyIdentity && window.netlifyIdentity.currentUser();
-        console.log("user:", user);
+        const user = window.netlifyIdentity && window.netlifyIdentity.currentUser();
+        console.log("user:", user);
 
-        if (user) {
-          const metadata = user.user_metadata || {};
-          const name = metadata.full_name || metadata.name || user.email;
+        if (user) {
+          const metadata = user.user_metadata || {};
+          const name = metadata.full_name || metadata.name || user.email;
 
-          return entry.get('data').set('author', name);
-        }
-        return entry;
-      }
-    });
+          return entry.get('data').set('author', name);
+        }
+        return entry;
+      }
+    });
 
-    // Editor workflow
-    CMS.registerEventListener({
-        name: 'prePublish',
-        handler: () =>{
-          const user = netlifyIdentity.currentUser();
-          const roles = user?.app_metadata?.roles || [];
-          if (!roles.includes('proofreader')){
-            alert("Only proofreaders can publish - move it to draft instead.");
-            throw new Error('blocked: not a proofreader');
-          }
-        },
-      });
+    // Editor workflow
+    CMS.registerEventListener({
+        name: 'prePublish',
+        handler: () =>{
+          const user = netlifyIdentity.currentUser();
+          const roles = user?.app_metadata?.roles || [];
+          if (!roles.includes('proofreader')){
+            alert("Only proofreaders can publish - move it to review instead.");
+            alert("Only proofreaders can publish - move it to draft instead.");
+            throw new Error('blocked: not a proofreader');
+          }
+        },
+      });
 
 
-    // Lock editor notes field for non-proofreaders.
-    function restrictNotesField(user) {
-      if (!user) return;
+    // Lock editor notes field for non-proofreaders.
+    function restrictNotesField(user) {
+      if (!user) return;
 
-      const roles = user.app_metadata?.roles || [];
-      if (roles.includes('proofreader')) return;
+      const roles = user.app_metadata?.roles || [];
+      if (roles.includes('proofreader')) return;
 
-      const isEditorNotesField = (element) => {
-        const field = element.closest('div');
-        return field && /Editor Notes/i.test(field.textContent || '');
-      };
+      const isEditorNotesField = (element) => {
+        const field = element.closest('div');
+        return field && /Editor Notes/i.test(field.textContent || '');
+      };
 
-      const lockNotesField = () => {
-        const notesLabel = Array.from(document.querySelectorAll('label'))
-          .find(label => label.textContent.trim().startsWith('Editor Notes'));
-        if (!notesLabel) return;
+      const lockNotesField = () => {
+        const notesLabel = Array.from(document.querySelectorAll('label'))
+          .find(label => label.textContent.trim().startsWith('Editor Notes'));
+        if (!notesLabel) return;
 
-        let fieldContainer = notesLabel;
-        while (fieldContainer.parentElement && !fieldContainer.querySelector('textarea')) {
-          fieldContainer = fieldContainer.parentElement;
-        }
+        let fieldContainer = notesLabel;
+        while (fieldContainer.parentElement && !fieldContainer.querySelector('textarea')) {
+          fieldContainer = fieldContainer.parentElement;
+        }
 
-        fieldContainer.style.opacity = '0.5';
-        fieldContainer.style.pointerEvents = 'none';
-        fieldContainer.querySelectorAll('input, textarea').forEach(input => {
-          input.disabled = true;
-          input.readOnly = true;
-        });
-      };
+        fieldContainer.style.opacity = '0.5';
+        fieldContainer.style.pointerEvents = 'none';
+        fieldContainer.querySelectorAll('input, textarea').forEach(input => {
+          input.disabled = true;
+          input.readOnly = true;
+        });
+      };
 
-      const observer = new MutationObserver(lockNotesField);
-      observer.observe(document.body, { childList: true, subtree: true });
-      lockNotesField();
+      const observer = new MutationObserver(lockNotesField);
+      observer.observe(document.body, { childList: true, subtree: true });
+      lockNotesField();
 
-      document.addEventListener('focusin', (event) => {
-        if (isEditorNotesField(event.target)) {
-          event.target.blur();
-        }
-      }, true);
-    }
+      document.addEventListener('focusin', (event) => {
+        if (isEditorNotesField(event.target)) {
+          event.target.blur();
+        }
+      }, true);
+    }
 
-    netlifyIdentity.on('init', restrictNotesField);
-    netlifyIdentity.on('login', restrictNotesField);
+    netlifyIdentity.on('init', restrictNotesField);
+    netlifyIdentity.on('login', restrictNotesField);
 
-  </script>
+  </script>
 </body>
-
-</html>
