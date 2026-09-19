@@ -50,7 +50,7 @@
       const lock = () => {
         const label = [...document.querySelectorAll('label')]
           .find(l => /^editor notes/i.test(l.textContent.trim()));
-        const field = label?.parentElement;
+        const field = label?.parentElement?.parentElement;
         if (!field || field.inert) return;
 
         field.inert = true;            // blocks click, focus, typing
