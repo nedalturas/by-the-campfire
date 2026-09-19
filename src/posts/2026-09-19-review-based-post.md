@@ -1,14 +1,10 @@
 ---
 title: Review Based Post
 date: 2026-09-19T18:50:00.000+08:00
-author: Syntax
+author: John
 tags:
   - posts
-editor_notes: |-
-  ---
-  Editorial notes
-
-  This is a second revisiont, please provide the full detail of the request
+editor_notes: ""
 ---
 To ensure quality post, we must enable a review based posting.\
 \
