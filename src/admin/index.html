@@ -39,7 +39,7 @@
           const user = netlifyIdentity.currentUser();
           const roles = user?.app_metadata?.roles || [];
           if (!roles.includes('proofreader')){
-            alert("Only proofreaders can publish - move it to review instead.");
+            alert("Only proofreaders can publish - move it to draft instead.");
             throw new Error('blocked: not a proofreader');
           }
         },
