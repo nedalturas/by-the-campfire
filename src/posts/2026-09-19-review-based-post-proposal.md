@@ -9,3 +9,5 @@ editor_notes: |-
   Elaborate please?
 ---
 This is a test for review based publishing
+
+To make sure that we publish a quality content for our readers. We must implement a review based publishing. Each writers' work are subject to review from a proofreader before it gets posted
