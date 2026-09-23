@@ -10,10 +10,3 @@ module.exports = async () => {
     }
 }
 
-//TODO
-/*
-Add quote fallback
-
-"Only in their dreams can men be truly free. `Twas always thus, and always thus wil be."
-- Tom Schulman
-*/
