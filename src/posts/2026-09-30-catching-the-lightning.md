@@ -1,5 +1,5 @@
 ---
-title: Catching the lightning
+title: Catching lightning
 date: 2026-09-30T23:48:00.000+08:00
 author: Syntax
 description: I lost the battle, only to realize I was still standing.
