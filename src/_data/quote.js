@@ -1,6 +1,6 @@
 module.exports = async () => {
     try {
-        const res = await fetch("https://zenquotes.io/api/today");
+        const res = await fetch("https://zenquotes.io/api/random");
         const [quote] = await res.json();
         console.log(quote);
         return quote;
