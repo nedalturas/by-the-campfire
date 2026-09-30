@@ -28,7 +28,7 @@ I tried, \
 knowing I would more often lose than win\
 \
 And I lost the battle\
- but won the war.
+but won the war.
 
 Because the attrition \
 was never about how I failed to emerge victorious....\
