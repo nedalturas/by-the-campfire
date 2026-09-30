@@ -58,7 +58,7 @@ again and again,\
 as the Spartans did.
 
 Yes, \
-I may  tear my tendons, \
+I may tear my tendons, \
 like Achilles.\
 \
 And I may walk with a limp.\
