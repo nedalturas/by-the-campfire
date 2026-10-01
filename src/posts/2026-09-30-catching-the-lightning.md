@@ -5,7 +5,6 @@ author: Syntax
 description: I lost the battle, only to realize I was still standing.
 tags:
   - posts
-  - poem
 ---
 A stroke of luck opened before me.\
 It seemed I had qualified for it unknowingly....
