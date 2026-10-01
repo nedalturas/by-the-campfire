@@ -1,7 +1,8 @@
 module.exports = async () => {
     try {
-        const res = await fetch("https://zenquotes.io/api/random");
-        const [quote] = await res.json();
+        const res = await fetch("https://dummyjson.com/quotes/random");
+        const data = await res.json();
+        const quote = { q: data.quote, a: data.author };
         console.log(quote);
         return quote;
     } catch (err) {
