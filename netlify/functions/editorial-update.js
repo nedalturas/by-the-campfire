@@ -37,6 +37,7 @@ export default async (req) => {
   `https://by-the-campfire.netlify.app/#/collections/posts/entries/${slug}`;
 
   let title = slug;
+  let editorNotes = "";
 
   // Try to get the actual article title from Github
 
