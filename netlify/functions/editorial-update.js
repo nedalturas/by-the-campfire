@@ -15,21 +15,60 @@ export default async (req) => {
   }
 
   const label = data.label?.name;
-  const title = data.pull_request?.title;
   const branch = data.pull_request?.head?.ref;
+  const repo = data.repository?.full_name;
 
   //get the article slug from the Decap branch
   
   const prefix = "cms/posts/";
-  const slug = branch?.startsWith(prefix)
-        ? branch.slice(prefix.length)
-        : null;
+
+  if(!branch?.startsWith(prefix)){
+    return new Response("Not a Decap post",{
+      status: 200,
+    });
+  };
+  
+  // Get the post slug
+  const slug = branch.slice(prefix.length);
   
   // Build the direct Decap editor URL
+  
+  const url = 
+  `https://by-the-campfire.netlify.app/#/collections/posts/entries/${slug}`;
 
-  const url = slug
-        ? `https://by-the-campfire.netlify.app/admin/#/collections/posts/entries/${slug         }` :
-          "https://by-the-campfire.netlify.app/admin/#/workflow";
+  let title = slug;
+
+  // Try to get the actual article title from Github
+
+  try{
+    const fileUrl =
+    `https://api.github.com/repos/${repo}/contents/src/posts/${slug}.md?ref=${encodeURIComponent(branch)}`;
+
+    const response = await fetch(fileUrl, {
+      headers: {
+        Accept: "application/vnd.github+json",
+        "User-Agent": "Editorial-Discord-Bot",
+      },
+    });
+
+    if(response.ok){
+      const file = await response.json();
+
+      const conetent = Buffer.from(file.content, "base64").toString("utf-8");
+
+      const titleMatch = content.match(
+        /^title:\s*["']?(.+?)["']?\s*$/m
+      );
+
+      if(titleMatch){
+        title = titleMatch[1].trim();
+      }
+
+    }
+  }catch(error){
+    console.error("Could not retrieve article title:", error);
+  }
+
 
   let message = null;
 
