@@ -21,13 +21,15 @@ export default async (req) => {
   let message = null;
 
   if (label === "decap-cms/pending_review") {
-    message = `📝 **Article Ready for Review**
+    message = `
+    /n
+    📝 **Article Ready for Review**
 
-**${title}**
+    **${title}**
 
-Status: In Review
+    Status: In Review
 
-${url}`;
+    ${url}`;
   }
 
   if (label === "decap-cms/pending_publish") {
@@ -38,6 +40,9 @@ ${url}`;
 Status: Ready
 ${url}`;
   }
+
+  console.log("BRANCH", data.pull_request?.head?.ref);
+  console.log("TITLE", data.pull_request?.title);
 
   // Ignore all other labels
   if (!message) {
