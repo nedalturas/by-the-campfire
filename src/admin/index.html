@@ -30,8 +30,8 @@
 
         let updatedData = data;
 
-        if(data.get('author')){
-          updatedData = updatedData.set('author, name');
+        if(!data.get('author')){
+          updatedData = updatedData.set('author', name);
         }
 
         // Always record whoever is currently saving as the latest editor
