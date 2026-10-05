@@ -19,15 +19,31 @@
       name: 'preSave',
       handler: ({ entry }) => {
         const data = entry.get('data');
-        if(data.get('author')) return data;
 
         const user = window.netlifyIdentity && window.netlifyIdentity.currentUser();
         if (!user) return data;
 
         const meta = user.user_metadata || {};
         const name = meta.full_name || meta.name || user.email;
+        const roles = user.app_metadata?.roles || [];
         // return entry.get('data').set('author', name);
-        return data.set('author', name);
+
+        let updatedData = data;
+
+        if(data.get('author')){
+          updatedData = updatedData.set('author, name');
+        }
+
+        // Always record whoever is currently saving as the latest editor
+        updatedData = updatedData.set('last_editor', name);
+
+        // Record this editor's role
+        updatedData = updatedData.set(
+          'last_editor_role',
+          roles.includes('proofreader') ? 'proofreader' : 'writer'
+        );
+
+        return updatedData;
       }
     });
 
@@ -69,6 +85,7 @@
 
     netlifyIdentity.on('init', restrictNotesField);
     netlifyIdentity.on('login', restrictNotesField);
+
   </script>
 </body>
 

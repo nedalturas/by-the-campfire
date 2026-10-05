@@ -20,6 +20,8 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Author", name: "author", widget: "hidden",}
+      - {label: "Last Editor", name: "last_editor", widget: "hidden", required: false}
+      - {label: "Last Editor Role", name: "last_editor_role", widget: "hidden", required: false}
       - {label: "Description (Short)", name: "description", widget: "string", required: false}
       - {label: "Tags", name: "tags", widget: "list", default: ["posts"]}
       - {label: "Body", name: "body", widget: "markdown"}
