@@ -40,35 +40,33 @@ export default async (req) => {
 
   // Try to get the actual article title from Github
 
-  try{
-    const fileUrl =
-    `https://api.github.com/repos/${repo}/contents/src/posts/${slug}.md?ref=${encodeURIComponent(branch)}`;
+  try {
+      const fileUrl =
+        `https://api.github.com/repos/${repo}/contents/src/posts/${slug}.md?ref=${encodeURIComponent(branch)}`;
 
-    const response = await fetch(fileUrl, {
-      headers: {
-        Accept: "application/vnd.github+json",
-        "User-Agent": "Editorial-Discord-Bot",
-      },
-    });
+      const response = await fetch(fileUrl, {
+        headers: {
+          Accept: "application/vnd.github+json",
+          "User-Agent": "Editorial-Discord-Bot",
+        },
+      });
 
-    if(response.ok){
-      const file = await response.json();
+      if (response.ok) {
+        const file = await response.json();
 
-      const conetent = Buffer.from(file.content, "base64").toString("utf-8");
+        const content = Buffer.from(file.content, "base64").toString("utf-8");
 
-      const titleMatch = content.match(
-        /^title:\s*["']?(.+?)["']?\s*$/m
-      );
+        const titleMatch = content.match(
+          /^title:\s*["']?(.+?)["']?\s*$/m
+        );
 
-      if(titleMatch){
-        title = titleMatch[1].trim();
+        if (titleMatch) {
+          title = titleMatch[1].trim();
+        }
       }
-
-    }
-  }catch(error){
-    console.error("Could not retrieve article title:", error);
+  } catch (error) {
+      console.error("Could not retrieve article title:", error);
   }
-
 
   let message = null;
 
@@ -97,7 +95,7 @@ export default async (req) => {
 
     Proofreader will proceed to publish this post
 
-    _**Note**: there will be a delay (usually a coupple of minutes) in publishing
+    _**Note**: there will be a delay (usually a couple of minutes) in publishing
     the post, contact the admin if it hasn't been posted after 1 day._
     
     [Open Article in CMS](${url})`;
