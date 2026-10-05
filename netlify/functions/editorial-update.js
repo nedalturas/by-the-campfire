@@ -36,11 +36,13 @@ export default async (req) => {
   if (label === "decap-cms/pending_review") {
     message = `
     \n
-    📝 **Article Ready for Review**
+    📝 **Post Ready for Review**
 
     **${title}**
 
     Status: In Review
+
+    Proofreader assigned
 
     [Open Article in CMS](${url})`;
   }
@@ -48,11 +50,16 @@ export default async (req) => {
   if (label === "decap-cms/pending_publish") {
     message = `
     \n
-    ✅ **Article Ready to Publish**
+    ✅ **Post has passed the review phase**
 
     **${title}**
 
     Status: Ready
+
+    Proofreader will proceed to publish this post
+
+    _**Note**: there will be a delay (usually a coupple of minutes) in publishing
+    the post, contact the admin if it hasn't been posted after 1 day._
     
     [Open Article in CMS](${url})`;
   }
