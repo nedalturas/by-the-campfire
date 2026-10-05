@@ -8,8 +8,6 @@ tags:
 editor_notes: |-
   This was proofread by
 
-
-
   1. Correction one
   2. correction 2
 ---
