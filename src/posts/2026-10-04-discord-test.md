@@ -5,6 +5,6 @@ author: Syntax
 description: Please ignore
 tags:
   - posts
-editor_notes: "TEST: Proofreader suggested this correction."
+editor_notes: ""
 ---
 Just a test, you can ignore if you want... or don't, up to you.
