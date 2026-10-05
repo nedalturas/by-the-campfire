@@ -8,7 +8,7 @@ export default async (req) => {
   const data = await req.json();
 
   // Only respond to label changes
-  if (data.action !== "labeled") {
+  if (data.action !== "labeled" && data.action !== "unlabeled") {
     return new Response("Ignored", {
       status: 200,
     });
@@ -63,6 +63,16 @@ export default async (req) => {
         if (titleMatch) {
           title = titleMatch[1].trim();
         }
+
+        // Get Editor editorNotes
+
+        const editorNotesMatch = content.match(
+          /^editor_notes:\s*\|?\s*\n([\s\S]*?)(?=\n---|\n[a-zA-Z_]+:|\s*$)/m
+        )
+
+        if(editorNotesMatch){
+          editorNotes = editorNotesMatch[1].trim();
+        }
       }
   } catch (error) {
       console.error("Could not retrieve article title:", error);
@@ -101,8 +111,48 @@ export default async (req) => {
     [Open Article in CMS](${url})`;
   }
 
+  /* changes requested
+  // When the article goes: 
+  //
+  // In Review -> Draft
+  //
+  // Github removes:
+  // decap-cms/pending_review
+  */
+
+  if(data.action === "unlabeled" && label === "decap-cms/pending_review"){
+    message =
+    `
+    ✏️ **Proofreader Suggested Edits**
+
+    **${title}**
+
+    Status: Changes Requested
+    `;
+  }
+
+  if(editorNotes){
+    message += 
+    `
+    **Editor Notes:**
+
+    ${editorNotes}
+    `;
+  }else{
+    message +=
+    `
+    _No eidtor notes were provided._
+    `;
+
+    message +=
+    `
+    [Open Article in CMS](${url});
+    `
+  }
+
   console.log("BRANCH", data.pull_request?.head?.ref);
   console.log("TITLE", data.pull_request?.title);
+  console.log("ACTION", data.action);
 
   // Ignore all other labels
   if (!message) {
