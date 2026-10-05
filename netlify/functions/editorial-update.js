@@ -1,3 +1,5 @@
+import yaml from "js-yaml";
+
 export default async (req) => {
   if (req.method !== "POST") {
     return new Response("Method Not Allowed", {
@@ -55,21 +57,26 @@ export default async (req) => {
       const content = Buffer.from(file.content, "base64").toString("utf-8");
 
       // Get title
-      const titleMatch = content.match(
-        /^title:\s*["']?(.+?)["']?\s*$/m
-      );
+      // Extract yaml frontmatter
 
-      if (titleMatch) {
-        title = titleMatch[1].trim();
-      }
+      const frontmatterMatch = content.match(
+        /^---\s*\n([\s\S]*?)\n---/
+      )
 
-      // Get Editor Notes
-      const editorNotesMatch = content.match(
-        /^editor_notes:\s*\|?\s*\n([\s\S]*?)(?=\n---|\n[a-zA-Z_]+:|\s*$)/m
-      );
+      if(frontmatterMatch){
+        const frontmatter = yaml.load(frontmatterMatch[1]);
 
-      if (editorNotesMatch) {
-        editorNotes = editorNotesMatch[1].trim();
+        //Get title
+
+        if(frontmatter?.title){
+          title = frontmatter.title;
+        }
+
+        //Get Editor notes
+
+        if(frontmatter.editor_notes){
+          editorNotes = String(frontmatter.editor_notes).trim();
+        }
       }
     }
   } catch (error) {
@@ -167,6 +174,7 @@ _No Editor Notes were provided._
   console.log("LABEL:", label);
   console.log("BRANCH:", branch);
   console.log("TITLE:", title);
+  console.log("EDITOR NOTES:", editorNotes);
 
   // Ignore everything else
   if (!message) {
