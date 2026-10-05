@@ -5,6 +5,12 @@ author: John
 description: Please ignore if you care
 tags:
   - posts
-editor_notes: This was proofread by
+editor_notes: |-
+  This was proofread by
+
+
+
+  1. Correction one
+  2. correction 2
 ---
 I said please.
