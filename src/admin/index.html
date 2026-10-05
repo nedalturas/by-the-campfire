@@ -86,6 +86,43 @@
     netlifyIdentity.on('init', restrictNotesField);
     netlifyIdentity.on('login', restrictNotesField);
 
+    // Custom Preview Template to visually separate Editor Notes
+    const PostPreview = createClass({
+      render: function() {
+        const entry = this.props.entry;
+        const date = entry.getIn(['data', 'date']);
+        const description = entry.getIn(['data', 'description']);
+        const hasNotes = entry.getIn(['data', 'editor_notes']);
+
+        return h('div', { style: { padding: '15px', fontFamily: 'system-ui, sans-serif' } },
+
+          // Render Title, Date, and Description
+          h('h1', {}, entry.getIn(['data', 'title'])),
+          date ? h('p', { style: { color: '#888' } }, String(date)) : null,
+          description ? h('p', {}, h('strong', {}, 'Description: '), description) : null,
+
+          // Render Body
+          h('div', { style: { marginTop: '30px', paddingBottom: '40px' } }, this.props.widgetFor('body')),
+
+          // Render Editor Notes (Only if there is actually feedback written)
+          hasNotes ? h('div', {
+            style: {
+              marginTop: '20px',
+              padding: '20px',
+              backgroundColor: '#fff1f0', // Light red background
+              borderTop: '5px solid #ff4d4f', // Thick red divider line
+              borderRadius: '0 0 8px 8px'
+            }
+          }, 
+            h('h2', { style: { margin: '0 0 15px 0', color: '#cf1322' } }, "🛑 Proofreader Feedback"),
+            this.props.widgetFor('editor_notes')
+          ) : null
+        );
+      }
+    });
+
+    // Apply this template to the 'posts' collection
+    CMS.registerPreviewTemplate("posts", PostPreview);
   </script>
 </body>
 
