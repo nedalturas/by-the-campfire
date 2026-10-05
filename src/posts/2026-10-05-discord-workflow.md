@@ -5,5 +5,10 @@ author: Syntax
 description: Please ignore it, if you care?
 tags:
   - posts
+editor_notes: |-
+  Hi this is the proofreader
+
+  1. Fock you
+  2. Middle finger
 ---
 I said please
