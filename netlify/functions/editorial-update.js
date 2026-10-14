@@ -103,7 +103,6 @@ export default async (req) => {
 **${title}**
 Status: In Review
 
-<@&YOUR_PROOFREADER_ROLE_ID>
 A writer has submitted this article for review.
 
 [Open Article in CMS](${url})`;
