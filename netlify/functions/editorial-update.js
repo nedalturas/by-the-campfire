@@ -113,7 +113,6 @@ A writer has submitted this article for review.
 
 **${title}**
 
-${proofreaderMentions || "@proofreader"}
 A writer has submitted this article for your review.
 
 [Open Article in CMS](${url})`;
