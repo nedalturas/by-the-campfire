@@ -71,8 +71,14 @@
       if (!user || roles.includes('proofreader')) return;
 
       const hideReady = () => {
-        document.querySelectorAll('[class*="ToolbarDropdown"] [role="menuitem"], [class*="dropdown"] [role="option"], [class*="status"] button, [class*="Status"] button').forEach(el => {
-          if (/ready/i.test(el.textContent.trim())) {
+        // Target any interactive leaf element whose text is exactly "Ready"
+        // or "Ready to Publish" — avoids relying on Decap's internal class names.
+        const candidates = document.querySelectorAll(
+          'button, [role="menuitem"], [role="option"], li, a'
+        );
+        candidates.forEach(el => {
+          const text = el.textContent.trim();
+          if (/^ready(\s+to\s+publish)?$/i.test(text)) {
             el.style.display = 'none';
             el.setAttribute('aria-hidden', 'true');
           }
