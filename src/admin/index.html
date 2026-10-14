@@ -60,6 +60,26 @@
       }
     });
 
+    // Editorial workflow: only proofreaders can move a post to "Ready to Publish".
+    // Decap has no preStatusChange hook, so we intercept it here —
+    // a status change always triggers a save.
+    CMS.registerEventListener({
+      name: 'preSave',
+      handler: ({ entry }) => {
+        const user = window.netlifyIdentity?.currentUser();
+        const roles = user?.app_metadata?.roles || [];
+        if (roles.includes('proofreader')) return entry.get('data');
+
+        const status = entry.get('status'); // 'draft' | 'pending_review' | 'pending_publish'
+        if (status === 'pending_publish') {
+          alert('Only proofreaders can mark a post as Ready to Publish.');
+          throw new Error('blocked: not a proofreader');
+        }
+
+        return entry.get('data');
+      }
+    });
+
     // Make the Editor Notes field read-only for everyone except proofreaders.
     let notesObserver;
 
