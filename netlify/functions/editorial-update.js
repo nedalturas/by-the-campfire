@@ -1,4 +1,4 @@
-import yaml from "js-yaml";
+﻿import yaml from "js-yaml";
 
 export default async (req) => {
   if (req.method !== "POST") {
@@ -45,7 +45,7 @@ export default async (req) => {
     if (response.ok) {
       const file = await response.json();
       const content = Buffer.from(file.content, "base64").toString("utf-8");
-      
+
       // Extract YAML frontmatter
       const frontmatterMatch = content.match(/^---\s*\n([\s\S]*?)\n---/);
 
@@ -53,7 +53,7 @@ export default async (req) => {
         const frontmatter = yaml.load(frontmatterMatch[1]);
         if (frontmatter?.title) title = frontmatter.title;
         if (frontmatter?.editor_notes) editorNotes = String(frontmatter.editor_notes).trim();
-        
+
         // Grab the new role identifier!
         if (frontmatter?.last_editor_role) lastEditorRole = frontmatter.last_editor_role;
       }
@@ -62,7 +62,35 @@ export default async (req) => {
     console.error("Could not retrieve article information:", error);
   }
 
+  // ---------------------------------------------------------
+  // Load proofreaders from config and build Discord mentions
+  // To add/remove a proofreader, edit netlify/functions/config/proofreaders.json
+  // ---------------------------------------------------------
+  let proofreaderMentions = "";
+  try {
+    const configUrl = `https://api.github.com/repos/${repo}/contents/netlify/functions/config/proofreaders.json`;
+    const configRes = await fetch(configUrl, {
+      headers: {
+        Accept: "application/vnd.github+json",
+        "User-Agent": "Editorial-Discord-Bot",
+      },
+    });
+
+    if (configRes.ok) {
+      const configFile = await configRes.json();
+      const proofreaders = JSON.parse(
+        Buffer.from(configFile.content, "base64").toString("utf-8")
+      );
+      proofreaderMentions = proofreaders
+        .map((p) => `<@${p.discord_id}>`)
+        .join(" ");
+    }
+  } catch (error) {
+    console.error("Could not load proofreaders config:", error);
+  }
+
   let message = null;
+  let proofreaderMessage = null;
 
   // ---------------------------------------------------------
   // 1. Article moved to IN REVIEW (Writer -> Proofreader)
@@ -77,6 +105,16 @@ Status: In Review
 
 <@&YOUR_PROOFREADER_ROLE_ID>
 A writer has submitted this article for review.
+
+[Open Article in CMS](${url})`;
+
+      proofreaderMessage = `
+📝 **New Article Assigned for Review**
+
+**${title}**
+
+${proofreaderMentions || "@proofreader"}
+A writer has submitted this article for your review.
 
 [Open Article in CMS](${url})`;
     }
@@ -117,7 +155,17 @@ Status: Ready
 
 Proofreader will proceed to publish this post
 
-_**Note**: there will be a delay (usually a couple of minutes) in publishing the post, contact the admin if it hasn't been posted after 1 day._
+_**Note**: there will be a delay (usually a couple of minutes) in publishing the post, contact or ping the admin in this thread if it hasn't been posted after 1 day._
+
+[Open Article in CMS](${url})`;
+
+    proofreaderMessage = `
+✅ **Article Ready to Publish**
+
+**${title}**
+
+${proofreaderMentions || "@proofreader"}
+This article has passed review and is ready to be published.
 
 [Open Article in CMS](${url})`;
   }
@@ -126,20 +174,38 @@ _**Note**: there will be a delay (usually a couple of minutes) in publishing the
   console.log("LABEL:", label);
   console.log("TITLE:", title);
   console.log("LAST EDITOR ROLE:", lastEditorRole);
+  console.log("PROOFREADER MENTIONS:", proofreaderMentions);
 
   // Ignore everything else (e.g., if a writer moves their own post back to draft)
-  if (!message) {
+  if (!message && !proofreaderMessage) {
     return new Response("Label ignored", { status: 200 });
   }
 
-  // Send the payload to Discord
-  await fetch(process.env.DISCORD_WEBHOOK_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ content: message }),
-  });
+  const sends = [];
+
+  // Send to the general editorial channel
+  if (message) {
+    sends.push(
+      fetch(process.env.DISCORD_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: message }),
+      })
+    );
+  }
+
+  // Send to the proofreader-only channel (DISCORD_PROOFREADER_WEBHOOK_URL)
+  if (proofreaderMessage && process.env.DISCORD_PROOFREADER_WEBHOOK_URL) {
+    sends.push(
+      fetch(process.env.DISCORD_PROOFREADER_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: proofreaderMessage }),
+      })
+    );
+  }
+
+  await Promise.all(sends);
 
   return new Response("Discord notification sent", { status: 200 });
 };
