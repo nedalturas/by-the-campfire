@@ -71,14 +71,24 @@
       if (!user || roles.includes('proofreader')) return;
 
       const hideReady = () => {
-        // Target any interactive leaf element whose text is exactly "Ready"
-        // or "Ready to Publish" — avoids relying on Decap's internal class names.
-        const candidates = document.querySelectorAll(
-          'button, [role="menuitem"], [role="option"], li, a'
-        );
-        candidates.forEach(el => {
-          const text = el.textContent.trim();
-          if (/^ready(\s+to\s+publish)?$/i.test(text)) {
+        // Strategy 1: Hide the entire "Ready" column on the workflow board.
+        // Find any heading whose sole text is "Ready", then walk up the DOM
+        // to the column-level container (a direct child of the board row)
+        // and hide it entirely.
+        document.querySelectorAll('h2, h3, h4, [class*="header"], [class*="Header"]').forEach(heading => {
+          if (/^ready$/i.test(heading.textContent.trim())) {
+            // Walk up until we hit a sibling-level column container
+            let col = heading;
+            while (col.parentElement && col.parentElement.children.length < 2) {
+              col = col.parentElement;
+            }
+            col.style.display = 'none';
+          }
+        });
+
+        // Strategy 2: Also hide "Ready" from any status dropdown opened inside an article.
+        document.querySelectorAll('button, [role="menuitem"], [role="option"], li').forEach(el => {
+          if (/^ready(\s+to\s+publish)?$/i.test(el.textContent.trim())) {
             el.style.display = 'none';
             el.setAttribute('aria-hidden', 'true');
           }
