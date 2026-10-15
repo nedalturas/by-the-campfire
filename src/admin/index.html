@@ -165,8 +165,10 @@
               } catch (_) {
                 // Even if save fails, still allow the status change
               } finally {
+                // Keep flag true during re-click so the handler's early return
+                // fires and the click propagates normally without another save cycle
+                el.click();
                 isSavingBeforeStatus = false;
-                el.click(); // re-fire the original click
               }
             }, { capture: true });
           }
