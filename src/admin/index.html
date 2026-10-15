@@ -30,7 +30,7 @@
 
         let updatedData = data;
 
-        if(!data.get('author')){
+        if (!data.get('author')) {
           updatedData = updatedData.set('author', name);
         }
 
@@ -187,7 +187,7 @@
 
     // Custom Preview Template to visually separate Editor Notes
     const PostPreview = createClass({
-      render: function() {
+      render: function () {
         const entry = this.props.entry;
         const date = entry.getIn(['data', 'date']);
         const description = entry.getIn(['data', 'description']);
@@ -212,8 +212,8 @@
               borderTop: '5px solid #ff4d4f', // Thick red divider line
               borderRadius: '0 0 8px 8px'
             }
-          }, 
-            h('h2', { style: { margin: '0 0 15px 0', color: '#cf1322' } }, "🛑 Proofreader Feedback"),
+          },
+            h('h2', { style: { margin: '0 0 15px 0', color: '#cf1322' } }, "Proofreader Feedback"),
             this.props.widgetFor('editor_notes')
           ) : null
         );
