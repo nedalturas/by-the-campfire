@@ -4,7 +4,7 @@ date: 2026-10-15T10:09:00.000+04:00
 author: The Unsent Letter
 last_editor: The Unsent Letter
 last_editor_role: writer
-description: Unfinish confession still unsent
+description: Unfinished confession still unsent
 tags:
   - Undecided
   - Infinity
