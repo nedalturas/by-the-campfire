@@ -125,6 +125,64 @@
     netlifyIdentity.on('init', restrictNotesField);
     netlifyIdentity.on('login', restrictNotesField);
 
+
+    // ---------------------------------------------------------------------------
+    // Force-save before a proofreader moves a post back to Draft.
+    //
+    // Decap has no preStatusChange hook, and preSave doesn't fire on
+    // dropdown-only status changes. So we intercept the "Drafts" click in the
+    // status dropdown. If the logged-in user is a proofreader, we:
+    //   1. Cancel the click
+    //   2. Dispatch a CMS save (stamps last_editor_role: "proofreader")
+    //   3. Re-click the element after a short delay so the status change proceeds
+    //
+    // This guarantees the GitHub webhook always sees the correct last_editor_role
+    // when it fires on the PR label change.
+    // ---------------------------------------------------------------------------
+    let draftInterceptObserver;
+
+    function interceptDraftStatusChange(user) {
+      const roles = user?.app_metadata?.roles || [];
+      if (!user || !roles.includes('proofreader')) return;
+
+      let isSavingBeforeStatus = false;
+
+      const intercept = () => {
+        document.querySelectorAll('button, [role="menuitem"], [role="option"], li').forEach(el => {
+          if (/^draft(s)?$/i.test(el.textContent.trim()) && !el.dataset.draftIntercepted) {
+            el.dataset.draftIntercepted = 'true';
+            el.addEventListener('click', async (e) => {
+              if (isSavingBeforeStatus) return; // allow the re-click through
+              e.preventDefault();
+              e.stopPropagation();
+
+              isSavingBeforeStatus = true;
+              try {
+                // Trigger a CMS save so preSave fires and stamps last_editor_role
+                CMS.store.dispatch({ type: 'DRAFT_PERSIST_UI' });
+                // Brief pause to let the save round-trip before re-clicking
+                await new Promise(resolve => setTimeout(resolve, 1500));
+              } catch (_) {
+                // Even if save fails, still allow the status change
+              } finally {
+                isSavingBeforeStatus = false;
+                el.click(); // re-fire the original click
+              }
+            }, { capture: true });
+          }
+        });
+      };
+
+      draftInterceptObserver?.disconnect();
+      draftInterceptObserver = new MutationObserver(intercept);
+      draftInterceptObserver.observe(document.body, { childList: true, subtree: true });
+      intercept();
+    }
+
+    netlifyIdentity.on('init', interceptDraftStatusChange);
+    netlifyIdentity.on('login', interceptDraftStatusChange);
+
+
     // Custom Preview Template to visually separate Editor Notes
     const PostPreview = createClass({
       render: function() {
