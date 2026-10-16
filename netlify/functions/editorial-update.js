@@ -1,4 +1,4 @@
-﻿import yaml from "js-yaml";
+import yaml from "js-yaml";
 
 export default async (req) => {
   if (req.method !== "POST") {
@@ -143,9 +143,13 @@ The proofreader has requested changes.
 
   // ---------------------------------------------------------
   // 3. Article moved to READY TO PUBLISH
+  // Only fire if a proofreader was the last to save. A writer who bypasses
+  // the DOM restriction will still have last_editor_role: "writer" stamped
+  // by preSave, so this guard silently drops illegitimate promotions.
   // ---------------------------------------------------------
   if (data.action === "labeled" && label === "decap-cms/pending_publish") {
-    message = `
+    if (lastEditorRole === "proofreader") {
+      message = `
 ✅ **Post has passed the review phase**
 
 **${title}**
@@ -157,7 +161,7 @@ _**Note**: there will be a delay (usually a couple of minutes) in publishing the
 
 [Open Article in CMS](${url})`;
 
-    proofreaderMessage = `
+      proofreaderMessage = `
 ✅ **Article Ready to Publish**
 
 **${title}**
@@ -166,6 +170,7 @@ ${proofreaderMentions || "@proofreader"}
 This article has passed review and is ready to be published.
 
 [Open Article in CMS](${url})`;
+    }
   }
 
   console.log("ACTION:", data.action);
