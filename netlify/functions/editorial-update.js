@@ -29,6 +29,7 @@ export default async (req) => {
 
   let title = slug;
   let editorNotes = "";
+  let authorNotes = "";
   let lastEditorRole = "";
 
   // Get article information from GitHub
@@ -53,6 +54,7 @@ export default async (req) => {
         const frontmatter = yaml.load(frontmatterMatch[1]);
         if (frontmatter?.title) title = frontmatter.title;
         if (frontmatter?.editor_notes) editorNotes = String(frontmatter.editor_notes).trim();
+        if (frontmatter?.author_notes) authorNotes = String(frontmatter.author_notes).trim();
 
         // Grab the new role identifier!
         if (frontmatter?.last_editor_role) lastEditorRole = frontmatter.last_editor_role;
@@ -101,10 +103,11 @@ export default async (req) => {
 
 **${title}**
 Status: In Review
-
-A writer has submitted this article for review.
-
-[Open Article in CMS](${url})`;
+`;
+    if (authorNotes) {
+      message += `\n**Author Notes:**\n${authorNotes}\n`;
+    }
+    message += `\nA writer has submitted this article for review.\n\n[Open Article in CMS](${url})`;
 
     proofreaderMessage = `
 📝 **New Article Assigned for Review**
@@ -113,8 +116,11 @@ A writer has submitted this article for review.
 
 ${proofreaderMentions || "@proofreader"}
 A writer has submitted this article for your review.
-
-[Open Article in CMS](${url})`;
+`;
+    if (authorNotes) {
+      proofreaderMessage += `\n**Author Notes:**\n${authorNotes}\n`;
+    }
+    proofreaderMessage += `\n[Open Article in CMS](${url})`;
   }
 
   // ---------------------------------------------------------
@@ -137,7 +143,7 @@ A writer has submitted this article for your review.
 Status: Changes Requested
 
 <@&YOUR_WRITER_ROLE_ID>
-The proofreader has requested changes.
+The proofreader has requested changes. Please check the following notes. Move back to "In Review" once done.
 `;
     if (editorNotes) {
       message += `\n**Editor Notes:**\n${editorNotes}\n`;
@@ -178,6 +184,7 @@ This article has passed review and is ready to be published.
   console.log("LABEL:", label);
   console.log("TITLE:", title);
   console.log("LAST EDITOR ROLE:", lastEditorRole);
+  console.log("AUTHOR NOTES:", authorNotes);
   console.log("PROOFREADER MENTIONS:", proofreaderMentions);
 
   // Ignore everything else (e.g., if a writer moves their own post back to draft)

@@ -164,6 +164,7 @@
         const date = entry.getIn(['data', 'date']);
         const description = entry.getIn(['data', 'description']);
         const hasNotes = entry.getIn(['data', 'editor_notes']);
+        const hasAuthorNotes = entry.getIn(['data', 'author_notes']);
 
         return h('div', { style: { padding: '15px', fontFamily: 'system-ui, sans-serif' } },
 
@@ -174,6 +175,20 @@
 
           // Render Body
           h('div', { style: { marginTop: '30px', paddingBottom: '40px' } }, this.props.widgetFor('body')),
+
+          // Render Author Notes (Only if there is feedback/remarks from the author)
+          hasAuthorNotes ? h('div', {
+            style: {
+              marginTop: '20px',
+              padding: '20px',
+              backgroundColor: '#e6f7ff', // Light blue background
+              borderTop: '5px solid #1890ff', // Blue divider line
+              borderRadius: '0 0 8px 8px'
+            }
+          },
+            h('h2', { style: { margin: '0 0 15px 0', color: '#0050b3' } }, "Author Notes"),
+            this.props.widgetFor('author_notes')
+          ) : null,
 
           // Render Editor Notes (Only if there is actually feedback written)
           hasNotes ? h('div', {
