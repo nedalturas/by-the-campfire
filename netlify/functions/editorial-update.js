@@ -130,14 +130,20 @@ A writer has submitted this article for your review.
   const prLabels = data.pull_request?.labels?.map((l) => l.name) ?? [];
   const wasInReview = prLabels.includes("decap-cms/pending_review");
 
+  const senderLogin = data.sender?.login ?? "";
+  const prAuthor = data.pull_request?.user?.login ?? "";
+  const senderIsNotAuthor = senderLogin && prAuthor && senderLogin !== prAuthor;
+
   if (
-    (data.action === "unlabeled" && label === "decap-cms/pending_review") ||
-    (data.action === "closed" && wasInReview)
+    senderIsNotAuthor &&
+    (
+      (data.action === "unlabeled" && label === "decap-cms/pending_review") ||
+      (data.action === "closed" && wasInReview)
+    )
   ) {
-    // No role guard here — only proofreaders can drag a post from
-    // "In Review" back to "Draft" in the editorial workflow, so any
-    // removal of pending_review (or PR closure while in review) is a
-    // legitimate "changes requested" action.
+    // Guard: only fire if the person who performed the action is NOT
+    // the PR author (the writer). Decap creates the PR under the
+    // writer's GitHub account, so anyone else is a proofreader.
     message = `
 ✏️ **Proofreader Suggested Edits**
 
@@ -189,6 +195,9 @@ This article has passed review and is ready to be published.
 
   console.log("ACTION:", data.action);
   console.log("LABEL:", label);
+  console.log("SENDER:", senderLogin);
+  console.log("PR AUTHOR:", prAuthor);
+  console.log("SENDER IS NOT AUTHOR:", senderIsNotAuthor);
   console.log("TITLE:", title);
   console.log("LAST EDITOR ROLE:", lastEditorRole);
   console.log("PROOFREADER MENTIONS:", proofreaderMentions);
