@@ -7,8 +7,14 @@ export default async (req) => {
 
   const data = await req.json();
 
-  // We only care about label additions/removals
-  if (data.action !== "labeled" && data.action !== "unlabeled") {
+  // We care about label additions/removals and PR closures (Decap closes
+  // the PR when a proofreader moves a post back to Draft instead of
+  // removing the pending_review label).
+  if (
+    data.action !== "labeled" &&
+    data.action !== "unlabeled" &&
+    data.action !== "closed"
+  ) {
     return new Response("Ignored", { status: 200 });
   }
 
@@ -121,9 +127,18 @@ A writer has submitted this article for your review.
   // ---------------------------------------------------------
   // 2. Article moved back to DRAFT (Proofreader -> Writer)
   // ---------------------------------------------------------
-  if (data.action === "unlabeled" && label === "decap-cms/pending_review") {
-    if (lastEditorRole === "proofreader") {
-      message = `
+  const prLabels = data.pull_request?.labels?.map((l) => l.name) ?? [];
+  const wasInReview = prLabels.includes("decap-cms/pending_review");
+
+  if (
+    (data.action === "unlabeled" && label === "decap-cms/pending_review") ||
+    (data.action === "closed" && wasInReview)
+  ) {
+    // No role guard here — only proofreaders can drag a post from
+    // "In Review" back to "Draft" in the editorial workflow, so any
+    // removal of pending_review (or PR closure while in review) is a
+    // legitimate "changes requested" action.
+    message = `
 ✏️ **Proofreader Suggested Edits**
 
 **${title}**
@@ -132,13 +147,12 @@ Status: Changes Requested
 <@&YOUR_WRITER_ROLE_ID>
 The proofreader has requested changes.
 `;
-      if (editorNotes) {
-        message += `\n**Editor Notes:**\n${editorNotes}\n`;
-      } else {
-        message += `\n_No Editor Notes were provided._\n`;
-      }
-      message += `\n[Open Article in CMS](${url})`;
+    if (editorNotes) {
+      message += `\n**Editor Notes:**\n${editorNotes}\n`;
+    } else {
+      message += `\n_No Editor Notes were provided._\n`;
     }
+    message += `\n[Open Article in CMS](${url})`;
   }
 
   // ---------------------------------------------------------
