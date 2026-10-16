@@ -60,19 +60,18 @@
       }
     });
 
-    // Editorial workflow: only proofreaders can move a post to "Ready to Publish".
-    // Decap has no preStatusChange hook and preSave doesn't fire on dropdown-only
-    // status changes, so we hide the option from the DOM instead — same pattern
-    // as the Editor Notes restriction below.
+    // Editorial workflow restrictions for writers:
+    // 1. Only proofreaders can move a post to "Ready to Publish".
+    // 2. Only proofreaders can move an "In Review" post back to "Draft" (request changes).
+    // Writers submit from Draft -> In Review, and cannot reject their own in-review posts.
     let statusObserver;
 
     function restrictStatusDropdown(user) {
       const roles = user?.app_metadata?.roles || [];
       if (!user || roles.includes('proofreader')) return;
 
-      const hideReady = () => {
-        // From DOM inspection: the "Ready" H2 is a direct child of the column div.
-        // So heading.parentElement is exactly the column container to hide.
+      const enforceWriterRestrictions = () => {
+        // 1. Hide the "Ready" column completely on the workflow board
         document.querySelectorAll('h2').forEach(heading => {
           if (/^ready$/i.test(heading.textContent.trim())) {
             const column = heading.parentElement;
@@ -80,19 +79,51 @@
           }
         });
 
-        // Also hide "Ready to Publish" from status dropdowns inside the article editor.
+        // 2. Prevent writers from dragging cards out of "In Review" on the workflow board
+        document.querySelectorAll('h2').forEach(heading => {
+          if (/^in\s+review$/i.test(heading.textContent.trim())) {
+            const column = heading.parentElement;
+            if (column && !column.dataset.writerLocked) {
+              column.dataset.writerLocked = 'true';
+              const blockDrag = (e) => {
+                if (e.target.closest('a, [data-rbd-draggable-id], [draggable], div')) {
+                  e.stopPropagation();
+                }
+              };
+              column.addEventListener('dragstart', (e) => e.preventDefault(), true);
+              column.addEventListener('mousedown', blockDrag, true);
+              column.addEventListener('touchstart', blockDrag, true);
+            }
+          }
+        });
+
+        // 3. Hide "Ready to Publish" from status dropdowns inside the article editor
         document.querySelectorAll('button, [role="menuitem"], [role="option"], li').forEach(el => {
           if (/^ready(\s+to\s+publish)?$/i.test(el.textContent.trim())) {
             el.style.display = 'none';
             el.setAttribute('aria-hidden', 'true');
           }
         });
+
+        // 4. In article editor: if the post is already "In Review", writers cannot move it back to "Draft"
+        const isEntryInReview = Array.from(document.querySelectorAll('button')).some(btn =>
+          /in\s+review/i.test(btn.textContent.trim()) && !btn.hasAttribute('role')
+        );
+
+        if (isEntryInReview) {
+          document.querySelectorAll('button, [role="menuitem"], [role="option"], li').forEach(el => {
+            if (/^draft(s)?$/i.test(el.textContent.trim())) {
+              el.style.display = 'none';
+              el.setAttribute('aria-hidden', 'true');
+            }
+          });
+        }
       };
 
       statusObserver?.disconnect();
-      statusObserver = new MutationObserver(hideReady);
+      statusObserver = new MutationObserver(enforceWriterRestrictions);
       statusObserver.observe(document.body, { childList: true, subtree: true });
-      hideReady();
+      enforceWriterRestrictions();
     }
 
     netlifyIdentity.on('init', restrictStatusDropdown);
@@ -124,65 +155,6 @@
 
     netlifyIdentity.on('init', restrictNotesField);
     netlifyIdentity.on('login', restrictNotesField);
-
-
-    // ---------------------------------------------------------------------------
-    // Force-save before a proofreader moves a post back to Draft.
-    //
-    // Decap has no preStatusChange hook, and preSave doesn't fire on
-    // dropdown-only status changes. So we intercept the "Drafts" click in the
-    // status dropdown. If the logged-in user is a proofreader, we:
-    //   1. Cancel the click
-    //   2. Dispatch a CMS save (stamps last_editor_role: "proofreader")
-    //   3. Re-click the element after a short delay so the status change proceeds
-    //
-    // This guarantees the GitHub webhook always sees the correct last_editor_role
-    // when it fires on the PR label change.
-    // ---------------------------------------------------------------------------
-    let draftInterceptObserver;
-
-    function interceptDraftStatusChange(user) {
-      const roles = user?.app_metadata?.roles || [];
-      if (!user || !roles.includes('proofreader')) return;
-
-      let isSavingBeforeStatus = false;
-
-      const intercept = () => {
-        document.querySelectorAll('button, [role="menuitem"], [role="option"], li').forEach(el => {
-          if (/^draft(s)?$/i.test(el.textContent.trim()) && !el.dataset.draftIntercepted) {
-            el.dataset.draftIntercepted = 'true';
-            el.addEventListener('click', async (e) => {
-              if (isSavingBeforeStatus) return; // allow the re-click through
-              e.preventDefault();
-              e.stopPropagation();
-
-              isSavingBeforeStatus = true;
-              try {
-                // Trigger a CMS save so preSave fires and stamps last_editor_role
-                CMS.store.dispatch({ type: 'DRAFT_PERSIST_UI' });
-                // Brief pause to let the save round-trip before re-clicking
-                await new Promise(resolve => setTimeout(resolve, 1500));
-              } catch (_) {
-                // Even if save fails, still allow the status change
-              } finally {
-                // Keep flag true during re-click so the handler's early return
-                // fires and the click propagates normally without another save cycle
-                el.click();
-                isSavingBeforeStatus = false;
-              }
-            }, { capture: true });
-          }
-        });
-      };
-
-      draftInterceptObserver?.disconnect();
-      draftInterceptObserver = new MutationObserver(intercept);
-      draftInterceptObserver.observe(document.body, { childList: true, subtree: true });
-      intercept();
-    }
-
-    netlifyIdentity.on('init', interceptDraftStatusChange);
-    netlifyIdentity.on('login', interceptDraftStatusChange);
 
 
     // Custom Preview Template to visually separate Editor Notes

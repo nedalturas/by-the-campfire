@@ -96,8 +96,7 @@ export default async (req) => {
   // 1. Article moved to IN REVIEW (Writer -> Proofreader)
   // ---------------------------------------------------------
   if (data.action === "labeled" && label === "decap-cms/pending_review") {
-    if (lastEditorRole === "writer") {
-      message = `
+    message = `
 📝 **Post Ready for Review**
 
 **${title}**
@@ -107,7 +106,7 @@ A writer has submitted this article for review.
 
 [Open Article in CMS](${url})`;
 
-      proofreaderMessage = `
+    proofreaderMessage = `
 📝 **New Article Assigned for Review**
 
 **${title}**
@@ -115,18 +114,22 @@ A writer has submitted this article for review.
 A writer has submitted this article for your review.
 
 [Open Article in CMS](${url})`;
-    }
   }
 
   // ---------------------------------------------------------
   // 2. Article moved back to DRAFT (Proofreader -> Writer)
   // ---------------------------------------------------------
-  if (data.action === "unlabeled" && label === "decap-cms/pending_review") {
-    if (lastEditorRole === "proofreader") {
-      // Guard: only fire when the last person to save was a proofreader.
-      // The preSave hook in the CMS stamps last_editor_role in frontmatter,
-      // so this reliably distinguishes proofreader vs writer actions.
-      message = `
+  const prLabels = data.pull_request?.labels?.map((l) => l.name) ?? [];
+  const isMovingToPublish =
+    label === "decap-cms/pending_publish" ||
+    prLabels.includes("decap-cms/pending_publish");
+
+  if (
+    data.action === "unlabeled" &&
+    label === "decap-cms/pending_review" &&
+    !isMovingToPublish
+  ) {
+    message = `
 ✏️ **Proofreader Suggested Edits**
 
 **${title}**
@@ -135,24 +138,19 @@ Status: Changes Requested
 <@&YOUR_WRITER_ROLE_ID>
 The proofreader has requested changes.
 `;
-      if (editorNotes) {
-        message += `\n**Editor Notes:**\n${editorNotes}\n`;
-      } else {
-        message += `\n_No Editor Notes were provided._\n`;
-      }
-      message += `\n[Open Article in CMS](${url})`;
+    if (editorNotes) {
+      message += `\n**Editor Notes:**\n${editorNotes}\n`;
+    } else {
+      message += `\n_No Editor Notes were provided._\n`;
     }
+    message += `\n[Open Article in CMS](${url})`;
   }
 
   // ---------------------------------------------------------
   // 3. Article moved to READY TO PUBLISH
-  // Only fire if a proofreader was the last to save. A writer who bypasses
-  // the DOM restriction will still have last_editor_role: "writer" stamped
-  // by preSave, so this guard silently drops illegitimate promotions.
   // ---------------------------------------------------------
   if (data.action === "labeled" && label === "decap-cms/pending_publish") {
-    if (lastEditorRole === "proofreader") {
-      message = `
+    message = `
 ✅ **Post has passed the review phase**
 
 **${title}**
@@ -164,7 +162,7 @@ _**Note**: there will be a delay (usually a couple of minutes) in publishing the
 
 [Open Article in CMS](${url})`;
 
-      proofreaderMessage = `
+    proofreaderMessage = `
 ✅ **Article Ready to Publish**
 
 **${title}**
@@ -173,7 +171,6 @@ ${proofreaderMentions || "@proofreader"}
 This article has passed review and is ready to be published.
 
 [Open Article in CMS](${url})`;
-    }
   }
 
   console.log("ACTION:", data.action);
