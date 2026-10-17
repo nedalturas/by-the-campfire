@@ -654,7 +654,7 @@ main:has(.docs-wrapper) {
   color: var(--fire-main);
   font-weight: 600;
   background: rgba(230, 92, 0, 0.12);
-  border-left-color: var(--fire-main);
+  /* border-left-color: var(--fire-main); */
 }
 
 /* --- Right Content Area --- */
@@ -1020,11 +1020,11 @@ main:has(.docs-wrapper) {
     font-weight: 600;
     border: 1px solid rgba(230, 92, 0, 0.3);
   }
-  .active-checkmark {
+  /* .active-checkmark {
     font-weight: 700;
     font-size: 0.9rem;
     color: #ff9800;
-  }
+  } */
   .drawer-footer {
     padding: 1rem 1.25rem;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
