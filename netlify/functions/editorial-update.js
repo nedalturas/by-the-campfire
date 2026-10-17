@@ -107,24 +107,24 @@ Status: In Review
     if (authorNotes) {
       message += `\n**Author Notes:**\n${authorNotes}\n`;
     }
-    message += `\nA writer has submitted this article for review.\n\n[Open Article in CMS](${url})`;
+    message += `\nA writer has submitted this post for review.\n\n[Open Post in CMS](${url})`;
 
     proofreaderMessage = `
-📝 **New Article Assigned for Review**
+📝 **New Post Assigned for Review**
 
 **${title}**
 
 ${proofreaderMentions || "@proofreader"}
-A writer has submitted this article for your review.
+A writer has submitted this post for your review.
 `;
     if (authorNotes) {
       proofreaderMessage += `\n**Author Notes:**\n${authorNotes}\n`;
     }
-    proofreaderMessage += `\n[Open Article in CMS](${url})`;
+    proofreaderMessage += `\n[Open Post in CMS](${url})`;
   }
 
   // ---------------------------------------------------------
-  // 2. Article moved back to DRAFT (Proofreader -> Writer)
+  // 2. Post moved back to DRAFT (Proofreader -> Writer)
   // ---------------------------------------------------------
   const prLabels = data.pull_request?.labels?.map((l) => l.name) ?? [];
   const isMovingToPublish =
@@ -150,11 +150,11 @@ The proofreader has requested changes. Please check the following notes. Move ba
     } else {
       message += `\n_No Editor Notes were provided._\n`;
     }
-    message += `\n[Open Article in CMS](${url})`;
+    message += `\n[Open Post in CMS](${url})`;
   }
 
   // ---------------------------------------------------------
-  // 3. Article moved to READY TO PUBLISH
+  // 3. Post moved to READY TO PUBLISH
   // ---------------------------------------------------------
   if (data.action === "labeled" && label === "decap-cms/pending_publish") {
     message = `
@@ -167,17 +167,17 @@ Proofreader will proceed to publish this post
 
 _**Note**: there will be a delay (usually a couple of minutes) in publishing the post, contact or ping the admin in this thread if it hasn't been posted after 1 day._
 
-[Open Article in CMS](${url})`;
+[Open Post in CMS](${url})`;
 
     proofreaderMessage = `
-✅ **Article Ready to Publish**
+✅ **Post Ready to Publish**
 
 **${title}**
 
 ${proofreaderMentions || "@proofreader"}
-This article has passed review and is ready to be published.
+This post has passed review and is ready to be published.
 
-[Open Article in CMS](${url})`;
+[Open Post in CMS](${url})`;
   }
 
   console.log("ACTION:", data.action);
