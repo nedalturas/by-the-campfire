@@ -2,43 +2,118 @@
 layout: base.njk
 ---
 
-<div class="docs-wrapper">
-  {# left sidebar #}
+{% set nav = collections.docs | getDocPagination(page.url) %}
 
-  <aside class="docs-sidebar" aria-label="Documentation Sidebar">
+<!-- 1. Mobile Top Bar (Matches Screenshot 1) -->
+<div class="mobile-docs-bar">
+  <button type="button" class="mobile-menu-trigger" id="openDocsMenu" aria-label="Open documentation menu">
+    <span class="hamburger-icon" aria-hidden="true">☰</span>
+    <div class="trigger-info">
+      <span class="trigger-category">{{ category | default('GUIDES') }}</span>
+      <span class="trigger-title">{{ title }}</span>
+    </div>
+    <span class="menu-pill">MENU</span>
+  </button>
+
+  <div class="mobile-pagination">
+    {% if nav.prev %}
+      <a href="{{ nav.prev.url }}" class="page-nav-btn" aria-label="Previous article">&lsaquo;</a>
+    {% else %}
+      <span class="page-nav-btn disabled">&lsaquo;</span>
+    {% endif %}
+
+    <span class="page-counter">{{ nav.current }}/{{ nav.total }}</span>
+
+    {% if nav.next %}
+      <a href="{{ nav.next.url }}" class="page-nav-btn" aria-label="Next article">&rsaquo;</a>
+    {% else %}
+      <span class="page-nav-btn disabled">&rsaquo;</span>
+    {% endif %}
+  </div>
+</div>
+
+<!-- 2. Mobile Drawer Backdrop & Drawer (Matches Screenshot 2) -->
+<div class="drawer-overlay" id="docsDrawerOverlay" aria-hidden="true"></div>
+
+<aside class="mobile-drawer" id="docsDrawer" aria-label="Mobile Documentation Menu" aria-hidden="true">
+  <div class="drawer-header">
+    <div class="drawer-title-wrapper">
+      <span class="drawer-icon">📖</span>
+      <h2 class="drawer-heading">Documentation</h2>
+      <span class="drawer-count-badge">{{ nav.total }} DOCS</span>
+    </div>
+    <button type="button" class="drawer-close-btn" id="closeDocsMenu" aria-label="Close menu">&times;</button>
+  </div>
+
+  <nav class="drawer-content">
+    {% for group in collections.docs | groupByCategory %}
+      <div class="drawer-group">
+        <div class="drawer-category-header">
+          <span class="drawer-category-title">{{ group.category }}</span>
+          <span class="drawer-category-count">{{ group.items.length }}</span>
+        </div>
+        <ul class="drawer-list">
+          {% for item in group.items %}
+            <li>
+              <a
+                href="{{ item.url }}"
+                class="drawer-link {% if item.url == page.url %}active{% endif %}"
+              >
+                <span class="drawer-link-title">{{ item.data.title }}</span>
+                {% if item.url == page.url %}
+                  <span class="active-checkmark" aria-hidden="true">✓</span>
+                {% endif %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </nav>
+
+  <div class="drawer-footer">
+    <button type="button" class="drawer-bottom-close" id="closeDocsMenuBottom">Close Menu</button>
+  </div>
+</aside>
+
+<!-- 3. Main Layout Wrapper -->
+<div class="docs-wrapper">
+  <!-- Desktop Sticky Sidebar -->
+  <aside class="docs-sidebar" aria-label="Documentation Navigation">
     <div class="sidebar-header">
       <span class="portal-badge">Internal Portal</span>
       <h2 class="sidebar-main-title">Docs & Guides</h2>
     </div>
 
-  <nav class="sidebar-nav">
-    {% for group in collections.docs | groupByCategory %}
-
-    <div class="sidebar-group">
-      <h3 class="sidebar-category-title">{{ group.category }}</h3>
-      <ul class="sidebar-list">
-        {% for item in group.items %}
-        <li class="sidebar-item">
-          <a href="{{ item.url }}" class="sidebar-link {% if item.url == page.url %}active{% endif %}">
-            {{ item.data.title }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endfor %}
-  </nav>
+    <nav class="sidebar-nav">
+      {% for group in collections.docs | groupByCategory %}
+        <div class="sidebar-group">
+          <h3 class="sidebar-category-title">{{ group.category }}</h3>
+          <ul class="sidebar-list">
+            {% for item in group.items %}
+              <li class="sidebar-item">
+                <a
+                  href="{{ item.url }}"
+                  class="sidebar-link {% if item.url == page.url %}active{% endif %}"
+                >
+                  {{ item.data.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </nav>
   </aside>
 
-  {# Main content area #}
-
+  <!-- Article Content -->
   <main class="docs-article-container">
     <article class="doc-article">
       <header class="doc-header">
         {% if category %}
           <div class="doc-breadcrumbs">
             <span>Docs</span>
-            <span class="breadcrum-separator">/</span>
+            <span class="breadcrumb-separator">/</span>
             <span class="doc-category-badge">{{ category }}</span>
           </div>
         {% endif %}
@@ -53,9 +128,42 @@ layout: base.njk
       </div>
 
       <footer class="doc-footer">
-        <a href="/" class="back-to-docs-link">Back To the Camp</a>
+        <a href="/" class="back-to-docs-link">← Back to the fire</a>
       </footer>
     </article>
   </main>
-
 </div>
+
+<!-- Drawer Controller Script -->
+<script>
+  (function() {
+    const drawer = document.getElementById('docsDrawer');
+    const overlay = document.getElementById('docsDrawerOverlay');
+    const openBtn = document.getElementById('openDocsMenu');
+    const closeBtn = document.getElementById('closeDocsMenu');
+    const bottomCloseBtn = document.getElementById('closeDocsMenuBottom');
+
+    function openDrawer() {
+      drawer.classList.add('is-open');
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('is-open');
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    openBtn?.addEventListener('click', openDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
+    bottomCloseBtn?.addEventListener('click', closeDrawer);
+    overlay?.addEventListener('click', closeDrawer);
+
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+        closeDrawer();
+      }
+    });
+  })();
+</script>
