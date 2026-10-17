@@ -62,6 +62,25 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  // Filter to group docs by category for the sidebar
+  eleventyConfig.addFilter('groupByCategory', function(docsCollection){
+    if(!docsCollection) return [];
+
+    const groups = {};
+    docsCollection.forEach((doc) =>{
+      const cat = doc.data.category || "General";
+      if(!groups[cat]){
+        groups[cat] = [];
+      }
+      groups[cat].push(doc);
+    });
+
+    return Object.keys(groups).map((category) => ({
+      category,
+      items: groups[category].sort((a,b) => (a.data.order || 99) - (b.data.order || 99)),
+    }));
+  });
+
 
   return {
     dir: {
