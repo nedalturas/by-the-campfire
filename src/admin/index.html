@@ -239,38 +239,6 @@
     netlifyIdentity.on('init', restrictDashboardCollection);
     netlifyIdentity.on('login', restrictDashboardCollection);
 
-    // Hide the Documentation collection from non-admins in Decap UI
-
-    function restrictDocsCollection(user) {
-      const roles = user?.app_metadata?.roles || [];
-
-      if (!user || roles.includes('admin')) return; // Admins see everything
-
-      const lockDocsUI = () => {
-        // 1. Hide the "Documentation" link in the sidebar / collections list
-
-        document.querySelectorAll('a[href="/collections/docs"]').forEach(link => {
-          const item = link.closest('li') || link;
-
-          if (item) item.style.display = 'none';
-        });
-
-        // 2. Prevent direct URL navigation to #/collections/docs
-        if (window.location.hash.includes('/collection/docs')) {
-          window.location.hash = '#/collection/posts';
-          alert('Access restricted: Only admins can manage documentation');
-        }
-      }
-
-      docsObserver.disconnect();
-      docsObserver = new MutationObserver(lockDocsUI);
-      docsObserver.observe(document.body, { childList: true, subtree: true });
-      window.addEventListener('hashchange', lockDocsUI);
-      lockDocsUI();
-    }
-
-    netlifyIdentity.on('init', restrictDocsCollection);
-    netlifyIdentity.on('login', restrictDocsCollection);
 
 
     // Custom Preview Template to visually separate Editor Notes

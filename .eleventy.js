@@ -51,8 +51,17 @@ module.exports = function (eleventyConfig) {
       }
     });
     // Returning an array in alphabetical order
+
     return [...tagSet].sort();
   });
+
+
+  eleventyConfig.addCollection('docs', function (collectionApi) {
+    return collectionApi.getFilteredByGlob('src/docs/*.md').sort((a, b) => {
+      return (a.data.order || 99) - (b.data.order || 99);
+    });
+  });
+
 
   return {
     dir: {

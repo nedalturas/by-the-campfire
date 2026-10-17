@@ -1,21 +1,22 @@
 ---
 pagination:
-data: collections
-size: 1
-alias: tag
-filter:
-- all
-- nav
-- post
-- posts
-- tagList
-- docs
-addAllPagesToCollections: true
+  data: collections
+  size: 1
+  alias: tag
+  filter:
+    - all
+    - nav
+    - post
+    - posts
+    - tagList
+    - docs
+  addAllPagesToCollections: true
 layout: base.njk
 eleventyComputed:
-title: "Literature tagged '{{ tag }}'"
-permalink: /tags/{{ tag | slugify }}/
+  title: "Literature tagged '{{ tag }}'"
+  permalink: /tags/{{ tag | slugify }}/
 ---
+
 
 <div class="tag-archive">
     <!--<h1 class="page-title">Stories lit by the "{{ tag }}" fire</h1>-->
