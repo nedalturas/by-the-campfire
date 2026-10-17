@@ -35,7 +35,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Category", name: "category", widget: "select", options: ["Contribution Flow", "Author Guidelines", "Codebase & Architecture"]}
+      - {label: "Category", name: "category", widget: "category-input", default: "Contribution Flow"}
       - {label: "Description (Short)", name: "description", widget: "string", required: false}
       - {label: "Order", name: "order", widget: "number", default: 1, value_type: "int"}
       - {label: "Body", name: "body", widget: "markdown"}

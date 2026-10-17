@@ -14,6 +14,48 @@
   <script src="https://unpkg.com/decap-cms@^3.1.0/dist/decap-cms.js"></script>
 
   <script>
+    // Custom widget: Allows picking from suggestions OR typing a brand-new category
+    const CategoryControl = createClass({
+      handleChange: function (e) {
+        this.props.onChange(e.target.value);
+      },
+      render: function () {
+        const value = this.props.value || '';
+        const suggestedCategories = [
+          "Contribution Flow",
+          "Author Guidelines",
+          "Codebase & Architecture",
+          "Style Guide"
+        ];
+        return h('div', { style: { display: 'flex', flexDirection: 'column', gap: '6px' } },
+          h('input', {
+            type: 'text',
+            list: 'category-datalist-options',
+            value: value,
+            placeholder: 'Select a category or type a new one...',
+            onChange: this.handleChange,
+            className: this.props.classNameWrapper,
+            style: {
+              padding: '10px 12px',
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              fontSize: '14px',
+              backgroundColor: '#fff',
+              color: '#333'
+            }
+          }),
+          h('datalist', { id: 'category-datalist-options' },
+            suggestedCategories.map((cat, i) => h('option', { key: i, value: cat }))
+          ),
+          h('small', { style: { color: '#888', fontSize: '12px' } },
+            'Tip: Click to choose an existing category, or simply type a new one.'
+          )
+        );
+      }
+    });
+
+    CMS.registerWidget('category-input', CategoryControl);
+
     // Stamp the logged-in user's name as the author on save.
     CMS.registerEventListener({
       name: 'preSave',
