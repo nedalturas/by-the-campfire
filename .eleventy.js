@@ -82,6 +82,21 @@ module.exports = function (eleventyConfig) {
   });
 
 
+  eleventyConfig.addFilter("getDocPagination", function(docs, currentUrl){
+
+    if(!docs || !currentUrl) return {current: 1, total: 1, prev: null, next: null};
+    const index = docs.findIndex((d) => d.url === currentUrl);
+    if(index === -1) return { current: 1, total: docs.length, prev: null, next: null};
+
+    return{
+      current: index + 1,
+      total: docs.length,
+      prev: index > 0 ? docs[index - 1] : null,
+      next: index < docs.length - 1 ? docs[index + 1] : null,
+    };
+
+  });
+
   return {
     dir: {
       input: "src",
