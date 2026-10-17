@@ -1,36 +1,17 @@
 ---
-layout: base.njk
-title: Documentation & Guidelines
 permalink: /docs/
 ---
-<div class="docs-index" style="max-width: 860px; margin: 0 auto; padding: 2rem 1rem;">
-  <header style="margin-bottom: 2rem;">
-    <p
-      style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff9800; margin: 0 0 0.5rem 0;">
-      Internal Portal
-    </p>
-    <h1 style="margin: 0 0 1rem 0;">Documentation & Guidelines</h1>
-    <p style="color: #bbb; line-height: 1.6;">
-      Welcome to the internal portal for writers, proofreaders, and maintainers. Here you'll find the contribution
-      workflow, editorial standards, and codebase documentation.
-    </p>
-  </header>
-  <div class="docs-list" style="display: grid; gap: 1rem; margin-top: 2rem;">
-    {% for item in collections.docs %}
-    {% if item.url != "/docs/" %}
-    <a href="{{ item.url }}"
-      style="display: block; padding: 1.25rem; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.2s;">
-      <h2 style="margin: 0 0 0.5rem 0; font-size: 1.25rem; color: #ffb74d;">{{ item.data.title }}</h2>
-      {% if item.data.description %}
-      <p style="margin: 0 0 0.5rem 0; font-size: 0.95rem; color: #ccc;">{{ item.data.description }}</p>
-      {% endif %}
-      {% if item.data.category %}
-      <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">
-        Category: {{ item.data.category }}
-      </span>
-      {% endif %}
-    </a>
-    {% endif %}
-    {% endfor %}
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url={{ collections.docs[0].url }}">
+  <script>
+    window.location.replace("{{ collections.docs[0].url }}");
+  </script>
+  <title>Redirecting to Documentation...</title>
+</head>
+<body>
+  <p>Redirecting to <a href="{{ collections.docs[0].url }}">{{ collections.docs[0].data.title }}</a>...</p>
+</body>
+</html>
