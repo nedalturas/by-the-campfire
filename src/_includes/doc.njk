@@ -1,0 +1,26 @@
+---
+layout: base.njk
+---
+<div class="doc-container" style="max-width: 860px; margin: 0 auto; padding: 2rem 1rem;">
+  <header class="doc-header"
+    style="margin-bottom: 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 1rem;">
+    <p
+      style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff9800; margin: 0 0 0.5rem 0;">
+      Internal Documentation
+    </p>
+    <h1 class="doc-title" style="margin: 0 0 0.5rem 0;">{{ title }}</h1>
+    {% if category %}
+    <span
+      style="display: inline-block; background: rgba(255, 152, 0, 0.15); color: #ffb74d; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem;">
+      {{ category }}
+    </span>
+    {% endif %}
+  </header>
+  <article class="doc-body" style="line-height: 1.7; font-size: 1.05rem;">
+    {{ content | safe }}
+  </article>
+  <footer class="doc-footer"
+    style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+    <a href="/docs/" style="color: #ff9800; text-decoration: none;">← Back to Documentation Index</a>
+  </footer>
+</div>
