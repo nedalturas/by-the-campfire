@@ -18,45 +18,75 @@
     CMS.registerEventListener({
       name: 'preSave',
       handler: ({ entry }) => {
-        const data = entry.get('data');
-
+        const collection = entry.get('collection');
         const user = window.netlifyIdentity && window.netlifyIdentity.currentUser();
+        const roles = user?.app_metadata?.roles || [];
+
+        //1. Hard security guard for Docs: Only admin can save documentation
+
+        if (collection === 'docs') {
+          if (!roles.includes('admin')) {
+            alert('Permission denied: Only Admins can modify documentation');
+            throw new Error('blocked: not an Admin');
+          }
+
+          return entry.get('data');
+          // Admins save docs directly
+        }
+
+        // 2. Existing logic for literature posts
+
+        const data = entry.get('data');
         if (!user) return data;
 
         const meta = user.user_metadata || {};
         const name = meta.full_name || meta.name || user.email;
-        const roles = user.app_metadata?.roles || [];
-        // return entry.get('data').set('author', name);
 
         let updatedData = data;
 
         if (!data.get('author')) {
-          updatedData = updatedData.set('author', name);
+          updatedData.updatedData.set('author', name);
         }
 
         // Always record whoever is currently saving as the latest editor
-        updatedData = updatedData.set('last_editor', name);
+        updatedData.updatedData.set('last_editor', name);
 
         // Record this editor's role
         updatedData = updatedData.set(
           'last_editor_role',
-          roles.includes('proofreader') ? 'proofreader' : 'writer'
+          roles.includes('proofreader') ? 'proofreader' : (roles.includes('admin') ? 'admin' : 'writer')
         );
 
         return updatedData;
       }
+
     });
 
     // Editorial workflow: only proofreaders can publish.
     CMS.registerEventListener({
       name: 'prePublish',
       handler: () => {
-        const user = window.netlifyIdentity.currentUser();
+        const user = window.netlifyIdentity?.currentUser();
         const roles = user?.app_metadata?.roles || [];
-        if (!roles.includes('proofreader')) {
+        const collection = entry?.get?.('collection');
+
+        // Docs require Admin to publish
+        if (collection === 'docs') {
+          if (!roles.includes('admin')) {
+            alert('Permission denied: Only Admins can publish documentation');
+            throw new Error('blocked: not an Admin');
+          }
+
+          return;
+        }
+
+        // Regular literature posts allow proofreader OR Admin
+        if (!roles.includes('proofreader') && !roles.includes('admin')) {
           alert('Only proofreaders can publish - move it to review instead.');
+
           throw new Error('blocked: not a proofreader');
         }
+
       }
     });
 
@@ -68,7 +98,7 @@
 
     function restrictStatusDropdown(user) {
       const roles = user?.app_metadata?.roles || [];
-      if (!user || roles.includes('proofreader')) return;
+      if (!user || roles.includes('proofreader') || roles.includes('admin')) return;
 
       const enforceWriterRestrictions = () => {
         // 1. Hide the "Ready" column completely on the workflow board
@@ -135,7 +165,7 @@
 
     function restrictNotesField(user) {
       const roles = user?.app_metadata?.roles || [];
-      if (!user || roles.includes('proofreader')) return;
+      if (!user || roles.includes('proofreader') || roles.includes('admin')) return;
 
       const lock = () => {
         const label = [...document.querySelectorAll('label')]
@@ -153,8 +183,101 @@
       lock();
     }
 
-    netlifyIdentity.on('init', restrictNotesField);
-    netlifyIdentity.on('login', restrictNotesField);
+    // Hide the Documentation collection from non-admins in Decap UI
+
+    let docsObserver;
+
+    function restrictDocsCollection(user) {
+      const roles = user?.app_metadata?.roles || [];
+
+      if (!user || roles.includes('admin')) return; // Admins see everything
+
+      const lockDocsUI = () => {
+        // 1. Hide the "Documentation" link in the sidebar / collections list
+
+        document.querySelectorAll('a[href="/collections/docs"]').forEach(link => {
+          const item = link.closest('li') || link;
+
+          if (item) item.style.display = 'none';
+        });
+
+        // 2. Prevent direct URL navigation to #/collections/docs
+        if (window.location.hash.includes('/collection/docs')) {
+          window.location.hash = '#/collection/posts';
+          alert('Access restricted: Only admins can manage documentation');
+        }
+      }
+
+      docsObserver.disconnect();
+      docsObserver = new MutationObserver(lockDocsUI);
+      docsObserver.observe(document.body, { childList: true, subtree: true });
+      window.addEventListener('hashchange', lockDocsUI);
+      lockDocsUI();
+    }
+
+    netlifyIdentity.on('init', restrictDocsCollection);
+    netlifyIdentity.on('login', restrictDocsCollection);
+
+    // Hide the Dashboard link in the sidebar from non-admins in Decap UI
+
+    let dashboardObserver;
+
+    function restrictDashboardCollection(user) {
+      const roles = user?.app_metadata?.roles || [];
+
+      if (!user || roles.includes('admin')) return; // Admins see everything
+
+      const lockDashboardUI = () => {
+        // 1. Hide the "Dashboard" link in the sidebar / collections list
+        document.querySelectorAll('a[href="/dashboard"]').forEach(link => {
+          const item = link.closest('li') || link;
+
+          if (item) item.style.display = 'none';
+        });
+      }
+
+      dashboardObserver.disconnect();
+      dashboardObserver = new MutationObserver(lockDashboardUI);
+      dashboardObserver.observe(document.body, { childList: true, subtree: true });
+      lockDashboardUI();
+    }
+
+    netlifyIdentity.on('init', restrictDashboardCollection);
+    netlifyIdentity.on('login', restrictDashboardCollection);
+
+    // Hide the Documentation collection from non-admins in Decap UI
+    let docsObserver;
+
+    function restrictDocsCollection(user) {
+      const roles = user?.app_metadata?.roles || [];
+
+      if (!user || roles.includes('admin')) return; // Admins see everything
+
+      const lockDocsUI = () => {
+        // 1. Hide the "Documentation" link in the sidebar / collections list
+
+        document.querySelectorAll('a[href="/collections/docs"]').forEach(link => {
+          const item = link.closest('li') || link;
+
+          if (item) item.style.display = 'none';
+        });
+
+        // 2. Prevent direct URL navigation to #/collections/docs
+        if (window.location.hash.includes('/collection/docs')) {
+          window.location.hash = '#/collection/posts';
+          alert('Access restricted: Only admins can manage documentation');
+        }
+      }
+
+      docsObserver.disconnect();
+      docsObserver = new MutationObserver(lockDocsUI);
+      docsObserver.observe(document.body, { childList: true, subtree: true });
+      window.addEventListener('hashchange', lockDocsUI);
+      lockDocsUI();
+    }
+
+    netlifyIdentity.on('init', restrictDocsCollection);
+    netlifyIdentity.on('login', restrictDocsCollection);
 
 
     // Custom Preview Template to visually separate Editor Notes
