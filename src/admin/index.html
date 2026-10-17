@@ -45,11 +45,11 @@
         let updatedData = data;
 
         if (!data.get('author')) {
-          updatedData.updatedData.set('author', name);
+          updatedData = updatedData.set('author', name);
         }
 
         // Always record whoever is currently saving as the latest editor
-        updatedData.updatedData.set('last_editor', name);
+        updatedData = updatedData.set('last_editor', name);
 
         // Record this editor's role
         updatedData = updatedData.set(
@@ -65,7 +65,7 @@
     // Editorial workflow: only proofreaders can publish.
     CMS.registerEventListener({
       name: 'prePublish',
-      handler: () => {
+      handler: ({ entry }) => {
         const user = window.netlifyIdentity?.currentUser();
         const roles = user?.app_metadata?.roles || [];
         const collection = entry?.get?.('collection');
@@ -189,26 +189,20 @@
 
     function restrictDocsCollection(user) {
       const roles = user?.app_metadata?.roles || [];
-
       if (!user || roles.includes('admin')) return; // Admins see everything
-
       const lockDocsUI = () => {
         // 1. Hide the "Documentation" link in the sidebar / collections list
-
-        document.querySelectorAll('a[href="/collections/docs"]').forEach(link => {
+        document.querySelectorAll('a[href*="/collections/docs"]').forEach(link => {
           const item = link.closest('li') || link;
-
           if (item) item.style.display = 'none';
         });
-
         // 2. Prevent direct URL navigation to #/collections/docs
-        if (window.location.hash.includes('/collection/docs')) {
-          window.location.hash = '#/collection/posts';
+        if (window.location.hash.includes('/collections/docs')) {
+          window.location.hash = '#/collections/posts';
           alert('Access restricted: Only admins can manage documentation');
         }
-      }
-
-      docsObserver.disconnect();
+      };
+      docsObserver?.disconnect();
       docsObserver = new MutationObserver(lockDocsUI);
       docsObserver.observe(document.body, { childList: true, subtree: true });
       window.addEventListener('hashchange', lockDocsUI);
@@ -246,7 +240,6 @@
     netlifyIdentity.on('login', restrictDashboardCollection);
 
     // Hide the Documentation collection from non-admins in Decap UI
-    let docsObserver;
 
     function restrictDocsCollection(user) {
       const roles = user?.app_metadata?.roles || [];

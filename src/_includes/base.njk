@@ -50,10 +50,12 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; {% year %} By the Campfire, Gather 'round</p>
+      <p>&copy; {% year %} By the Campfire, Gather 'round
 
-      {# <p>&copy; {% if page.date %}{{ page.date | postDate | truncate(4, true, "") }}{% else %}2026{% endif %} {{
-        site.name }}. Gather 'round.</p> #}
+        <span style="opacity: 0.4; margin: 0 0.5rem;">•</span>
+        <a href="/docs/" class="footer-doc-link">Docs & Guidelines</a>
+
+      </p>
     </div>
   </footer>
 

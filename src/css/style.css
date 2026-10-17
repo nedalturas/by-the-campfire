@@ -366,6 +366,17 @@ main {
     font-size: 0.8rem;
 }
 
+.footer-doc-link {
+    color: rgba(244, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-doc-link:hover {
+    color: var(--fire-main);
+    text-decoration: none;
+}
+
 #author-list {
     display: flex;
     flex-direction: column;
