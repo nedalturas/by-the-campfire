@@ -9,13 +9,11 @@ layout: base.njk
   <button type="button" class="mobile-menu-trigger" id="openDocsMenu" aria-label="Open documentation menu">
     <span class="hamburger-icon" aria-hidden="true">☰</span>
     <div class="trigger-info">
-      <span class="trigger-category">{{ category | default('GUIDES') }}</span>
+      {# <span class="trigger-category">{{ category | default('GUIDES') }}</span> #}
       <span class="trigger-title">{{ title }}</span>
     </div>
-    <span class="menu-pill">MENU</span>
-  </button>
-
-  <div class="mobile-pagination">
+    {# <span class="menu-pill">MENU</span> #}
+    <div class="mobile-pagination">
     {% if nav.prev %}
       <a href="{{ nav.prev.url }}" class="page-nav-btn" aria-label="Previous article">&lsaquo;</a>
     {% else %}
@@ -30,6 +28,9 @@ layout: base.njk
       <span class="page-nav-btn disabled">&rsaquo;</span>
     {% endif %}
   </div>
+  </button>
+
+
 </div>
 
 <!-- 2. Mobile Drawer Backdrop & Drawer (Matches Screenshot 2) -->
@@ -38,7 +39,6 @@ layout: base.njk
 <aside class="mobile-drawer" id="docsDrawer" aria-label="Mobile Documentation Menu" aria-hidden="true">
   <div class="drawer-header">
     <div class="drawer-title-wrapper">
-      <span class="drawer-icon">📖</span>
       <h2 class="drawer-heading">Documentation</h2>
       <span class="drawer-count-badge">{{ nav.total }} DOCS</span>
     </div>
