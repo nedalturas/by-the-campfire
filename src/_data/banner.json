@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "id": "announcement-1",
+  "badge": "Notice",
+  "message": "Welcome to By the Campfire! Pull up a chair and explore our stories and reflections.",
+  "link_url": "/about/",
+  "link_text": "About Us →",
+  "dismissable": true,
+  "style": "default"
+}

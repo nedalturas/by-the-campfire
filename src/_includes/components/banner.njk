@@ -1,0 +1,118 @@
+{#
+  ==============================================================================
+  CAMPFIRE ANNOUNCEMENT BANNER COMPONENT
+  ==============================================================================
+  Usage 1: Global CMS Banner (defaults to `src/_data/banner.json` configured in Decap CMS)
+    {% include "components/banner.njk" %}
+
+  Usage 2: Page-specific / Custom Banner via context variable
+    {% set bannerConfig = {
+      enabled: true,
+      id: "campfire-special-event",
+      badge: "Live",
+      message: "Join our community campfire circle this Friday!",
+      link_url: "/about/",
+      link_text: "Details →",
+      dismissable: true,
+      style: "accent"
+    } %}
+    {% include "components/banner.njk" %}
+
+  Usage 3: Macro invocation with custom options
+    {% from "components/banner.njk" import renderBanner %}
+    {{ renderBanner({
+      enabled: true,
+      id: "mini-alert",
+      badge: "Info",
+      message: "Custom inline announcement",
+      link_url: "/docs/",
+      link_text: "Read more"
+    }) }}
+  ==============================================================================
+#}
+
+{% macro renderBanner(config) %}
+  {% set b = config | default({}) %}
+  {% if b and b.enabled != false and b.message %}
+    {% set bannerSlug = b.id | default("announcement") | slugify %}
+    {% set bannerElId = "site-banner-" + bannerSlug %}
+    {% set storageKey = "campfire_banner_" + (b.id | default("announcement")) %}
+    {% set bannerStyle = b.style | default("default") %}
+
+    <aside
+      class="site-banner site-banner--{{ bannerStyle }}"
+      id="{{ bannerElId }}"
+      data-banner-id="{{ b.id | default('announcement') }}"
+      role="region"
+      aria-label="Site announcement"
+    >
+      <div class="site-banner__container container">
+        <div class="site-banner__content">
+          {% if b.badge %}
+            <span class="site-banner__badge">{{ b.badge }}</span>
+          {% endif %}
+          <span class="site-banner__message">{{ b.message }}</span>
+          {% if b.link_url %}
+            <a href="{{ b.link_url }}" class="site-banner__link">
+              {{ b.link_text | default("Learn more →") }}
+            </a>
+          {% endif %}
+        </div>
+
+        {% if b.dismissable != false %}
+          <button
+            type="button"
+            class="site-banner__close"
+            aria-label="Dismiss banner"
+            title="Dismiss announcement"
+            onclick="dismissCampfireBanner('{{ bannerElId }}', '{{ storageKey }}')"
+          >
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        {% endif %}
+      </div>
+
+      {% if b.dismissable != false %}
+        {# Fast inline check to prevent FOUC (flash of unstyled content) if already dismissed in localStorage #}
+        <script>
+          (function() {
+            try {
+              if (localStorage.getItem("{{ storageKey }}") === "dismissed") {
+                var el = document.getElementById("{{ bannerElId }}");
+                if (el) {
+                  el.style.display = "none";
+                }
+              }
+            } catch (e) {}
+          })();
+        </script>
+      {% endif %}
+    </aside>
+  {% endif %}
+{% endmacro %}
+
+{# Client-side dismissal controller script (loaded once) #}
+<script>
+  if (typeof window.dismissCampfireBanner !== "function") {
+    window.dismissCampfireBanner = function(elementId, storageKey) {
+      var bannerEl = document.getElementById(elementId);
+      if (!bannerEl) return;
+      bannerEl.classList.add("is-dismissing");
+      try {
+        localStorage.setItem(storageKey, "dismissed");
+      } catch (err) {}
+      setTimeout(function() {
+        bannerEl.style.display = "none";
+      }, 300);
+    };
+  }
+</script>
+
+{# Automatically render banner when included unless explicitly imported as macro-only #}
+{% if not isBannerMacroOnly %}
+  {% set currentBannerConfig = bannerConfig | default(banner) %}
+  {{ renderBanner(currentBannerConfig) }}
+{% endif %}

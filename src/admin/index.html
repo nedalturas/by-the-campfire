@@ -64,8 +64,16 @@
         const user = window.netlifyIdentity && window.netlifyIdentity.currentUser();
         const roles = user?.app_metadata?.roles || [];
 
-        //1. Hard security guard for Docs: Only admin can save documentation
+        // 1. Guard for Site Settings: Only admin can save
+        if (collection === 'settings') {
+          if (user && !roles.includes('admin')) {
+            alert('Permission denied: Only Admins can modify site settings');
+            throw new Error('blocked: not an Admin');
+          }
+          return entry.get('data');
+        }
 
+        // 2. Hard security guard for Docs: Only admin can save documentation
         if (collection === 'docs') {
           if (!roles.includes('admin')) {
             alert('Permission denied: Only Admins can modify documentation');
@@ -111,6 +119,15 @@
         const user = window.netlifyIdentity?.currentUser();
         const roles = user?.app_metadata?.roles || [];
         const collection = entry?.get?.('collection');
+
+        // Settings require Admin to publish
+        if (collection === 'settings') {
+          if (user && !roles.includes('admin')) {
+            alert('Permission denied: Only Admins can publish site settings');
+            throw new Error('blocked: not an Admin');
+          }
+          return;
+        }
 
         // Docs require Admin to publish
         if (collection === 'docs') {
@@ -253,6 +270,34 @@
 
     netlifyIdentity.on('init', restrictDocsCollection);
     netlifyIdentity.on('login', restrictDocsCollection);
+
+    // Hide the Settings collection from non-admins in Decap UI
+    let settingsObserver;
+
+    function restrictSettingsCollection(user) {
+      const roles = user?.app_metadata?.roles || [];
+      if (!user || roles.includes('admin')) return; // Admins see everything
+      const lockSettingsUI = () => {
+        // 1. Hide the "Site Settings" link in the sidebar / collections list
+        document.querySelectorAll('a[href*="/collections/settings"]').forEach(link => {
+          const item = link.closest('li') || link;
+          if (item) item.style.display = 'none';
+        });
+        // 2. Prevent direct URL navigation to #/collections/settings
+        if (window.location.hash.includes('/collections/settings')) {
+          window.location.hash = '#/collections/posts';
+          alert('Access restricted: Only admins can manage site settings');
+        }
+      };
+      settingsObserver?.disconnect();
+      settingsObserver = new MutationObserver(lockSettingsUI);
+      settingsObserver.observe(document.body, { childList: true, subtree: true });
+      window.addEventListener('hashchange', lockSettingsUI);
+      lockSettingsUI();
+    }
+
+    netlifyIdentity.on('init', restrictSettingsCollection);
+    netlifyIdentity.on('login', restrictSettingsCollection);
 
     // Hide the Dashboard link in the sidebar from non-admins in Decap UI
 

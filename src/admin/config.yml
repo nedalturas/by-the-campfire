@@ -40,3 +40,33 @@ collections:
       - {label: "Order", name: "order", widget: "number", default: 1, value_type: "int"}
       - {label: "Body", name: "body", widget: "markdown"}
 
+  - name: "settings"
+    label: "Site Settings"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "banner"
+        label: "Announcement Banner"
+        file: "src/_data/banner.json"
+        description: "Configure the top announcement banner shown on the website."
+        format: "json"
+        fields:
+          - {label: "Enable Banner", name: "enabled", widget: "boolean", default: true}
+          - {label: "Announcement ID", name: "id", widget: "string", default: "announcement-1", hint: "Change this ID (e.g., 'announcement-2') whenever you publish a new announcement so visitors who dismissed an earlier one will see this new one."}
+          - {label: "Badge / Tag", name: "badge", widget: "string", default: "Notice", required: false, hint: "Optional short label (e.g. 'Notice', 'Update', 'New')"}
+          - {label: "Announcement Message", name: "message", widget: "string", default: "Welcome to By the Campfire! Pull up a chair and explore our stories and reflections."}
+          - {label: "Link URL", name: "link_url", widget: "string", required: false, hint: "Optional URL (e.g. /docs/ or /about/)"}
+          - {label: "Link Text", name: "link_text", widget: "string", default: "About Us →", required: false}
+          - {label: "Dismissable", name: "dismissable", widget: "boolean", default: true, hint: "Allow visitors to dismiss the banner"}
+          - label: "Style"
+            name: "style"
+            widget: "select"
+            options:
+              - {label: "Default (Charcoal & Warm Ember)", value: "default"}
+              - {label: "Accent (Glowing Flame)", value: "accent"}
+              - {label: "Subtle (Minimal Surface)", value: "subtle"}
+            default: "default"
+            required: false
+
+

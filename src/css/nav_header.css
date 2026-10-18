@@ -1,6 +1,5 @@
 /* Header & Nav */
 .site-header {
-  padding: var(--spacing-lg) 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   position: sticky;
   top: 0;
@@ -9,6 +8,8 @@
 }
 
 .header-container {
+  padding-top: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -29,12 +29,14 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/screens.css">
   <link rel="stylesheet" href="/css/nav_header.css">
+  <link rel="stylesheet" href="/css/banner.css">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 
 <body>
   <div class="fire-particles" aria-hidden="true"></div>
   <header class="site-header">
+    {% include "components/banner.njk" %}
     <div class="container header-container">
       <a href="/" class="logo">{{ site.name }}</a>
       <nav class="site-nav">

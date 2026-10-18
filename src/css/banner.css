@@ -1,0 +1,183 @@
+/* ==========================================================================
+   Campfire Announcement Banner Component Styles
+   ========================================================================== */
+
+.site-banner {
+  width: 100%;
+  position: relative;
+  z-index: 101;
+  background: linear-gradient(90deg, #221a16 0%, #2b1f1a 50%, #221a16 100%);
+  border-bottom: 1px solid rgba(230, 92, 0, 0.28);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  max-height: 140px;
+  opacity: 1;
+  overflow: hidden;
+  transition: max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.26s ease,
+              padding 0.3s ease,
+              border-color 0.3s ease;
+}
+
+/* Banner dismissal collapse animation */
+.site-banner.is-dismissing {
+  max-height: 0 !important;
+  opacity: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom-color: transparent !important;
+  pointer-events: none;
+}
+
+/* Container alignment inside the banner */
+.site-banner__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+}
+
+/* Content wrapper (badge + message + link) */
+.site-banner__content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  flex: 1;
+}
+
+/* Badge / Tag */
+.site-banner__badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.16rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(230, 92, 0, 0.18);
+  border: 1px solid rgba(230, 92, 0, 0.45);
+  color: #ff9d5c;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* Main message text */
+.site-banner__message {
+  color: var(--text-main);
+  font-weight: 400;
+}
+
+/* Announcement action link */
+.site-banner__link {
+  color: #ff9d5c;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.site-banner__link:hover {
+  color: #ffffff;
+  text-decoration-color: #ffffff;
+}
+
+.site-banner__link:focus-visible {
+  outline: 2px solid var(--fire-main);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Close / Dismiss button */
+.site-banner__close {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.site-banner__close:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.site-banner__close:active {
+  transform: scale(0.94);
+}
+
+.site-banner__close:focus-visible {
+  outline: 2px solid var(--fire-main);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Style Variants
+   ========================================================================== */
+
+/* 1. Accent: Ember flame glow with warm gradients */
+.site-banner--accent {
+  background: linear-gradient(90deg, #38190e 0%, #4c2212 50%, #38190e 100%);
+  border-bottom: 1px solid rgba(230, 92, 0, 0.55);
+  box-shadow: 0 4px 18px rgba(230, 92, 0, 0.18);
+}
+
+.site-banner--accent .site-banner__badge {
+  background: var(--fire-main);
+  border-color: #ff8533;
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(230, 92, 0, 0.35);
+}
+
+/* 2. Subtle: Quiet charcoal surface matching standard surfaces */
+.site-banner--subtle {
+  background: var(--surface-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+}
+
+.site-banner--subtle .site-banner__badge {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Mobile Responsive Adjustments
+   ========================================================================== */
+@media (max-width: 640px) {
+  .site-banner {
+    max-height: 240px;
+  }
+
+  .site-banner__container {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+    align-items: flex-start;
+  }
+
+  .site-banner__content {
+    font-size: 0.83rem;
+    gap: 0.45rem;
+  }
+
+  .site-banner__close {
+    margin-top: -2px;
+  }
+}
