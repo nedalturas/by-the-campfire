@@ -5,32 +5,27 @@ layout: base.njk
 {% set nav = collections.docs | getDocPagination(page.url) %}
 
 <!-- 1. Mobile Top Bar (Matches Screenshot 1) -->
+<!-- 1. Mobile Top Bar (Single Unified Card) -->
 <div class="mobile-docs-bar">
+  <!-- Left Side: Tap title or icon to open drawer -->
   <button type="button" class="mobile-menu-trigger" id="openDocsMenu" aria-label="Open documentation menu">
     <span class="hamburger-icon" aria-hidden="true">☰</span>
-    <div class="trigger-info">
-      {# <span class="trigger-category">{{ category | default('GUIDES') }}</span> #}
-      <span class="trigger-title">{{ title }}</span>
-    </div>
-    {# <span class="menu-pill">MENU</span> #}
-    <div class="mobile-pagination">
+    <span class="trigger-title">{{ title }}</span>
+  </button>
+  <!-- Right Side: Clean pagination buttons -->
+  <div class="mobile-pagination">
     {% if nav.prev %}
       <a href="{{ nav.prev.url }}" class="page-nav-btn" aria-label="Previous article">&lsaquo;</a>
     {% else %}
       <span class="page-nav-btn disabled">&lsaquo;</span>
     {% endif %}
-
     <span class="page-counter">{{ nav.current }}/{{ nav.total }}</span>
-
     {% if nav.next %}
       <a href="{{ nav.next.url }}" class="page-nav-btn" aria-label="Next article">&rsaquo;</a>
     {% else %}
       <span class="page-nav-btn disabled">&rsaquo;</span>
     {% endif %}
   </div>
-  </button>
-
-
 </div>
 
 <!-- 2. Mobile Drawer Backdrop & Drawer (Matches Screenshot 2) -->
@@ -40,7 +35,6 @@ layout: base.njk
   <div class="drawer-header">
     <div class="drawer-title-wrapper">
       <h2 class="drawer-heading">Documentation</h2>
-      <span class="drawer-count-badge">{{ nav.total }} DOCS</span>
     </div>
     <button type="button" class="drawer-close-btn" id="closeDocsMenu" aria-label="Close menu">&times;</button>
   </div>

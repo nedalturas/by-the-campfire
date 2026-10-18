@@ -782,27 +782,40 @@ main:has(.docs-wrapper) {
     display: block;
     padding-top: 1rem;
   }
+  body:has(.mobile-docs-bar) .site-header{
+    position: static;
+  }
   /* --- Top Mobile Bar --- */
-  .mobile-docs-bar {
+ .mobile-docs-bar {
+    position: sticky;
+    top: 0.5rem;
+    z-index: 95;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.75rem;
+    background: rgba(35, 29, 26, 0.95); /* Deep campfire surface with opacity */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 0.35rem 0.5rem;
     margin-bottom: 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45); /* Shadow so text scrolling underneath doesn't clash */
   }
-  .mobile-menu-trigger {
+  .mobile-menu-trigger{
     flex: 1;
+    min-width: 0;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    background: var(--surface-color);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 0.6rem 0.85rem;
+    gap: 0.65rem;
+    background: transparent;
+    border: none;
+    padding: 0.4rem 0.5rem;
     color: var(--text-main);
     text-align: left;
     cursor: pointer;
-    transition: border-color 0.2s;
   }
   .mobile-menu-trigger:hover {
     border-color: var(--fire-main);
@@ -810,6 +823,8 @@ main:has(.docs-wrapper) {
   .hamburger-icon {
     color: var(--fire-main);
     font-size: 1.15rem;
+    flex-shrink: 0;
+    line-height: 1;
   }
   .trigger-info {
     flex: 1;
@@ -825,11 +840,13 @@ main:has(.docs-wrapper) {
     font-weight: 700;
   }
   .trigger-title {
+    flex: 1;
+    min-width: 0; /* CRITICAL: Enables truncation */
     font-size: 0.95rem;
     font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-overflow: ellipsis; /* Shows "Author & Editorial Work..." instead of blowing out */
     color: var(--text-main);
   }
   .menu-pill {
@@ -842,14 +859,16 @@ main:has(.docs-wrapper) {
     border-radius: 4px;
   }
   /* Pagination (< 1/5 >) */
-  .mobile-pagination {
+  .mobile-pagination{
+    flex-shrink: 0;
     display: flex;
     align-items: center;
-    gap: 0.35rem;
-    background: var(--surface-color);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 0.35rem 0.5rem;
+    gap: 0.3rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 0.25rem 0.4rem;
+    margin-left: 0.5rem;
   }
   .page-nav-btn {
     display: inline-flex;
@@ -910,7 +929,6 @@ main:has(.docs-wrapper) {
     z-index: 1001;
     transform: translateX(-100%);
     transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.6);
   }
   .mobile-drawer.is-open {
     transform: translateX(0);
