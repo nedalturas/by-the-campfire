@@ -1,0 +1,77 @@
+---
+layout: base.njk
+title: Announcements
+permalink: /announcements/
+---
+
+<div class="hero hero-center" style="margin-bottom: 2.5rem;">
+  <h1 class="hero-title-main">Announcements</h1>
+  <div class="hero-quote-wrapper">
+    <p class="hero-quote">"Bulletins, news, and letters gathered around the hearth."</p>
+  </div>
+</div>
+
+<div class="announcements-wrapper">
+  {% set groupedAnnouncements = collections.announcements | groupByMonth %}
+
+  {% if groupedAnnouncements and groupedAnnouncements.length > 0 %}
+    {% for group in groupedAnnouncements %}
+      <section class="announcements-date-group">
+        <header class="announcements-month-header">
+          <div class="announcements-month-dot" aria-hidden="true"></div>
+          <h2 class="announcements-month-title">{{ group.monthYear }}</h2>
+          <span class="announcements-month-count">{{ group.items.length }} update{% if group.items.length != 1 %}s{% endif %}</span>
+        </header>
+
+        <div class="announcements-list">
+          {% for item in group.items %}
+            <article class="announcement-card" id="{{ item.fileSlug }}">
+              <header class="announcement-card__header">
+                <div class="announcement-card__meta">
+                  <time class="announcement-card__date" datetime="{{ item.date.toISOString() if item.date.toISOString else item.date }}">
+                    <svg class="calendar-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="16" y1="2" x2="16" y2="6"></line>
+                      <line x1="8" y1="2" x2="8" y2="6"></line>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    {{ item.date | longDate }}
+                  </time>
+
+                  {% if item.data.badge %}
+                    <span class="announcement-card__badge">{{ item.data.badge }}</span>
+                  {% endif %}
+
+                  {% if item.data.is_banner %}
+                    <span class="announcement-card__pinned-badge" title="Currently featured in the top announcement banner">Featured</span>
+                  {% endif %}
+                </div>
+
+                <h3 class="announcement-card__title">
+                  <a href="#{{ item.fileSlug }}" class="announcement-card__anchor" aria-label="Link to this announcement">#</a>
+                  {{ item.data.title }}
+                </h3>
+              </header>
+
+              <div class="announcement-card__content post-content">
+                {{ item.templateContent | default(item.data.body | markdownify) | safe }}
+              </div>
+
+              {% if item.data.link_url %}
+                <footer class="announcement-card__footer">
+                  <a href="{{ item.data.link_url }}" class="announcement-card__link">
+                    {{ item.data.link_text | default("Learn more →") }}
+                  </a>
+                </footer>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+  {% else %}
+    <div class="announcements-empty">
+      <p>No announcements currently posted. Check back soon for campfire news!</p>
+    </div>
+  {% endif %}
+</div>

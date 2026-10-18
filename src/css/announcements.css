@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Announcements Page Styles
+   ========================================================================== */
+
+.announcements-wrapper {
+  max-width: 780px;
+  margin: 0 auto;
+  padding-bottom: var(--spacing-xl);
+}
+
+/* Date Category Group */
+.announcements-date-group {
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+
+/* Month & Year Category Header */
+.announcements-month-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(230, 92, 0, 0.25);
+  position: sticky;
+  top: 70px;
+  background-color: var(--bg-color);
+  z-index: 10;
+  backdrop-filter: blur(8px);
+}
+
+.announcements-month-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fire-main);
+  box-shadow: 0 0 10px rgba(230, 92, 0, 0.75);
+  flex-shrink: 0;
+}
+
+.announcements-month-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.announcements-month-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Announcement Cards List */
+.announcements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Individual Announcement Card */
+.announcement-card {
+  background: var(--surface-color);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 1.75rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+  position: relative;
+  scroll-margin-top: 130px;
+}
+
+.announcement-card:hover {
+  border-color: rgba(230, 92, 0, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Target highlight when navigated via anchor / banner link */
+@keyframes announcementGlow {
+  0% {
+    border-color: var(--fire-main);
+    box-shadow: 0 0 25px rgba(230, 92, 0, 0.5);
+  }
+  100% {
+    border-color: rgba(230, 92, 0, 0.4);
+    box-shadow: 0 0 12px rgba(230, 92, 0, 0.2);
+  }
+}
+
+.announcement-card:target {
+  animation: announcementGlow 1.8s ease-out forwards;
+  border-color: var(--fire-main);
+}
+
+/* Card Header & Meta */
+.announcement-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.announcement-card__date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.calendar-icon {
+  opacity: 0.7;
+}
+
+.announcement-card__badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(230, 92, 0, 0.16);
+  border: 1px solid rgba(230, 92, 0, 0.4);
+  color: #ff9d5c;
+  line-height: 1.2;
+}
+
+.announcement-card__pinned-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 183, 3, 0.15);
+  border: 1px solid rgba(255, 183, 3, 0.4);
+  color: #ffb703;
+  line-height: 1.2;
+}
+
+/* Card Title */
+.announcement-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  line-height: 1.35;
+  color: #ffffff;
+  margin: 0.35rem 0 1rem;
+}
+
+.announcement-card__anchor {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 1rem;
+  margin-right: 0.3rem;
+  opacity: 0.4;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.announcement-card:hover .announcement-card__anchor {
+  opacity: 0.8;
+  color: var(--fire-main);
+}
+
+/* Card Content */
+.announcement-card__content {
+  color: var(--text-main);
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.announcement-card__content p {
+  margin-bottom: 0.85rem;
+}
+
+.announcement-card__content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Card Footer / Action Link */
+.announcement-card__footer {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.announcement-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--fire-main);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.announcement-card__link:hover {
+  color: #ff9d5c;
+  gap: 0.6rem;
+}
+
+/* Empty State */
+.announcements-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  background: var(--surface-color);
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 600px) {
+  .announcement-card {
+    padding: 1.25rem;
+  }
+  .announcements-month-title {
+    font-size: 1.25rem;
+  }
+  .announcement-card__title {
+    font-size: 1.2rem;
+  }
+}

@@ -40,6 +40,31 @@ collections:
       - {label: "Order", name: "order", widget: "number", default: 1, value_type: "int"}
       - {label: "Body", name: "body", widget: "markdown"}
 
+  - name: "announcements"
+    label: "Announcements"
+    folder: "src/announcements"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: ['date', 'title']
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Creation Date", name: "date", widget: "datetime"}
+      - {label: "Badge / Type", name: "badge", widget: "select", options: ["Notice", "Update", "New Feature", "Community", "Maintenance"], default: "Notice"}
+      - {label: "Pin to Top Header Banner?", name: "is_banner", widget: "boolean", default: true, hint: "When enabled, this announcement will be featured at the top of the site header."}
+      - {label: "Short Banner Headline", name: "banner_text", widget: "string", required: false, hint: "Short summary for the banner. Defaults to Title if left blank."}
+      - {label: "Custom Action Link URL", name: "link_url", widget: "string", required: false, hint: "Optional link (if blank, links directly to this announcement card on the announcements page)"}
+      - {label: "Action Link Text", name: "link_text", widget: "string", required: false, default: "Read announcement →"}
+      - label: "Banner Style"
+        name: "style"
+        widget: "select"
+        options:
+          - {label: "Default (Charcoal & Warm Ember)", value: "default"}
+          - {label: "Accent (Glowing Flame)", value: "accent"}
+          - {label: "Subtle (Minimal Surface)", value: "subtle"}
+        default: "default"
+        required: false
+      - {label: "Announcement Content", name: "body", widget: "markdown"}
+
   - name: "settings"
     label: "Site Settings"
     delete: false

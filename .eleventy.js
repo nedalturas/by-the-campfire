@@ -41,6 +41,7 @@ module.exports = function (eleventyConfig) {
             case "post":
             case "posts":
             case "docs":
+            case "announcements":
               return false;
           }
           return true;
@@ -55,11 +56,45 @@ module.exports = function (eleventyConfig) {
     return [...tagSet].sort();
   });
 
-
   eleventyConfig.addCollection('docs', function (collectionApi) {
     return collectionApi.getFilteredByGlob('src/docs/*.md').sort((a, b) => {
       return (a.data.order || 99) - (b.data.order || 99);
     });
+  });
+
+  // Announcements collection (sorted newest first)
+  eleventyConfig.addCollection('announcements', function (collectionApi) {
+    return collectionApi.getFilteredByGlob('src/announcements/*.md').sort((a, b) => {
+      const dateA = a.date ? new Date(a.date) : new Date(0);
+      const dateB = b.date ? new Date(b.date) : new Date(0);
+      return dateB - dateA;
+    });
+  });
+
+  // Filter to group announcements by month and year (e.g. "October 2026")
+  eleventyConfig.addFilter('groupByMonth', function (items) {
+    if (!items || !items.length) return [];
+    const groups = {};
+    items.forEach((item) => {
+      const dateObj = item.date instanceof Date ? item.date : new Date(item.date);
+      const monthYear = DateTime.fromJSDate(dateObj).toFormat("LLLL yyyy");
+      if (!groups[monthYear]) {
+        groups[monthYear] = [];
+      }
+      groups[monthYear].push(item);
+    });
+
+    return Object.keys(groups).map((monthYear) => ({
+      monthYear: monthYear,
+      items: groups[monthYear],
+    }));
+  });
+
+  // Long date formatting filter: e.g. "October 19, 2026"
+  eleventyConfig.addFilter('longDate', function (dateObj) {
+    if (!dateObj) return "";
+    const d = dateObj instanceof Date ? dateObj : new Date(dateObj);
+    return DateTime.fromJSDate(d).toFormat("MMMM d, yyyy");
   });
 
   // Filter to group docs by category for the sidebar

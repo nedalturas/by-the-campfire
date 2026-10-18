@@ -73,7 +73,16 @@
           return entry.get('data');
         }
 
-        // 2. Hard security guard for Docs: Only admin can save documentation
+        // 2. Guard for Announcements: Only admin or proofreader can save
+        if (collection === 'announcements') {
+          if (user && !roles.includes('admin') && !roles.includes('proofreader')) {
+            alert('Permission denied: Only Admins and Proofreaders can post announcements');
+            throw new Error('blocked: not authorized');
+          }
+          return entry.get('data');
+        }
+
+        // 3. Hard security guard for Docs: Only admin can save documentation
         if (collection === 'docs') {
           if (!roles.includes('admin')) {
             alert('Permission denied: Only Admins can modify documentation');
@@ -84,7 +93,7 @@
           // Admins save docs directly
         }
 
-        // 2. Existing logic for literature posts
+        // 4. Existing logic for literature posts
 
         const data = entry.get('data');
         if (!user) return data;
@@ -125,6 +134,15 @@
           if (user && !roles.includes('admin')) {
             alert('Permission denied: Only Admins can publish site settings');
             throw new Error('blocked: not an Admin');
+          }
+          return;
+        }
+
+        // Announcements require Admin or Proofreader to publish
+        if (collection === 'announcements') {
+          if (user && !roles.includes('admin') && !roles.includes('proofreader')) {
+            alert('Permission denied: Only Admins and Proofreaders can publish announcements');
+            throw new Error('blocked: not authorized');
           }
           return;
         }

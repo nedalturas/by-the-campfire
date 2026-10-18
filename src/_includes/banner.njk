@@ -1,9 +1,9 @@
 {#
   ==============================================================================
-  CAMPFIRE ANNOUNCEMENT BANNER COMPONENT
+  CAMPFIRE ANNOUNCEMENT BANNER
   ==============================================================================
   Usage 1: Global CMS Banner (defaults to `src/_data/banner.json` configured in Decap CMS)
-    {% include "components/banner.njk" %}
+    {% include "banner.njk" %}
 
   Usage 2: Page-specific / Custom Banner via context variable
     {% set bannerConfig = {
@@ -16,10 +16,10 @@
       dismissable: true,
       style: "accent"
     } %}
-    {% include "components/banner.njk" %}
+    {% include "banner.njk" %}
 
   Usage 3: Macro invocation with custom options
-    {% from "components/banner.njk" import renderBanner %}
+    {% from "banner.njk" import renderBanner %}
     {{ renderBanner({
       enabled: true,
       id: "mini-alert",
@@ -113,6 +113,38 @@
 
 {# Automatically render banner when included unless explicitly imported as macro-only #}
 {% if not isBannerMacroOnly %}
-  {% set currentBannerConfig = bannerConfig | default(banner) %}
+  {% set currentBannerConfig = null %}
+
+  {% if bannerConfig %}
+    {% set currentBannerConfig = bannerConfig %}
+  {% else %}
+    {# 1. Check if there is an announcement with is_banner enabled #}
+    {% if collections.announcements and collections.announcements.length > 0 %}
+      {% for ann in collections.announcements %}
+        {% if currentBannerConfig == null and ann.data.is_banner %}
+          {% set annLink = ann.data.link_url %}
+          {% if not annLink %}
+            {% set annLink = "/announcements/#" + ann.fileSlug %}
+          {% endif %}
+          {% set currentBannerConfig = {
+            enabled: true,
+            id: ann.fileSlug,
+            badge: ann.data.badge | default("Notice"),
+            message: ann.data.banner_text | default(ann.data.title),
+            link_url: annLink,
+            link_text: ann.data.link_text | default("Read announcement →"),
+            dismissable: true,
+            style: ann.data.style | default("default")
+          } %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {# 2. Fall back to global banner.json if no announcement has is_banner active #}
+    {% if currentBannerConfig == null %}
+      {% set currentBannerConfig = banner %}
+    {% endif %}
+  {% endif %}
+
   {{ renderBanner(currentBannerConfig) }}
 {% endif %}
