@@ -42,7 +42,7 @@
       <a href="/" class="logo">{{ site.name }}</a>
       <nav class="site-nav">
         <a href="/archive/">Archive</a>
-        <a href="/announcements/">Announcements</a>
+        <a href="/about/">About Us</a>
       </nav>
     </div>
   </header>
@@ -52,16 +52,17 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <p>&copy; {% year %} By the Campfire, Gather 'round
+    <div class="container footer-grid">
+      <div>
 
-        <span style="opacity: 0.4; margin: 0 0.5rem;">•</span>
-        <a href="/docs/" class="footer-doc-link">Docs & Guidelines</a>
+        <p class="footer-copy">&copy; {% year %} By the Campfire, Gather 'round</p>
+      </div>
 
-        <span style="opacity: 0.4; margin: 0 0.5rem;">•</span>
-        <a href="/about/" class="footer-doc-link">About Us</a>
-
-      </p>
+      <div class="footer-links">
+        <a href="/docs/" target="_blank" class="footer-doc-link">Docs & Guidelines</a>
+        <a href="/announcements/" target="_blank" class="footer-doc-link">Announcements</a>
+        <a href="https://nedalturas.github.io/anti-claim/" target="_blank" class="footer-doc-link">Dev</a>
+      </div>
     </div>
   </footer>
 
