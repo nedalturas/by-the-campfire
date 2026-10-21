@@ -27,9 +27,23 @@ Writers don't edit Editor Notes, and proofreaders don't edit a writer's story bo
 5. **Ready to Publish.** When approved, the proofreader sets the status and publishes.
 6. **Author Notes.** Writer may inform the proofreader ahead that a certain phrase or word should be kept as a stylistic choice, the proofreader can skip or suggest a close to similar but only to the Author's discretion.
 
-## Review Process Cycle
-```
-Author writes a Draft (Will Stay in the Draft Column until its ready) -> Author Transfers it to In Review (Discord will notify in the Editorial Updates Channel, a proofreader will be assigned) -> Proofreader will provide feedback in Editor Notes Field (Proofreader should place it back to draft so a notification will be triggered tagging the author in the Editor Notes) -> Author polishes the draft based on the feedback (Author must place it back to In Review once done) -> Proofreader decides it's good to go -> Draft will be Published by the Proofreader but the Author will still remain to the original writer.  
+## Review Process Flow
+This is how the review process work.
+
+```mermaid
+flowchart TD
+    A["✍️ Author writes a Draft<br/>Stays in Draft until ready"]
+    B["📤 Author moves it to In Review<br/>Discord notifies Editorial Updates<br/>A proofreader is assigned"]
+    C["🔍 Proofreader reviews<br/>Feedback goes in Editor Notes"]
+    D{"Good to go?"}
+    E["↩️ Proofreader moves it back to Draft<br/>Discord tags the author"]
+    F["🖊️ Author polishes the draft<br/>based on the feedback"]
+    G["✅ Proofreader sets Ready to Publish<br/>and publishes the piece"]
+    H["📖 Published<br/>Credit stays with the original author"]
+ 
+    A --> B --> C --> D
+    D -- "Needs changes" --> E --> F --> B
+    D -- "Approved" --> G --> H
 ```
 
 ## Disagreements
