@@ -25,6 +25,7 @@ Writers don't edit Editor Notes, and proofreaders don't edit a writer's story bo
 3. **Feedback.** A proofreader leaves notes in Editor Notes.
 4. **Revise.** The writer updates the piece based on the notes.
 5. **Ready to Publish.** When approved, the proofreader sets the status and publishes.
+6. **Author Notes.** Writer may inform the proofreader ahead that a certain phrase or word should be kept as a stylistic choice, the proofreader can skip or suggest a close to similar but only to the Author's discretion.
 
 
 ## Disagreements
