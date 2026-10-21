@@ -12,6 +12,15 @@ order: 2
 
 Writers don't edit Editor Notes, and proofreaders don't edit a writer's story body. Feedback and writing stay separate.
 
+## Proofreader Anonymity
+ 
+Feedback is about the writing, not who wrote the notes. To keep it honest and pressure-free:
+ 
+- Proofreaders stay anonymous to writers. Editor Notes carry no name.
+- Writers don't ask who reviewed their piece, and proofreaders don't reveal themselves.
+- Moderators can see who reviewed each piece.
+- Anonymity is not a shield. Feedback must still be kind and specific, and moderators may act on abusive notes.
+
 ## Authorship
 
 * Submit only your own work.
@@ -45,6 +54,7 @@ flowchart TD
     D -- "Needs changes" --> E --> F --> B
     D -- "Approved" --> G --> H
 ```
+The step-by-step CMS instructions are in the [Author & Editorial Workflow](https://by-the-campfire.netlify.app/docs/workflow-guide/) guide.
 
 ## Disagreements
  
