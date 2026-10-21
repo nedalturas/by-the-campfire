@@ -27,6 +27,10 @@ Writers don't edit Editor Notes, and proofreaders don't edit a writer's story bo
 5. **Ready to Publish.** When approved, the proofreader sets the status and publishes.
 6. **Author Notes.** Writer may inform the proofreader ahead that a certain phrase or word should be kept as a stylistic choice, the proofreader can skip or suggest a close to similar but only to the Author's discretion.
 
+## Review Process Cycle
+```
+Author writes a Draft (Will Stay in the Draft Column until its ready) -> Author Transfers it to In Review (Discord will notify in the Editorial Updates Channel, a proofreader will be assigned) -> Proofreader will provide feedback in Editor Notes Field (Proofreader should place it back to draft so a notification will be triggered tagging the author in the Editor Notes) -> Author polishes the draft based on the feedback (Author must place it back to In Review once done) -> Proofreader decides it's good to go -> Draft will be Published by the Proofreader but the Author will still remain to the original writer.  
+```
 
 ## Disagreements
  
@@ -42,7 +46,14 @@ Ideally we want our writings to be free from AI as we encourage to use our imagi
 ## Conduct
  
 Be respectful in feedback, comments, and on our Discord server. Harassment, plagiarism, and hate speech aren't tolerated. Moderators may unpublish a piece or remove an author who breaks these guidelines.
- 
+
+
+ ## Staying Active
+
+Writers are expected to publish at least one piece every 3 months. If you go longer without publishing, a moderator will check in with you first. Membership may be deactivated if there's no response or update.
+
+Need a break? Let a moderator know ahead of time and your spot stays safe.
+
 ---
  
 *We may update these guidelines as the blog grows. Changes will be announced in the Discord server.*
