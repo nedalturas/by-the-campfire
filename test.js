@@ -15,14 +15,14 @@ test("returns today's quote from the API", async () => {
 	global.fetch = async url => {
 		requestedUrl = url;
 		return {
-			json: async () => [{ q: "A test quote", a: "A test author" }]
+			json: async () => ({ quote: "A test quote", author: "A test author" })
 		};
 	};
 
 	try {
 		const quote = await getQuote();
 
-		assert.equal(requestedUrl, "https://zenquotes.io/api/today");
+		assert.equal(requestedUrl, "https://dummyjson.com/quotes/random");
 		assert.deepEqual(quote, { q: "A test quote", a: "A test author" });
 	} finally {
 		global.fetch = originalFetch;

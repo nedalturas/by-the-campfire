@@ -29,7 +29,7 @@ Writers don't edit Editor Notes, and proofreaders don't edit a writer's story bo
 
 ## Review Process Cycle
 ```
-Author writes a Draft (Will Stay in the Draft Column until its ready) -> Author Transfers it to In Review (Discord will notify in the Editorial Updates Channel, a proofreader will be assigned) -> Proofreader will provide feedback in Editor Notes Field (Proofreader should place it back to draft so a notification will be triggered tagging the author in the Editor Notes) -> Author polishes the draft based on the feedback (Author must place it back to In Review once done) -> Proofreader decides it's good to go -> Draft will be Published by the Proofreader but the Author will still remain to the original writer.  
+Author writes a Draft (Will Stay in the Draft Column until its ready) -> Author Transfers it to In Review (Discord will notify in the Editorial Updates Channel, a proofreader will be assigned) -> Proofreader will provide feedback in Editor Notes Field (Proofreader should place it back to draft so a Discord notification tags the author and includes the Editor Notes) -> Author polishes the draft based on the feedback (Author must place it back to In Review once done) -> Proofreader decides it's good to go -> Draft will be Published by the Proofreader but the Author will still remain to the original writer.
 ```
 
 ## Disagreements

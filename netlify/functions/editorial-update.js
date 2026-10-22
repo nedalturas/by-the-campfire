@@ -28,6 +28,7 @@ export default async (req) => {
   const url = `https://by-the-campfire.netlify.app/admin/#/collections/posts/entries/${slug}`;
 
   let title = slug;
+  let authorName = "";
   let editorNotes = "";
   let authorNotes = "";
   let lastEditorRole = "";
@@ -53,6 +54,7 @@ export default async (req) => {
       if (frontmatterMatch) {
         const frontmatter = yaml.load(frontmatterMatch[1]);
         if (frontmatter?.title) title = frontmatter.title;
+        if (frontmatter?.author) authorName = String(frontmatter.author).trim();
         if (frontmatter?.editor_notes) editorNotes = String(frontmatter.editor_notes).trim();
         if (frontmatter?.author_notes) authorNotes = String(frontmatter.author_notes).trim();
 
@@ -89,6 +91,37 @@ export default async (req) => {
     }
   } catch (error) {
     console.error("Could not load proofreaders config:", error);
+  }
+
+  let authorMention = "";
+  if (authorName) {
+    try {
+      const configUrl = `https://api.github.com/repos/${repo}/contents/netlify/functions/config/authors.json`;
+      const configRes = await fetch(configUrl, {
+        headers: {
+          Accept: "application/vnd.github+json",
+          "User-Agent": "Editorial-Discord-Bot",
+        },
+      });
+
+      if (configRes.ok) {
+        const configFile = await configRes.json();
+        const authors = JSON.parse(
+          Buffer.from(configFile.content, "base64").toString("utf-8")
+        );
+        const author = authors.find((entry) => entry.name === authorName);
+
+        if (author?.discord_id && /^\d+$/.test(String(author.discord_id))) {
+          authorMention = `<@${author.discord_id}>`;
+        } else {
+          console.warn(`No Discord user ID configured for author "${authorName}".`);
+        }
+      } else {
+        console.error(`Could not load authors config: ${configRes.status}`);
+      }
+    } catch (error) {
+      console.error("Could not load authors config:", error);
+    }
   }
 
   let message = null;
@@ -142,7 +175,7 @@ A writer has submitted this post for your review.
 **${title}**
 Status: Changes Requested
 
-<@&YOUR_WRITER_ROLE_ID>
+${authorMention || `Author: **${authorName || "Unknown"}** (Discord mention unavailable.)`}
 The proofreader has requested changes. Please check the following notes. Move back to "In Review" once done.
 `;
     if (editorNotes) {

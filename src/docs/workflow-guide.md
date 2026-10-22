@@ -16,7 +16,7 @@ This guide explains how content moves from an initial idea to publication on By 
 2. Create a new entry in **Literature**.
 3. Fill in your Title, Date, Description, and Story body.
 4. When finished drafting, set the status to **In Review**.
-5. Await for the feedback from an assigned proofreader, you will be notified in the Discord Server in the `editorial-updates` channel for corrections
+5. If the proofreader requests changes, the `editorial-updates` Discord channel will notify you and include the Editor Notes. Your Discord account must be mapped to your CMS pen name to receive a direct mention.
 6. You may appeal on your writing if you wish to preserve a specific line which may sound incorrect but intentional for stylistic choice by utilizing the `author notes` field, so that proofreaders will be informed accordingly and preserve those lines.
 
 ### For Proofreaders
