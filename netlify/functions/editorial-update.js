@@ -140,7 +140,7 @@ Status: In Review
     if (authorNotes) {
       message += `\n**Author Notes:**\n${authorNotes}\n`;
     }
-    message += `\nA writer has submitted this post for review.\n\n[Open Post in CMS](${url})`;
+    message += `\n${authorMention || `**${authorName || "Unknown"}**`} has submitted this post for review.\n\n[Open Post in CMS](${url})`;
 
     proofreaderMessage = `
 📝 **New Post Assigned for Review**
