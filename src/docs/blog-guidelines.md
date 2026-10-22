@@ -16,10 +16,22 @@ Writers don't edit Editor Notes, and proofreaders don't edit a writer's story bo
 
 Feedback is about the writing, not who wrote the notes. To keep it honest and pressure-free:
 
-- Proofreaders stay anonymous to writers. Editor Notes carry no name.
-- Writers don't ask who reviewed their piece, and proofreaders don't reveal themselves.
-- Moderators can see who reviewed each piece.
-- Anonymity is not a shield. Feedback must still be kind and specific, and moderators may act on abusive notes.
+* Proofreaders stay anonymous to writers. Editor Notes carry no name.
+* Writers don't ask who reviewed their piece, and proofreaders don't reveal themselves.
+* Moderators can see who reviewed each piece.
+* Anonymity is not a shield. Feedback must still be kind and specific, and moderators may act on abusive notes.
+
+## Members Anonymity
+
+Every member registers with a pen name. This is required, and its there for a reason: it lets everyone write freely, be read for their words alone, and stay safe. Around the fire, your pen name is who you are.
+
+1. **Choose One name and keep it.** Use the same pen name on the blog and in Discord.
+2. **Keep Identities private.** Never share a member's real name or personal details with anyone outside the community. This includes friends, social media, and other servers.
+3. **Don't unmask anyone**. Don't reveal, guess, or dig for another member's real identity, even inside the community. if you konw who someone is, keep it to yourself.
+4. **No Impersonation.** Don't use the name of a real person, another member, or a public figure.
+5. **Keep it respectful.** Pen names follow the same conduct rules as everything else.
+6. **Moderators know who you are.** Your real name is shared with moderators only, and stays private.
+7. **Changing your pen name** needs a moderator's approval
 
 ## Authorship
 
@@ -29,6 +41,7 @@ Feedback is about the writing, not who wrote the notes. To keep it honest and pr
 * You keep ownership of your writing. By publishing here, you let us display it on the blog.
 
 ## Review Process
+
 1. **Draft.** The writer creates an entry in the CMS.
 2. **In Review.** When finished, the writer sets the status to In Review.
 3. **Feedback.** A proofreader leaves notes in Editor Notes.
@@ -37,6 +50,7 @@ Feedback is about the writing, not who wrote the notes. To keep it honest and pr
 6. **Author Notes.** Writer may inform the proofreader ahead that a certain phrase or word should be kept as a stylistic choice, the proofreader can skip or suggest a close to similar but only to the Author's discretion.
 
 ## Review Process Flow
+
 This is how the review process work.
 
 ```mermaid
@@ -54,30 +68,31 @@ flowchart TD
     D -- "Needs changes" --> E --> F --> B
     D -- "Approved" --> G --> H
 ```
+
 The step-by-step CMS instructions are in the [Author & Editorial Workflow](https://by-the-campfire.netlify.app/docs/workflow-guide/) guide.
 
 ## Disagreements
 
 If a writer and proofreader disagree, talk it out first, politely, in `#editorial-updates`. If that doesn't settle it, a moderator decides. Their decision is final for that piece.
 
-
 ## Use of AI
+
 Ideally we want our writings to be free from AI as we encourage to use our imagination but we also recognize that times are changing and we need to adapt. It is decided that we can use AI  strictly for brainstorming only and with the following reservations:
 
-- Your piece must be your own writing. Don't submit AI-generated text as your work.
-- Tools for spelling, grammar, or brainstorming are fine.
-- If AI played a meaningful role beyond that, tell the proofreaders when you submit.
+* Your piece must be your own writing. Don't submit AI-generated text as your work.
+* Tools for spelling, grammar, or brainstorming are fine.
+* If AI played a meaningful role beyond that, tell the proofreaders when you submit.
+
 ## Conduct
 
 Be respectful in feedback, comments, and on our Discord server. Harassment, plagiarism, and hate speech aren't tolerated. Moderators may unpublish a piece or remove an author who breaks these guidelines.
 
-
- ## Staying Active
+## Staying Active
 
 Writers are expected to publish at least one piece every 3 months. If you go longer without publishing, a moderator will check in with you first. Membership may be deactivated if there's no response or update.
 
 Need a break? Let a moderator know ahead of time and your spot stays safe.
 
----
+- - -
 
 *We may update these guidelines as the blog grows. Changes will be announced in the Discord server.*
