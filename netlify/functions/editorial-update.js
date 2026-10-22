@@ -177,11 +177,13 @@ Status: Changes Requested
 
 ${authorMention || `Author: **${authorName || "Unknown"}** (Discord mention unavailable.)`}
 The proofreader has requested changes. Please check the following notes. Move back to "In Review" once done. Reply to this thread using "done" when ready for another review or if you need clarifications.
+
+---
 `;
     if (editorNotes) {
-      message += `\n**Editor Notes:**\n${editorNotes}\n`;
+      message += `\n**Proofreader Notes:**\n${editorNotes}\n`;
     } else {
-      message += `\n_No Editor Notes were provided._\n`;
+      message += `\n_No Proofreader Notes were provided._\n`;
     }
     message += `\n[Open Post in CMS](${url})`;
   }
