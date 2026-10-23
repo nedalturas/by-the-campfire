@@ -4,7 +4,8 @@ date: 2026-10-23T21:52:00.000+08:00
 badge: New Feature
 is_banner: true
 banner_text: Introducing our Proofreading feature and centralized Announcement Boards!
-link_text: ""
+link_url: Read More
+link_text: Read More
 style: accent
 ---
 We're excited to introduce two powerful new updates designedto improve the writing quality and communication for our dear readers!
