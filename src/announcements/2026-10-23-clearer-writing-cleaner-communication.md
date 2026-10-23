@@ -7,7 +7,7 @@ banner_text: Introducing our Proofreading feature and centralized Announcement B
 link_text: Read announcement
 style: accent
 ---
-We're excited to introduce two powerful new updates designedto improve the writing quality and communication for our dear readers!
+We're excited to introduce two new updates designed to improve the writing quality and communication for our dear readers!
 
 ### What's New?
 
