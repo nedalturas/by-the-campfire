@@ -1,5 +1,5 @@
 ---
-title: "New Features: Clearer Writing, Cleaner Communication"
+title: Clearer Writing, Cleaner Communication
 date: 2026-10-23T21:52:00.000+08:00
 badge: New Feature
 is_banner: true
