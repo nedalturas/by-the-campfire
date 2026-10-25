@@ -13,7 +13,7 @@ order: 1
    *Beginners and seasoned writeres sit at the same fire. No one is too new or too quiet to belong.*
 3. Feedback is a gift.
 
-   *Give it kindly and specfically. REceive it openly. We critique the writing, never the writer.*
+   *Give it kindly and specfically. Receive it openly. We critique the writing, never the writer.*
 4. Credit is always given
 
    *Our words, our sources, and our inspirations are acknowledged. Always.*
