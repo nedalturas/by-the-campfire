@@ -7,7 +7,10 @@ last_editor_role: proofreader
 description: I lost the battle, only to realize I was still standing.
 tags:
   - posts
-author_notes: Decided to remove the last line "I win"
+author_notes: |-
+  Decided to remove the last line "I win".
+
+  Fixed corrections, please check.
 editor_notes: >-
   1. Line 1. "It seemed I had qualified for it unknowingly...."
 
