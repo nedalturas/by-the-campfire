@@ -2,11 +2,12 @@
 title: Catching lightning
 date: 2026-09-30T23:48:00.000+08:00
 author: Syntax
-last_editor: Void Scribbler
+last_editor: Syntax
 last_editor_role: proofreader
 description: I lost the battle, only to realize I was still standing.
 tags:
   - posts
+  - poetry
 author_notes: |-
   Decided to remove the last line "I win".
 
