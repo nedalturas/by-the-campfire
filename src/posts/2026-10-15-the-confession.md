@@ -2,8 +2,8 @@
 title: The Confession
 date: 2026-10-15T10:09:00.000+04:00
 author: The Unsent Letter
-last_editor: The Unsent Letter
-last_editor_role: writer
+last_editor: Syntax
+last_editor_role: proofreader
 description: Unfinished confession still unsent
 tags:
   - Undecided
@@ -11,10 +11,7 @@ tags:
 editor_notes: |-
   1. It seems a man may exhaust his ink, long before he exhausts his guilt.
 
-     `missing comma between ink and long`
-  2. that what is brought into the light loses some of its power to haunt us.
-
-     `missing comma between light and loses`
+     `<notfixed> missing comma between ink and long`
 ---
 Forgive me, for I have sinned.
 
