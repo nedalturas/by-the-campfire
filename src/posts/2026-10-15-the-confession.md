@@ -2,12 +2,13 @@
 title: The Confession
 date: 2026-10-15T10:09:00.000+04:00
 author: The Unsent Letter
-last_editor: Syntax
+last_editor: Void Scribbler
 last_editor_role: proofreader
 description: Unfinished confession still unsent
 tags:
   - Undecided
   - Infinity
+author_notes: Fixed
 editor_notes: |-
   1. It seems a man may exhaust his ink long before he exhausts his guilt.
 
@@ -19,7 +20,7 @@ I once attempted to write down every sin I had ever committed,
 
 but found the task rather beyond me.
 
-It seems a man may exhaust his ink
+It seems a man may exhaust his ink,
 
 long before he exhausts his guilt.
 
