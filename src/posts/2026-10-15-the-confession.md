@@ -9,7 +9,7 @@ tags:
   - Undecided
   - Infinity
 editor_notes: |-
-  1. It seems a man may exhaust his ink, long before he exhausts his guilt.
+  1. It seems a man may exhaust his ink long before he exhausts his guilt.
 
      `<notfixed> missing comma between ink and long`
 ---
